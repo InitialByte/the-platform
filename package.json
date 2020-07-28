@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "repository": {
-    "url": "git+https://github.com/Zlobin/the_platform.git",
+    "url": "git+https://github.com/InitialByte/the-platform.git",
     "type": "git"
   },
   "source": "./src/frontend/react/web-desktop/src/index.tsx",
