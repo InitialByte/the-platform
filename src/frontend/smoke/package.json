@@ -1,0 +1,13 @@
+{
+  "name": "@the_platform/smoke",
+  "description": "Smoke testing",
+  "version": "1.0.0",
+  "port": "9001",
+  "dependencies": {
+    "mocha": "^8.0.1",
+    "puppeteer": "^5.2.1"
+  },
+  "scripts": {
+    "start": "mocha --no-timeout"
+  }
+}

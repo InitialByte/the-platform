@@ -1,0 +1,175 @@
+version: '3'
+services:
+  ###----- Infrastructure -----###
+
+#  elk:
+#    image: sebp/elk:780
+#    container_name: ${ELK_NAME}
+#    hostname: ${ELK_NAME}
+#    network_mode: platform
+#    restart: always
+
+#  redis:
+#    image: redis:6-alpine
+#    container_name: ${REDIS_NAME}
+#    hostname: ${REDIS_NAME}
+#    network_mode: platform
+#    restart: always
+#    ports:
+#      - ${REDIS_PORT}:6379
+
+#  zookeeper:
+#    image: zookeeper:3.6
+#    container_name: ${ZOOKEEPER_NAME}
+#    hostname: ${ZOOKEEPER_NAME}
+#    network_mode: platform
+#    restart: always
+
+#  kafka:
+#    image: bitnami/kafka:2
+#    container_name: ${KAFKA_NAME}
+#    hostname: ${KAFKA_NAME}
+#    network_mode: platform
+#    restart: always
+#    ports:
+#      - ${KAFKA_PORT}:9092
+#    environment:
+#      - KAFKA_CFG_LISTENERS=SASL_SSL://:${KAFKA_PORT}
+#      - KAFKA_CLIENT_USER=${KAFKA_USER}
+#      - KAFKA_CLIENT_PASSWORD=${KAFKA_PASSWORD}
+#      - KAFKA_CFG_ZOOKEEPER_CONNECT=${ZOOKEEPER_NAME}
+#    depends_on:
+#      - zookeeper
+
+#  postgres:
+#    image: postgres:13
+#    container_name: ${POSTGRES_NAME}
+#    hostname: ${POSTGRES_NAME}
+#    network_mode: platform
+#    restart: always
+#    ports:
+#      - ${POSTGRES_PORT}:5432
+#    environment:
+#      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+#      - POSTGRES_USER=${POSTGRES_USER}
+#      - POSTGRES_DB=${POSTGRES_DB}
+
+#  postgres-migration:
+#    image: flyway/flyway:6
+#    container_name: ${MIGRATION_NAME}
+#    hostname: ${MIGRATION_NAME}
+#    network_mode: platform
+#    restart: "no"
+#    volumes:
+#      - ../src/backend/nodejs/rest:/flyway/sql
+#    command: [
+#      "-url=jdbc:postgresql://${POSTGRES_NAME}/${POSTGRES_DB}",
+#      "-user=${POSTGRES_USER}",
+#      "-password=${POSTGRES_PASSWORD}",
+#      "migrate",
+#    ]
+#    depends_on:
+#      - postgres
+
+#  consul_server_master_node:
+#    image: consul:1.8
+#    container_name: ${SERVICE_DISCOVERY_NAME}
+#    hostname: ${SERVICE_DISCOVERY_NAME}
+#    ## ONLY LOCAL DEV PUPRPOSES
+#    network_mode: host
+#    # network_mode: platform
+#    restart: always
+#    command: [
+#      "agent",
+#      "-node=${SERVICE_DISCOVERY_NODE}",
+#      "-dev",
+#      "-datacenter=${SERVICE_DISCOVERY_DC}",
+#      "-http-port=${SERVICE_DISCOVERY_PORT}",
+#      "-client=0.0.0.0",
+#    ]
+
+#  consul_register:
+#    image: ${CONSUL_REGISTER_NAME}
+#    container_name: ${CONSUL_REGISTER_NAME}
+#    hostname: ${CONSUL_REGISTER_NAME}
+#    network_mode: platform
+#    restart: "no"
+#    build:
+#      context: ./register
+#      args:
+#        - SERVICE_DISCOVERY_HOST=${SERVICE_DISCOVERY_NAME}
+#        - SERVICE_DISCOVERY_PORT=${SERVICE_DISCOVERY_PORT}
+#        - POSTGRES_NAME=${POSTGRES_NAME}
+#        - POSTGRES_PORT=${POSTGRES_PORT}
+#        - REDIS_NAME=${REDIS_NAME}
+#        - REDIS_PORT=${REDIS_PORT}
+#    depends_on:
+#      - consul_server_master_node
+#      - postgres
+#      - redis
+
+#  api-gateway:
+#    image: tykio/tyk-gateway:v3.0.0
+#    container_name: ${API_GATEWAY_NAME}
+#    hostname: ${API_GATEWAY_NAME}
+#    network_mode: platform
+#    restart: always
+#    volumes:
+#      - ./tyk/tyk.conf:/opt/tyk-gateway/tyk.conf
+#    ports:
+#      - ${API_GATEWAY_PORT}:8080
+#    depends_on:
+#      - redis
+
+  ###----- Micro-Services -----###
+
+#  ms_auth:
+#    image: ${MS_AUTH_NAME}
+#    container_name: ${MS_AUTH_NAME}
+#    hostname: ${MS_AUTH_NAME}
+#    network_mode: platform
+#    restart: always
+#    build:
+#      context: ../src/backend/nodejs/rest/auth
+#    volumes:
+#      - ../.yarn/cache:/usr/src/app/.yarn/cache
+#    environment:
+#      - SERVICE_DISCOVERY_HOST=${SERVICE_DISCOVERY_NAME}
+#      - SERVICE_DISCOVERY_PORT=${SERVICE_DISCOVERY_PORT}
+#      - MS_AUTH_JWT_EXPIRES=${MS_AUTH_JWT_EXPIRES}
+#      - MS_AUTH_JWT_SECRET=${MS_AUTH_JWT_SECRET}
+#      - REDIS_DB=${MS_AUTH_REDIS_DB}
+#      - APP_NAME=${MS_AUTH_NAME}
+#    depends_on:
+#      - consul_register
+
+  ###----- Web-Application -----###
+
+  web-client-dev:
+    image: ${WEB_APP_NAME}
+    container_name: ${WEB_APP_NAME}
+    hostname: ${WEB_APP_NAME}
+    network_mode: platform
+    restart: always
+    build:
+      context: ../
+      args:
+        - WORKSTATION=${WEB_WORKSTATION}
+        - DEV_CERTIFICATES_ACTIVE=${WEB_DEV_CERTIFICATES_ACTIVE}
+        - MAINTENANCE_MODE_ACTIVE=${WEB_MAINTENANCE_MODE_ACTIVE}
+        - COOKIE_NAME=${WEB_COOKIE_NAME}
+        - API_KEY=${WEB_API_KEY}
+        - DOMAIN=${WEB_DOMAIN}
+        - APIGW_PROTOCOL=${WEB_APIGW_PROTOCOL}
+        - APIGW_HOST=${API_GATEWAY_NAME}
+        - APIGW_PORT=${API_GATEWAY_PORT}
+        - WS_PROTOCOL=${WEB_WS_PROTOCOL}
+        - WS_HOST=${API_GATEWAY_NAME}
+        - WS_PORT=${API_GATEWAY_PORT}
+    volumes:
+      - ../.yarn/cache:/usr/src/app/.yarn/cache
+    ports:
+      - 443:443/tcp
+      - 443:443/udp
+#    depends_on:
+#      - api-gateway

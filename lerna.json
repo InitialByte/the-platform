@@ -1,0 +1,11 @@
+{
+  "packages": ["./src/frontend/*"],
+  "version": "independent",
+  "useWorkspaces": true,
+  "npmClient": "yarn",
+  "publish": {
+    "allowBranch": ["develop", "feature/*", "release/*", "hotfix/*"],
+    "conventionalCommits": true, 
+    "yes": true
+ }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "@the_platform/ms-nodejs-auth",
+  "description": "Microservice Auth",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.7",
+    "@types/node": "^14.0.26",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "@the_platform/core": "workspace:*",
+    "@the_platform/nodejs-core": "workspace:*",
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "start:dev": "yarn nodemon src/index.ts"
+  }
+}

@@ -1,0 +1,41 @@
+.swagger-ui .info {
+  margin: 10px 0;
+}
+
+.wrapper > h3 {
+  text-align: center;
+  margin: 0 5px;
+}
+
+.wrapper > a {
+  box-shadow: 0 5px 0 #2390ff;
+  background-color: #61affe;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: .2em .5em;
+  position: relative;
+  margin-right: 3px;
+  color: white;
+}
+
+.wrapper > a:hover {
+  background-color: #2390ff;
+  cursor: pointer;
+}
+
+.wrapper > a:active {
+  box-shadow: none;
+  top: 5px;
+}
+
+.wrapper > a.active {
+  background-color: #49cc90;
+  box-shadow: 0 0 0 #26eb91;
+  cursor: default;
+  top: 5px;
+}
+
+.wrapper__swagger {
+  border-top: 3px #61affe solid;
+  margin-top: 5px;
+}

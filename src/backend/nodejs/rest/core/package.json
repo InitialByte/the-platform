@@ -1,0 +1,22 @@
+{
+  "name": "@the_platform/nodejs-core",
+  "description": "Core",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "devDependencies": {
+    "@types/consul": "0.23.34",
+    "@types/express": "^4.17.7",
+    "@types/jsonwebtoken": "8.5.0",
+    "@types/node": "^14.0.26",
+    "@types/redis": "2.8.25"
+  },
+  "dependencies": {
+    "@types/validator": "^13.1.0",
+    "consul": "^0.37.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.3.0",
+    "redis": "^3.0.2",
+    "sequelize": "^6.3.3"
+  }
+}

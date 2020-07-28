@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "baseUrl": "../",
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "outDir": "dist",
+    "strict": false,
+    "noEmit": true,
+    "typeRoots": [
+      "./node_modules/@types/*",
+      "../core/@types/*"
+    ],
+    "paths": {
+      "@the_platform/nodejs-core": ["core/src/index"]
+    },
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "**/node_modules/*",
+    "**/__snapshots__/*",
+    "**/dist/*",
+    "**/*.snap"
+  ]
+}

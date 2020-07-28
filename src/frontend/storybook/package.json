@@ -1,0 +1,35 @@
+{
+  "name": "@the_platform/storybook",
+  "description": "Storybook for app's react components",
+  "version": "1.0.0",
+  "dependencies": {
+    "@storybook/addon-a11y": "~6.0.0-rc.15",
+    "@storybook/addon-actions": "~6.0.0-rc.15",
+    "@storybook/addon-backgrounds": "~6.0.0-rc.15",
+    "@storybook/addon-knobs": "~6.0.0-rc.15",
+    "@storybook/addon-viewport": "~6.0.0-rc.15",
+    "@storybook/react": "~6.0.0-rc.15",
+    "core-js": "^3.6.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "scripts": {
+    "build": "yarn build-storybook -o dist",
+    "start": "yarn start-storybook -p 8010 --ci"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.10.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.10.4",
+    "@babel/plugin-transform-function-name": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@babel/runtime": "^7.10.5",
+    "babel-loader": "^8.1.0",
+    "cache-loader": "^4.1.0",
+    "pnp-webpack-plugin": "^1.6.4"
+  }
+}

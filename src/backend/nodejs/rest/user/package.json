@@ -1,0 +1,32 @@
+{
+  "name": "@the_platform/ms-nodejs-user",
+  "description": "Microservice user rest-api",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "port": "8081",
+  "host": "ms-nodejs-auth",
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "events": {
+      "start": "node ./src/killport.js"
+    }
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.7",
+    "@types/node": "^14.0.26",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "@the_platform/nodejs-core": "workspace:*",
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "start:prod": "ts-node src/index.ts",
+    "start:dev": "yarn nodemon src/index.ts"
+  }
+}

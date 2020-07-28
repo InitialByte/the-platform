@@ -1,0 +1,19 @@
+{
+  "Node": "${REDIS_NAME}",
+  "Address": "${REDIS_NAME}:${REDIS_PORT}",
+  "Service": {
+    "ID": "${REDIS_NAME}1",
+    "Service": "${REDIS_NAME}",
+    "Port": ${REDIS_PORT}
+  },
+  "Checks": [
+    {
+      "Name": "http-check",
+      "status": "passing",
+      "Definition": {
+        "http": "http://${REDIS_NAME}:${REDIS_PORT}",
+        "interval": "30s"
+      }
+    }
+  ]
+}

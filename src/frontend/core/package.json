@@ -1,0 +1,15 @@
+{
+  "name": "@the_platform/core",
+  "description": "Core utils and services, with NO UI, without dependencies and what can be shared between application modules",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "dependencies": {
+    "core-js": "^3.6.5"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.10.5",
+    "@babel/runtime-corejs3": "^7.10.5",
+    "@types/jest": "^26.0.7",
+    "regenerator-runtime": "^0.13.7"
+  }
+}

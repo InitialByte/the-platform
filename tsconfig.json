@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "baseUrl": "src/frontend/",
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "importHelpers": true,
+    "declaration": true,
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "preserve",
+    "outDir": "dist",
+    "noEmit": true,
+    "strict": true,
+    "typeRoots": [
+      "./node_modules/@types/*",
+      "**/*.d.ts",
+      "@types/*"
+    ],
+    "paths": {
+      "@the_platform/react-web-desktop": ["react/web-desktop/src/index"],
+      "@the_platform/module-register": ["modules/register/src/index"],
+      "@the_platform/module-auth": ["modules/auth/src/index"],
+      "@the_platform/react-uikit": ["react/uikit/src/index"],
+      "@the_platform/core": ["core/src/index"]
+    }
+  },
+  "files": [
+    "src/frontend/react/web-desktop/src/global.ts"
+  ],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "**/node_modules/*",
+    "**/__snapshots__/*",
+    "**/dist/*",
+    "**/*.snap"
+  ]
+}

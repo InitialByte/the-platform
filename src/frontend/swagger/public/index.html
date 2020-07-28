@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="<%= htmlWebpackPlugin.options.lang %>">
+  <head>
+    <title>The Platform. Swagger</title>
+  </head>
+  <body>
+    <!--[if lte IE 10]>
+      <p>
+        You're browser is not supported by this application.<br/>
+        Please use actual version of modern browsers <b>Chrome, Firefox, Safari, Edge, Opera etc.</b>
+      </p>
+    <![endif]-->
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="app"></div>
+    <script>window.__INITIAL_STATE__ = <%= htmlWebpackPlugin.options.initialState %></script>
+    <!--
+      version: <%= htmlWebpackPlugin.options.buildInfo.PACKAGE_VERSION %>
+      build time: <%= htmlWebpackPlugin.options.buildInfo.BUILD_TIME %>
+      hash: <%= htmlWebpackPlugin.options.buildInfo.COMMIT_HASH %>    -->
+  </body>
+</html>

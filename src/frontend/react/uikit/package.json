@@ -1,0 +1,22 @@
+{
+  "name": "@the_platform/react-uikit",
+  "description": "React UI-Kit components",
+  "version": "1.0.0",
+  "main": "./src/index.tsx",
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "core-js": "^3.6.5",
+    "history": "^5.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router": "v6.0.0-beta.0",
+    "react-router-dom": "v6.0.0-beta.0"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.10.5",
+    "@babel/runtime-corejs3": "^7.10.5",
+    "@types/react": "^16.9.43",
+    "@types/react-dom": "^16.9.8"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "outDir": "dist",
+    "noEmit": true,
+    "strict": false,
+    "typeRoots": [
+      "./node_modules/@types/*"
+    ]
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "**/node_modules/*",
+    "**/__snapshots__/*",
+    "**/dist/*",
+    "**/*.snap"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "outDir": "dist",
+    "strict": false,
+    "noEmit": true,
+    "typeRoots": [
+      "./node_modules/@types/*",
+      "../core/@types/*"
+    ]
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "**/node_modules/*",
+    "**/__snapshots__/*",
+    "**/dist/*",
+    "**/*.snap"
+  ]
+}

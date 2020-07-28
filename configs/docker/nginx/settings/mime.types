@@ -1,0 +1,92 @@
+types {
+  application/vnd.openxmlformats-officedocument.wordprocessingml.document     docx;
+  application/vnd.openxmlformats-officedocument.spreadsheetml.sheet           xlsx;
+  application/vnd.openxmlformats-officedocument.presentationml.presentation   pptx;
+
+  application/javascript                 js;
+  application/atom+xml                   atom;
+  application/rss+xml                    rss;
+  image/jpeg                             jpeg jpg;
+  image/gif                              gif;
+  text/html                              html htm shtml;
+  text/css                               css;
+  text/xml                               xml;
+
+  text/vnd.sun.j2me.app-descriptor       jad;
+  text/vnd.wap.wml                       wml;
+  text/x-component                       htc;
+  text/mathml                            mml;
+  text/plain                             txt;
+
+  image/vnd.wap.wbmp                     wbmp;
+  image/x-ms-bmp                         bmp;
+  image/x-icon                           ico;
+  image/svg+xml                          svg svgz;
+  image/x-jng                            jng;
+  image/tiff                             tif tiff;
+  image/webp                             webp;
+  image/png                              png;
+
+  application/vnd.google-earth.kml+xml   kml;
+  application/x-redhat-package-manager   rpm;
+  application/vnd.google-earth.kmz       kmz;
+  application/x-java-archive-diff        jardiff;
+  application/x-shockwave-flash          swf;
+  application/vnd.apple.mpegurl          m3u8;
+  application/vnd.ms-fontobject          eot;
+  application/vnd.ms-powerpoint          ppt;
+  application/x-java-jnlp-file           jnlp;
+  application/x-rar-compressed           rar;
+  application/x-7z-compressed            7z;
+  application/x-x509-ca-cert             der pem crt;
+  application/mac-binhex40               hqx;
+  application/java-archive               jar war ear;
+  application/vnd.ms-excel               xls;
+  application/vnd.wap.wmlc               wmlc;
+  application/x-xpinstall                xpi;
+  application/postscript                 ps eps ai;
+  application/x-makeself                 run;
+  application/x-stuffit                  sit;
+  application/xhtml+xml                  xhtml;
+  application/xspf+xml                   xspf;
+  application/x-pilot                    prc pdb;
+  application/x-cocoa                    cco;
+  application/msword                     doc;
+  application/x-perl                     pl pm;
+  application/x-sea                      sea;
+  application/x-tcl                      tcl tk;
+  application/json                       json;
+  application/pdf                        pdf;
+  application/rtf                        rtf;
+  application/zip                        zip;
+
+  application/octet-stream               bin exe dll;
+  application/octet-stream               deb;
+  application/octet-stream               dmg;
+  application/octet-stream               iso img;
+  application/octet-stream               msi msp msm;
+
+  audio/x-realaudio                      ra;
+  audio/x-m4a                            m4a;
+  audio/midi                             mid midi kar;
+  audio/mpeg                             mp3;
+  audio/ogg                              ogg;
+
+  video/quicktime                        mov;
+  video/x-msvideo                        avi;
+  video/x-ms-asf                         asx asf;
+  video/x-ms-wmv                         wmv;
+  video/x-flv                            flv;
+  video/x-m4v                            m4v;
+  video/x-mng                            mng;
+  video/3gpp                             3gpp 3gp;
+  video/mp2t                             ts;
+  video/mpeg                             mpeg mpg;
+  video/webm                             webm;
+  video/mp4                              mp4;
+
+  application/x-font-ttf                 ttf;
+  font/opentype                          ott;
+  font/woff2                             woff2;
+  font/woff                              woff;
+}

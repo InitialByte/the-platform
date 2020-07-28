@@ -1,0 +1,17 @@
+{
+  "name": "@the_platform/module-register",
+  "version": "1.0.0",
+  "description": "Module for registration",
+  "main": "./src/index.tsx",
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.10.5",
+    "@babel/runtime-corejs3": "^7.10.5",
+    "@types/react": "^16.9.43",
+    "@types/react-dom": "^16.9.8"
+  }
+}
