@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Suspense} from 'react';
+import {Suspense, StrictMode} from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -17,20 +17,22 @@ export const AppRouter = ({
   modulesRoute = [],
 }: IProps): JSX.Element => (
   <ErrorBoundary>
-    <Suspense fallback={<Spinner />}>
-      <BrowserRouter>
-        <Navigation />
-        <Routes>
-          {[...router, ...modulesRoute].map(({path, Page}) => (
-            <Route
-              element={<Page />}
-              path={path}
-              key={path}
-            />
-          ))}
-        </Routes>
-      </BrowserRouter>
-    </Suspense>
+    <StrictMode>
+      <Suspense fallback={<Spinner />}>
+        <BrowserRouter>
+          <Navigation />
+          <Routes>
+            {[...router, ...modulesRoute].map(({path, Page}) => (
+              <Route
+                element={<Page />}
+                path={path}
+                key={path}
+              />
+            ))}
+          </Routes>
+        </BrowserRouter>
+      </Suspense>
+    </StrictMode>
   </ErrorBoundary>
 );
 

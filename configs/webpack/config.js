@@ -1,6 +1,5 @@
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const {join} = require('path');
 const {readFileSync, writeFileSync} = require('fs');
@@ -78,10 +77,6 @@ const webpackConfig = {
     cacheWithContext: false,
     symlinks: false,
 
-    plugins: [
-      PnpWebpackPlugin,
-    ],
-
     alias: {
       '@the_platform/react-web-desktop': join(rootPath, 'src/frontend/react/web-desktop/src'),
       '@the_platform/module-register': join(rootPath, 'src/frontend/modules/register/src'),
@@ -90,12 +85,6 @@ const webpackConfig = {
       '@the_platform/core': join(rootPath, 'src/frontend/core/src'),
       '@the_platform/routes': pathToSaveRoutes,
     },
-  },
-
-  resolveLoader: {
-    plugins: [
-      PnpWebpackPlugin.moduleLoader(module),
-    ],
   },
 
   plugins: [
