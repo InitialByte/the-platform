@@ -6,7 +6,6 @@ import {
   Route,
 } from 'react-router-dom';
 import {Navigation, ErrorBoundary, Spinner} from '@the_platform/react-uikit';
-import {ROUTE_NOT_FOUND} from './routes';
 import {router} from './router';
 
 interface IProps {
