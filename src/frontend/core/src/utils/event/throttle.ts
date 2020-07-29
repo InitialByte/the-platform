@@ -22,18 +22,17 @@ export function throttle(func, ms) {
 
   function wrapper() {
     if (isThrottled) {
-      // (2)
       savedArgs = arguments;
       savedThis = this;
       return;
     }
 
-    func.apply(this, arguments); // (1)
+    func.apply(this, arguments);
 
     isThrottled = true;
 
     setTimeout(() => {
-      isThrottled = false; // (3)
+      isThrottled = false;
       if (savedArgs) {
         wrapper.apply(savedThis, savedArgs);
         savedArgs = savedThis = null;

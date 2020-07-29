@@ -77,7 +77,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn test && yarn tslint && yarn eslint"
+      "yarn check"
     ]
   },
   "jest": {
@@ -105,13 +105,12 @@
     "start": "webpack-dev-server --progress --open --config ./configs/webpack/dev.js",
     "build": "webpack --progress --config ./configs/webpack/prod.js",
     "/////": "             [ LINT, TEST ]              ",
-    "eslint": "yarn eslint \"./src/frontend/**/*.@(ts|tsx)\" --cache --cache-location ./.cache -c ./configs/core/.eslintrc",
+    "lint": "yarn eslint \"./src/frontend/core/**/*.@(ts|tsx)\" --cache --cache-location ./.cache",
     "prettier": "prettier --write '**/*.{ts,tsx,css,scss}' --config ./configs/core/.prettierrc",
     "tslint": "yarn run tsc --noEmitOnError --pretty",
     "check": "yarn tslint && yarn lint && yarn test",
     "fixcode": "yarn prettier && yarn eslint --fix",
     "test": "lerna run test --stream",
-    "lint:staged": "lint-staged",
     "//////": "              [ STUFF ]                 ",
     "prunecache": "rm -rf ./.cache/ && yarn cache clean",
     "bump:version": "lerna version --no-push",
@@ -162,6 +161,7 @@
     "jest": "^26.1.0",
     "lerna": "^3.22.1",
     "lerna-changelog": "^1.0.1",
+    "lint-staged": "^10.2.11",
     "postcss-js": "^2.0.3",
     "postcss-loader": "^3.0.0",
     "prettier": "^2.0.5",

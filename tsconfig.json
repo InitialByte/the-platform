@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "baseUrl": "src/frontend/",
     "resolveJsonModule": true,
     "strictNullChecks": true,
     "importHelpers": true,
@@ -10,19 +9,15 @@
     "module": "esnext",
     "jsx": "preserve",
     "outDir": "dist",
+    "baseUrl": "./",
     "noEmit": true,
     "strict": true,
-    "typeRoots": [
-      "./node_modules/@types/*",
-      "**/*.d.ts",
-      "@types/*"
-    ],
     "paths": {
-      "@the_platform/react-web-desktop": ["react/web-desktop/src/index"],
-      "@the_platform/module-register": ["modules/register/src/index"],
-      "@the_platform/module-auth": ["modules/auth/src/index"],
-      "@the_platform/react-uikit": ["react/uikit/src/index"],
-      "@the_platform/core": ["core/src/index"]
+      "@the_platform/react-web-desktop": ["src/frontend/react/web-desktop/src/index"],
+      "@the_platform/module-register": ["src/frontend/modules/register/src/index"],
+      "@the_platform/module-auth": ["src/frontend/modules/auth/src/index"],
+      "@the_platform/react-uikit": ["src/frontend/react/uikit/src/index"],
+      "@the_platform/core": ["src/frontend/core/src/index"]
     }
   },
   "files": [

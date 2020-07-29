@@ -66,6 +66,7 @@
       }
     ],
     "implicit-arrow-linebreak": "off",
+    "props-no-spreading": "off",
     "function-paren-newline": ["error", "consistent"],
     "object-curly-spacing": [1, "never"],
     "array-bracket-spacing": [1, "never"],

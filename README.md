@@ -27,7 +27,7 @@ Micro-frontend (a.k.a. micro-services) allows multiple teams to work independent
 - **Stability**. Any new code can be easily disabled using feature toggles.
 - **Performance**. 100 point in lighthouse.
 - **Code ownership**. The project should be divided into modules, so that it would be easy to assign an owner for each module. This will help us to do codereview. Neat and consistent coding primarily serves to improve the readability and comprehensibility of the source code, which is very important for debugging and modifying code written by other employees, and also to get the most out of your work.
-- **CI\CD Speed**. Fast webpack building, code-splitting and smallest bundles size.
+- **CI\CD Speed**. Fast webpack building, code-splitting, tree-shaking and smallest bundles size.
 
 ### You can use the-platform when have
 
@@ -76,7 +76,8 @@ DevOps
 FrontEnd
 
 - **Typescript** - static type-checking along with the latest ECMAScript features.
-- **React, Recoil** - view layer and state managment.
+- **React, Redux** - view layer and state managment.
+- **Formik, Yup** - forms and validations.
 - **SwaggerUI** - REST-API documentation.
 - **Puppeteer** - smoke (potentially e2e) testing.
 - **Jest, Enzyme, Mocha** - unit testing.
@@ -96,8 +97,6 @@ BackEnd
 
 - authentication: (JWT, CryptoPro [TODO]);
 - omni-channel [TODO];
-- forms [TODO];
-- validation [TODO];
 - http-request [TODO], jsonp transfer, web-sockets [TODO], web-workers;
 - cookies, localStorage, cacheStorage, sessionStorage (with prefix and expires data);
 - index-db [TODO];
@@ -123,8 +122,8 @@ cd <PROJECT_PATH>
 yarn policies set-version berry
 ```
 
-*. Run `yarn`
-*. Run `yarn start`
+* Run `yarn`
+* Run `yarn start`
 
 To test it as on production side or for some other purposes you may install [Docker](https://docs.docker.com/get-docker/) and [docker-composer](https://docs.docker.com/compose/install/) locally, then you can run the entire app: front-end + backend + infrastructure (postgres, redis etc.):
 
@@ -263,7 +262,7 @@ Keep it fast. How to check:
 
 - Add http3 into web-app nginx.
 - Add SSR.
-- Add Recoil.
+- Add Redux.
 - Add [web-worker](https://developers.google.com/web/tools/workbox).
 - Add [Istanbul](https://istanbul.js.org/).
 - Add ability disallow commit if tests not in green zone.

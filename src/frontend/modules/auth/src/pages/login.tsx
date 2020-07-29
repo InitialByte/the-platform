@@ -1,6 +1,9 @@
 import * as React from 'react';
+import {LoginForm} from '../parts/login-form';
 
-const LoginPage = (): JSX.Element => <div>Login</div>;
+const LoginPage = (): JSX.Element => {
+  return <LoginForm />;
+};
 
 LoginPage.displayName = 'LoginPage';
 
