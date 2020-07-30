@@ -4,12 +4,15 @@
   "version": "1.0.0",
   "main": "./src/index.ts",
   "dependencies": {
-    "core-js": "^3.6.5"
+    "core-js": "^3.6.5",
+    "ky": "^0.23.0",
+    "yup": "^0.29.2"
   },
   "devDependencies": {
     "@babel/runtime": "^7.10.5",
     "@babel/runtime-corejs3": "^7.10.5",
     "@types/jest": "^26.0.7",
+    "@types/yup": "^0.29.3",
     "regenerator-runtime": "^0.13.7"
   }
 }

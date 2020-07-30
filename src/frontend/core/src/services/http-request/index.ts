@@ -1,2 +1,2 @@
 export * from './statuses';
-// export * from './request';
+export {default as request} from 'ky';

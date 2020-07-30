@@ -1,9 +1,12 @@
 import * as React from 'react';
+import {Paper, Grid} from '@the_platform/react-uikit';
 import {LoginForm} from '../parts/login-form';
 
-const LoginPage = (): JSX.Element => {
-  return <LoginForm />;
-};
+const LoginPage = (): JSX.Element => (
+  <Paper>
+    <LoginForm />
+  </Paper>
+);
 
 LoginPage.displayName = 'LoginPage';
 

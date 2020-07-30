@@ -1,3 +1,6 @@
 export * from './Button';
-// export * from './Icon';
-// export * from './Link';
+export * from './Grid';
+export * as Icon from './Icon';
+export * from './CheckBox';
+export * from './Paper';
+export * from './CSSBaseline';

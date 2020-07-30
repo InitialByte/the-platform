@@ -2,51 +2,53 @@
 
 ## Services
 
-1. CacheStorage
-2. Cookies
-3. ErrorTracking
-4. EventEmitter
-5. FileSaving
-6. Fingerprint
-7. HttpRequest [TODO]
-8. I18n [TODO]
-9. Idle [TODO]
-10. JsonP
-11. ObjectCache
-12. Permission
-13. RealUserMonitoring
-14. ServiceWorker
-15. StorageManager
-16. WebSocket [TODO]
+1. Cookies
+2. ErrorTracking
+3. EventEmitter
+4. FileSaving
+5. Fingerprint
+6. HttpRequest [Documentation KY](https://github.com/sindresorhus/ky)
+7. JsonP
+8. ObjectCache
+9. Permission
+10. RealUserMonitoring
+11. ServiceWorker
+12. StorageManager
+13. Validation [Documentation Yup](https://github.com/jquense/yup)
 
 ## Utils
 
-1. Core
-* IsPlainObject
-* Json
-* KindOf
-* Pick
+### Core
 
-2. Event
-* Debounce
-* DetectDevTool
-* ErrorHandler
-* FullScreen
-* HeartBeating
-* Throttle
-* Unload
+1. IsPlainObject
+2. Json
+3. KindOf
+4. Pick
 
-3. Object
-* DeepClone
-* DeepFreeze
-* ShallowClone
+### Event
 
-4. Security
-* MurMurHash3-128
+1. Debounce
+2. DetectDevTool
+3. ErrorHandler
+4. FullScreen
+5. HeartBeating
+6. Throttle
+7. Unload
 
-5. Other
-* Delay
-* Middleware
-* Retry
-* URL
-* UUIDv4
+### Object
+
+1. DeepClone
+2. DeepFreeze
+3. ShallowClone
+
+### Security
+
+1. MurMurHash3-128
+
+### Other
+
+1. Delay
+2. Middleware
+3. Retry
+4. URL
+5. UUIDv4

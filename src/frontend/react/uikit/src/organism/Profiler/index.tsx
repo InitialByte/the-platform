@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Profiler} from 'react';
+import {Profiler, ReactElement} from 'react';
 
 type TRenderCallback = (
   // the "id" prop of the Profiler tree that has just committed

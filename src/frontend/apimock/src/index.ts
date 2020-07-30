@@ -18,22 +18,19 @@ const callbackOnStart = (): void => {
   console.log(`rest api: ${URL}/api`);
   console.log(`websocket: ${URL}/ws`);
   console.log(DELIMITER);
+  console.log(new Date().getTimezoneOffset());
 };
 
 app.disable('x-powered-by');
 app.use(json());
 app.use(cookieParser());
-app.use(urlencoded({
-  extended: true,
-}));
+app.use(
+  urlencoded({
+    extended: true,
+  }),
+);
 
-app.use(({
-  method,
-  path,
-  params,
-  cookies,
-  query,
-}, _, next) => {
+app.use(({method, path, params, cookies, query}, _, next) => {
   console.log('%s %s', method, path);
 
   if (Object.keys(params).length > 0) {

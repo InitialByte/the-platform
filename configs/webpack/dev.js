@@ -5,13 +5,15 @@ const {join} = require('path');
 const {webpackConfig} = require('./config');
 const {killByPort} = require('./misc');
 const {config} = require('../../package.json');
-const {port: apiMockServerPort} = require('../../src/frontend/apimock/package.json');
+const {
+  port: apiMockServerPort,
+} = require('../../src/frontend/apimock/package.json');
 
 const rootPath = process.cwd();
 const {devServer, apiProxyServer} = config;
 const {host, port} = devServer;
 const {
-  API_PROXY_TARGET = apiProxyServer.enabled
+  API_PROXY_TARGET = apiProxyServer.type === 'external'
     ? `${apiProxyServer.protocol}://${apiProxyServer.host}:${apiProxyServer.port}`
     : `https://localhost:${apiMockServerPort}`,
   TO_SMOKE = false,
@@ -51,8 +53,14 @@ module.exports = merge(webpackConfig, {
     host,
     port,
 
-    cert: join(rootPath, 'configs/docker/nginx/certs/wildcard.localhost.cert.pem'),
-    key: join(rootPath, 'configs/docker/nginx/certs/wildcard.localhost.key.pem'),
+    cert: join(
+      rootPath,
+      'configs/docker/nginx/certs/wildcard.localhost.cert.pem',
+    ),
+    key: join(
+      rootPath,
+      'configs/docker/nginx/certs/wildcard.localhost.key.pem',
+    ),
 
     headers: {
       'Access-Control-Allow-Origin': '*',
@@ -73,12 +81,15 @@ module.exports = merge(webpackConfig, {
       },
     },
 
-    before: () => {
+    before: async () => {
       // Kill if something is listen to the same port.
       killByPort(port);
-      if (!apiProxyServer.enabled) {
-        // Run apimock server if external proxy does not enabled.
-        exec('yarn apimock');
+      if (apiProxyServer.type === 'local') {
+        killByPort(apiMockServerPort);
+        // Run local apimock server if external proxy does not enabled.
+        const {stdout, stderr} = await exec('yarn apimock');
+        console.log('ApiMock, success: ', stdout);
+        console.error('ApiMock, error: ', stderr);
       }
     },
   },

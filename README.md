@@ -77,7 +77,8 @@ FrontEnd
 
 - **Typescript** - static type-checking along with the latest ECMAScript features.
 - **React, Redux** - view layer and state managment.
-- **Formik, Yup** - forms and validations.
+- **Formik, Yup** - forms and validation.
+- **Ky** - http request.
 - **SwaggerUI** - REST-API documentation.
 - **Puppeteer** - smoke (potentially e2e) testing.
 - **Jest, Enzyme, Mocha** - unit testing.
@@ -97,7 +98,7 @@ BackEnd
 
 - authentication: (JWT, CryptoPro [TODO]);
 - omni-channel [TODO];
-- http-request [TODO], jsonp transfer, web-sockets [TODO], web-workers;
+- http-request, jsonp transfer, web-sockets [TODO], web-workers;
 - cookies, localStorage, cacheStorage, sessionStorage (with prefix and expires data);
 - index-db [TODO];
 - browser fingerprint;
@@ -206,7 +207,7 @@ mkcert -install
 ---
 
 - `yarn tslint` Run typescript (tsc) validation and type-checking.
-- `yarn eslint` Lint typescript source code.
+- `yarn lint` Lint typescript source code.
 - `yarn lint:staged` Used to run tests and linting in pre-commit phase.
 - `yarn test` Run app's tests.
 - `yarn fixcode` Auto-fix source files.

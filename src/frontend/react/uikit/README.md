@@ -9,3 +9,6 @@
 * **Single state UI**. This will help us to easily restore the state of the screen and understand what exactly is displayed on the screen at the moment.
 * **Unidirectional data flow**. The state of a component should be uniquely determined and there should be only one entity capable of changing this state.
 * **Disconnectability**. Each component should be easily disabled through the feature toggles mechanism. For example, in one of the components there is a critical bug, and you need to turn off the whole component in order to avoid an error. In another case, we include some feature only for certain users.
+
+For UI is using [Material UI](https://material-ui.com/).
+For Form is using [Formik](https://github.com/formium/formik)
