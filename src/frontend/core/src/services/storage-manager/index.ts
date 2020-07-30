@@ -29,8 +29,8 @@
 import {parseJson, stringifyJson, proxyErrorHandler} from '../../utils';
 import {logger} from '../error-tracking';
 
-type StorageInstance = StorageManager | NonInstantiated;
 type NonInstantiated = Record<string, unknown>;
+type StorageInstance = StorageManager | NonInstantiated;
 
 interface IStorage {
   value: unknown;
@@ -53,7 +53,8 @@ class StorageManager implements Storage {
 
   get length(): number {
     return Object.keys(this.storage).map((key: string) =>
-      key.startsWith(this.prefix)).length;
+      key.startsWith(this.prefix),
+    ).length;
   }
 
   key(index: number): string {
@@ -118,8 +119,8 @@ class StorageManager implements Storage {
   }
 }
 
-let localStorageInstance: StorageInstance = proxyErrorHandler('LocalStorage');
-let sessionStorageInstance: StorageInstance = proxyErrorHandler(
+export let localStorage: StorageInstance = proxyErrorHandler('LocalStorage');
+export let sessionStorage: StorageInstance = proxyErrorHandler(
   'SessionStorage',
 );
 
@@ -127,14 +128,11 @@ const createStorage = (storage: Storage) => (prefix: string) =>
   new StorageManager(storage, prefix);
 
 export const sessionStorageInit = (prefix?: string): StorageManager => {
-  sessionStorageInstance = createStorage(window.sessionStorage)(prefix);
-  return sessionStorageInstance;
+  sessionStorage = createStorage(window.sessionStorage)(prefix);
+  return sessionStorage;
 };
 
 export const localStorageInit = (prefix?: string): StorageManager => {
-  localStorageInstance = createStorage(window.localStorage)(prefix);
-  return localStorageInstance;
+  localStorage = createStorage(window.localStorage)(prefix);
+  return localStorage;
 };
-
-export const sessionStorage = sessionStorageInstance;
-export const localStorage = localStorageInstance;

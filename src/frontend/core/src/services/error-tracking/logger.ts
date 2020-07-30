@@ -51,7 +51,7 @@ type TServerRequest = (errorData: IErrorWithTimestamp | IErrorData) => void;
 type TLoggerInstance = ErrorTracking | ProxyHandler<{}>;
 
 const errorCollection: IErrorWithTimestamp[] = [];
-let loggerInstance: TLoggerInstance = proxyErrorHandler('Logger');
+export let logger: TLoggerInstance = proxyErrorHandler('Logger');
 
 export class ErrorTracking implements Platform.IErrorTracking {
   private readonly defaults: IOptions = {
@@ -85,9 +85,7 @@ export class ErrorTracking implements Platform.IErrorTracking {
 
       window.addEventListener(
         'error',
-        ({
-          type, message, lineno, filename,
-        }: ErrorEvent) => {
+        ({type, message, lineno, filename}: ErrorEvent) => {
           this.collect({
             code: E_CODE.E_1,
             type: E_TYPE.UNKNOWN,
@@ -183,8 +181,6 @@ export const loggerInit = (
   config?: IOptions,
   fetch?: TServerRequest,
 ): ErrorTracking => {
-  loggerInstance = new ErrorTracking(config, fetch);
-  return loggerInstance;
+  logger = new ErrorTracking(config, fetch);
+  return logger;
 };
-
-export const logger = loggerInstance;

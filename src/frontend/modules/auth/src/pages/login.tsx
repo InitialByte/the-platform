@@ -4,6 +4,7 @@ import {LoginForm} from '../parts/login-form';
 
 const LoginPage = (): JSX.Element => (
   <Paper>
+    <h1>Authentication</h1>
     <LoginForm />
   </Paper>
 );
