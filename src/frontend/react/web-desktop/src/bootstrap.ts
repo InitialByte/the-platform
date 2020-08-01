@@ -1,10 +1,5 @@
 import {sessionStorageInit, localStorageInit} from '@the_platform/core';
-import {
-  getFingerprint,
-  customRequest,
-  customRequestInit,
-  CONST_URL,
-} from '@the_platform/core';
+import {getFingerprint, customRequestInit} from '@the_platform/core';
 import {
   paintMeasure,
   browserMeasure,
@@ -28,17 +23,13 @@ window.onload = () => {
 export const bootstrapApp = async (): Promise<string> => {
   getFingerprint()
     .then((fp) => {
-      console.log('customRequest', customRequest);
-      console.log('fp', fp);
-      const a = customRequestInit({
+      customRequestInit({
         beforeRequest: [
           (req) => {
             req.headers.set('X-FP', fp);
           },
         ],
       });
-      console.log('customRequest2', customRequest);
-      console.log('customRequest3', a);
     })
     .catch(console.error);
 

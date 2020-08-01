@@ -104,6 +104,16 @@ export const LoginForm = (): JSX.Element => {
             Forgot password ?
           </Button>
         </Grid>
+        <Grid item>
+          <Button
+            disableFocusRipple
+            disableRipple
+            style={{textTransform: 'none'}}
+            variant="text"
+            color="primary">
+            Login via certificate
+          </Button>
+        </Grid>
       </Grid>
 
       <Grid container justify="center" style={{marginTop: '10px'}}>

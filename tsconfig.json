@@ -15,6 +15,7 @@
     "paths": {
       "@the_platform/react-web-desktop": ["src/frontend/react/web-desktop/src/index"],
       "@the_platform/module-register": ["src/frontend/modules/register/src/index"],
+      "@the_platform/nodejs-core": ["src/backend/nodejs/core/src/index"],
       "@the_platform/module-auth": ["src/frontend/modules/auth/src/index"],
       "@the_platform/react-uikit": ["src/frontend/react/uikit/src/index"],
       "@the_platform/core": ["src/frontend/core/src/index"]
@@ -31,6 +32,10 @@
     "**/node_modules/*",
     "**/__snapshots__/*",
     "**/dist/*",
-    "**/*.snap"
+    "**/*.snap",
+    "src/frontend/__mocks__",
+    "src/frontend/smoke",
+    "src/frontend/swagger",
+    "src/frontend/smoke"
   ]
 }

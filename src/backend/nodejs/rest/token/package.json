@@ -1,6 +1,6 @@
 {
-  "name": "@the_platform/ms-nodejs-auth",
-  "description": "Microservice Auth",
+  "name": "@the_platform/ms-nodejs-token",
+  "description": "Microservice Token",
   "version": "1.0.0",
   "main": "./src/index.ts",
   "nodemonConfig": {

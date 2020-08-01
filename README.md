@@ -61,6 +61,7 @@ Micro-frontend (a.k.a. micro-services) allows multiple teams to work independent
 
 DevOps
 
+- **Nginx** - main web-server for production web-application.
 - **Tyk** - api gateway.
 - **FlyWay** - database migration.
 - **Kafka** - message broker.
@@ -92,7 +93,6 @@ BackEnd
 
 - **NodeJS** - JS platform for backend.
 - **ExpressJS** - nodejs server.
-- **Nginx** - main web-server for production web-application.
 
 ## Core FrondEnd Features
 
