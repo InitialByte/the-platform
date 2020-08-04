@@ -17,6 +17,6 @@
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.3.0",
     "redis": "^3.0.2",
-    "sequelize": "^6.3.3"
+    "sequelize": "^6.3.4"
   }
 }
