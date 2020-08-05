@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "port": "9001",
   "dependencies": {
-    "mocha": "^8.1.0",
+    "mocha": "^8.1.1",
     "puppeteer": "^5.2.1"
   },
   "scripts": {

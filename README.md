@@ -61,33 +61,33 @@ Micro-frontend (a.k.a. micro-services) allows multiple teams to work independent
 
 DevOps
 
-- **Nginx** - main web-server for production web-application.
-- **Tyk** - api gateway.
-- **FlyWay** - database migration.
-- **Kafka** - message broker.
-- **PostgreSQL** - open source relational database.
-- **Redis** - in-memory data structure store.
-- **Consul** - service discovery.
-- **Docker** - container for production build.
+- **Nginx**         - main web-server for production web-application.
+- **Tyk**           - api gateway.
+- **FlyWay**        - database migration.
+- **Kafka**         - message broker.
+- **PostgreSQL**    - open source relational database.
+- **Redis**         - in-memory data structure store.
+- **Consul**        - service discovery.
+- **Docker**        - container for production build.
 - **DockerCompose** - running multi-container Docker applications.
 - **ElasticSearch** - RESTful search and analytics engine.
-- **Kibana** - visualize Elasticsearch data and navigate the Elastic Stack.
-- **Logstash** - server-side data processing pipeline that ingests data from a multitude of sources.
+- **Kibana**        - visualize Elasticsearch data and navigate the Elastic Stack.
+- **Logstash**      - server-side data processing pipeline that ingests data from a multitude of sources.
 
 FrontEnd
 
-- **Typescript** - static type-checking along with the latest ECMAScript features.
-- **React, Redux** - view layer and state managment.
-- **Formik, Yup** - forms and validation.
-- **Ky** - http request.
-- **SwaggerUI** - REST-API documentation.
-- **Puppeteer** - smoke (potentially e2e) testing.
+- **Typescript**          - static type-checking along with the latest ECMAScript features.
+- **React, Redux**        - view layer and state managment.
+- **Formik, Yup**         - forms and validation.
+- **Ky**                  - http request.
+- **SwaggerUI**           - REST-API documentation.
+- **Puppeteer**           - smoke (potentially e2e) testing.
 - **Jest, Enzyme, Mocha** - unit testing.
-- **Webpack** - bundle JavaScript files for usage in a browser.
-- **Yarn2** - organize npm dependencies and workspaces.
-- **Lerna** - a tool for managing JavaScript projects with multiple packages.
-- **StoryBook** - developing UI components in isolation mode.
-- **MaterialUI** - react UI framework.
+- **Webpack**             - bundle JavaScript files for usage in a browser.
+- **Yarn2**               - organize npm dependencies and workspaces.
+- **Lerna**               - a tool for managing JavaScript projects with multiple packages.
+- **StoryBook**           - developing UI components in isolation mode.
+- **MaterialUI**          - react UI framework.
 
 BackEnd
 
@@ -158,7 +158,7 @@ and run
 {
   "eslint.nodePath": ".yarn/sdks",
   "eslint.options": {
-    "configFile": "./configs/core/.eslintrc"
+    "configFile": ".eslintrc"
   },
   "eslint.validate": [
     "javascript",

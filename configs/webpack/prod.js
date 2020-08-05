@@ -29,7 +29,6 @@ module.exports = merge(webpackConfig, {
 
     minimizer: [
       new TerserPlugin({
-        cache: join(rootPath, '.cache'),
         exclude: /\/node_modules/,
         sourceMap: true,
         parallel: true,
