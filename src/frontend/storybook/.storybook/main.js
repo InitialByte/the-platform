@@ -2,23 +2,23 @@ const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const {join} = require('path');
 const rootPath = process.cwd();
 
-async function yarn2Config(config) {
+async function yarn2WebpackConfig(config) {
   const newConfig = {
     ...(config || {}),
     resolve: {
       ...((config || {}).resolve || {}),
       plugins: [
         ...(((config || {}).resolve || {}).plugins || []),
-        PnpWebpackPlugin
-      ]
+        PnpWebpackPlugin,
+      ],
     },
     resolveLoader: {
       ...((config || {}).resolveLoader || {}),
       plugins: [
         ...(((config || {}).resolveLoader || {}).plugins || []),
-        PnpWebpackPlugin.moduleLoader(module)
-      ]
-    }
+        PnpWebpackPlugin.moduleLoader(module),
+      ],
+    },
   };
 
   newConfig.module.rules.push({
@@ -36,13 +36,15 @@ async function yarn2Config(config) {
           cacheDirectory: join(rootPath, '/../../../.cache/babel-loader'),
           presets: [
             [
-              '@babel/preset-env', {
-                'useBuiltIns': 'entry',
+              '@babel/preset-env',
+              {
+                useBuiltIns: 'entry',
               },
             ],
             '@babel/preset-typescript',
             [
-              '@babel/preset-react', {
+              '@babel/preset-react',
+              {
                 useBuiltIns: true,
               },
             ],
@@ -53,7 +55,7 @@ async function yarn2Config(config) {
               '@babel/proposal-class-properties',
               {
                 loose: true,
-              }
+              },
             ],
             '@babel/plugin-proposal-nullish-coalescing-operator',
             '@babel/plugin-proposal-optional-chaining',
@@ -66,25 +68,22 @@ async function yarn2Config(config) {
   });
   config.resolve.extensions.push('.ts', '.tsx');
 
-  const jsRule = newConfig.module.rules.find(rule => rule.test.test('.js'));
+  const jsRule = newConfig.module.rules.find((rule) => rule.test.test('.js'));
   jsRule.exclude = /node_modules/;
 
   return newConfig;
 }
 
-async function managerEntries(entry = []) {
-  return [
-    ...entry,
-    require.resolve('@storybook/addon-backgrounds/register'),
-    require.resolve('@storybook/addon-viewport/register'),
-    require.resolve('@storybook/addon-actions/register'),
-    require.resolve('@storybook/addon-knobs/register'),
-    require.resolve('@storybook/addon-a11y/register'),
-  ];
-}
+const addons = [
+  '@storybook/addon-backgrounds/register',
+  '@storybook/addon-viewport/register',
+  '@storybook/addon-actions/register',
+  '@storybook/addon-knobs/register',
+  '@storybook/addon-a11y/register',
+];
 
 module.exports = {
-  managerWebpack: yarn2Config,
-  webpack: yarn2Config,
-  managerEntries,
+  stories: [join(rootPath, 'src/**/*.stories.tsx')],
+  addons,
+  webpackFinal: yarn2WebpackConfig,
 };
