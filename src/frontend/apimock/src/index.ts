@@ -4,8 +4,17 @@ import {json, urlencoded} from 'express';
 import {readFileSync} from 'fs';
 import {createServer} from 'https';
 import {port} from '../package.json';
+import {bootstrapRBAC} from './core/service';
 import {apiRouter} from './rest/index';
 import {webSocketServer} from './ws/index';
+
+declare global {
+  namespace NodeJS {
+    interface Global {
+      ac: any;
+    }
+  }
+}
 
 const app = express();
 const SUCCESS_STATUS = 200;
@@ -19,6 +28,8 @@ const callbackOnStart = (): void => {
   console.log(`websocket: ${URL}/ws`);
   console.log(DELIMITER);
   console.log(new Date().getTimezoneOffset());
+
+  global.ac = bootstrapRBAC();
 };
 
 app.disable('x-powered-by');

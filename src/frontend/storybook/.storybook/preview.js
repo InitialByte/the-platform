@@ -1,5 +1,4 @@
 import {addParameters} from '@storybook/react';
-import {setDefaults} from '@storybook/addon-info';
 
 addParameters({
   options: {
@@ -8,9 +7,4 @@ addParameters({
         ? 0
         : a[1].id.localeCompare(b[1].id, undefined, {numeric: true}),
   },
-});
-
-setDefaults({
-  header: false,
-  propTables: null,
 });

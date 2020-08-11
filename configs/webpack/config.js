@@ -10,11 +10,7 @@ const LoaderPZF_ZIP = require('./loaders/pdf-zip');
 const LoaderTS = require('./loaders/typescript');
 const LoaderCSS = require('./loaders/css');
 const LoaderSVG = require('./loaders/svg');
-const {
-  buildInfo,
-  collectModuleRoutes,
-  createCacheDir,
-} = require('./misc');
+const {buildInfo, collectModuleRoutes, createCacheDir} = require('./misc');
 
 const {name, version, config} = require('../../package.json');
 
@@ -30,8 +26,11 @@ createCacheDir(cachePath);
 
 const pathToSaveRoutes = join(cachePath, 'routes.ts');
 const dependencies = config.app.dependencies.frontend[WORKSPACE] || [];
-const moduleRoutes = collectModuleRoutes(rootPath, WORKSPACE, dependencies).map((routeFile) =>
-  readFileSync(routeFile, 'utf8'));
+const moduleRoutes = collectModuleRoutes(
+  rootPath,
+  WORKSPACE,
+  dependencies,
+).map((routeFile) => readFileSync(routeFile, 'utf8'));
 
 writeFileSync(pathToSaveRoutes, (moduleRoutes || []).join('\n'));
 
@@ -41,9 +40,7 @@ const webpackConfig = {
   bail: true,
   name,
 
-  entry: [
-    join(rootPath, `src/frontend/${APP}/src/index.tsx`),
-  ],
+  entry: [join(rootPath, `src/frontend/${APP}/src/index.tsx`)],
 
   output: {
     path: join(rootPath, 'dist'),
@@ -78,10 +75,26 @@ const webpackConfig = {
     symlinks: false,
 
     alias: {
-      '@the_platform/react-web-desktop': join(rootPath, 'src/frontend/react/web-desktop/src'),
-      '@the_platform/module-register': join(rootPath, 'src/frontend/modules/register/src'),
-      '@the_platform/module-auth': join(rootPath, 'src/frontend/modules/auth/src'),
-      '@the_platform/react-uikit': join(rootPath, 'src/frontend/react/uikit/src'),
+      '@the_platform/react-web-desktop': join(
+        rootPath,
+        'src/frontend/react/web-desktop/src',
+      ),
+      '@the_platform/module-register': join(
+        rootPath,
+        'src/frontend/modules/register/src',
+      ),
+      '@the_platform/nodejs-core': join(
+        rootPath,
+        'src/backend/nodejs/rest/core/src',
+      ),
+      '@the_platform/module-auth': join(
+        rootPath,
+        'src/frontend/modules/auth/src',
+      ),
+      '@the_platform/react-uikit': join(
+        rootPath,
+        'src/frontend/react/uikit/src',
+      ),
       '@the_platform/core': join(rootPath, 'src/frontend/core/src'),
       '@the_platform/routes': pathToSaveRoutes,
     },

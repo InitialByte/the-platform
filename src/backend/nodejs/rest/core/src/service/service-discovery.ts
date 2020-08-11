@@ -30,15 +30,15 @@ if (!consulApp) {
 export const registerService = (options): Promise<any> =>
   consulApp.agent.service.register(options);
 
-export const getAllNodes = (): Promise<any> =>
-  consulApp.catalog.node.list();
+export const getAllNodes = (): Promise<any> => consulApp.catalog.node.list();
 
 export const getAllServicesByNode = (node: string): Promise<any> =>
   consulApp.catalog.node.services(node);
 
 // Lists services in a given datacenter.
-export const getAllServicesByDC = (datacenter: string = 'local'): Promise<any> =>
-  consulApp.catalog.service.list(datacenter);
+export const getAllServicesByDC = (
+  datacenter: string = 'local',
+): Promise<any> => consulApp.catalog.service.list(datacenter);
 
 // Lists the nodes for a given service.
 export const getAllNodesByService = (serviceName: string): Promise<any> =>

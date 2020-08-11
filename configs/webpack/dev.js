@@ -57,6 +57,7 @@ module.exports = merge(webpackConfig, {
       rootPath,
       'configs/docker/nginx/certs/wildcard.localhost.cert.pem',
     ),
+
     key: join(
       rootPath,
       'configs/docker/nginx/certs/wildcard.localhost.key.pem',

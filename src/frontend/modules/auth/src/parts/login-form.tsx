@@ -20,10 +20,15 @@ const initialValues: ILoginFormValues = {
   password: '',
 };
 
+const MIN_NUMBER_CHARS_IN_PASSWORD = 5;
+
 const validationSchema = validation.object({
   password: validation
     .string()
-    .min(5, 'Must be 5 characters or more')
+    .min(
+      MIN_NUMBER_CHARS_IN_PASSWORD,
+      `Must be ${MIN_NUMBER_CHARS_IN_PASSWORD} characters or more`,
+    )
     .required('Required'),
   email: validation
     .string()
@@ -94,6 +99,7 @@ export const LoginForm = (): JSX.Element => {
             label="Remember me"
           />
         </Grid>
+
         <Grid item>
           <Button
             disableFocusRipple
@@ -104,6 +110,7 @@ export const LoginForm = (): JSX.Element => {
             Forgot password ?
           </Button>
         </Grid>
+
         <Grid item>
           <Button
             disableFocusRipple

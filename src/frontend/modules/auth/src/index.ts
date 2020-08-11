@@ -2,19 +2,30 @@ import {lazy} from 'react';
 import * as routes from './constants/routes';
 
 const LoginPage = lazy(() =>
-  import(/* webpackChunkName: "pages/auth_login" */ './pages/login'));
+  import(/* webpackChunkName: "pages/auth_login" */ './pages/login'),
+);
 
 const LogoutPage = lazy(() =>
-  import(/* webpackChunkName: "pages/auth_logout" */ './pages/logout'));
+  import(/* webpackChunkName: "pages/auth_logout" */ './pages/logout'),
+);
 
 const LoginCertificatePage = lazy(() =>
-  import(/* webpackChunkName: "pages/auth_login_certificate" */ './pages/login-certificate'));
+  import(
+    /* webpackChunkName: "pages/auth_login_certificate" */ './pages/login-certificate'
+  ),
+);
 
 const RecoveryPasswordPage = lazy(() =>
-  import(/* webpackChunkName: "pages/auth_recovery_password" */ './pages/recovery-password'));
+  import(
+    /* webpackChunkName: "pages/auth_recovery_password" */ './pages/recovery-password'
+  ),
+);
 
 const UpdatePasswordPage = lazy(() =>
-  import(/* webpackChunkName: "pages/auth_update_password" */ './pages/update-password'));
+  import(
+    /* webpackChunkName: "pages/auth_update_password" */ './pages/update-password'
+  ),
+);
 
 export const router: Platform.IRoute[] = [
   {

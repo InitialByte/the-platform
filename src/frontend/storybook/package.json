@@ -3,16 +3,15 @@
   "description": "Storybook for app's react components",
   "version": "1.0.0",
   "dependencies": {
-    "@storybook/addon-a11y": "~6.0.0-rc.28",
-    "@storybook/addon-actions": "~6.0.0-rc.28",
-    "@storybook/addon-backgrounds": "~6.0.0-rc.28",
-    "@storybook/addon-info": "^5.3.19",
-    "@storybook/addon-knobs": "~6.0.0-rc.28",
-    "@storybook/addon-viewport": "~6.0.0-rc.28",
-    "@storybook/react": "~6.0.0-rc.28",
+    "@storybook/addon-a11y": "^6.0.2",
+    "@storybook/addon-actions": "^6.0.2",
+    "@storybook/addon-backgrounds": "^6.0.2",
+    "@storybook/addon-knobs": "^6.0.2",
+    "@storybook/addon-viewport": "^6.0.2",
+    "@storybook/react": "^6.0.2",
     "core-js": "^3.6.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^17.0.0-rc.0",
+    "react-dom": "^17.0.0-rc.0"
   },
   "scripts": {
     "build": "yarn build-storybook -o dist --ci",
@@ -29,9 +28,8 @@
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
     "@babel/runtime": "^7.11.2",
-    "@types/react": "^16.9.44",
+    "@types/react": "^16.9.46",
     "@types/react-dom": "^16.9.8",
-    "@types/storybook__addon-info": "^5",
     "babel-loader": "^8.1.0",
     "cache-loader": "^4.1.0",
     "pnp-webpack-plugin": "^1.6.4"

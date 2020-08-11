@@ -91,8 +91,16 @@ FrontEnd
 
 BackEnd
 
-- **NodeJS** - JS platform for backend.
-- **ExpressJS** - nodejs server.
+- **NodeJS**              - JS platform for backend.
+- **Typescript**          - static type-checking along with the latest ECMAScript features.
+- **ExpressJS**           - nodejs server.
+- **accesscontrol**       - Role and Attribute based Access Control .
+- **jsonwebtoken**        - an implementation of JSON Web Tokens.
+- **nodemon**             - tool that helps develop node.js based applications.
+- **consul**              - a Consul client.
+- **pg**                  - non-blocking PostgreSQL client for Node.js.
+- **redis**               - a high performance Node.js Redis client..
+- **sequelize**           - multi dialect ORM for Node.JS.
 
 ## Core FrondEnd Features
 
