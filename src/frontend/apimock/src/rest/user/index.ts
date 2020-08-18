@@ -1,6 +1,6 @@
 import {Router} from 'express';
 import {checkRole, isAuthenticated} from '../../core';
-import {RBAC_GRANT_USER} from '../../constants';
+import {RBAC_GRANT_USER, RBAC_GRANT_USERS} from '../../constants';
 import * as faker from 'faker';
 
 export const user = Router();
@@ -11,7 +11,7 @@ const NUMBER_OF_USERS = 100;
 // /api/v1/user
 user.get(
   '/',
-  [isAuthenticated, checkRole('readAny', RBAC_GRANT_USER)],
+  [isAuthenticated, checkRole('readAny', RBAC_GRANT_USERS)],
   (_, res): void => {
     res.status(SUCCESS_STATUS).json({
       data: [...Array(NUMBER_OF_USERS)].map(() => ({

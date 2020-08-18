@@ -1,0 +1,11 @@
+**/__mocks__/*
+**/__tests__/*
+**/*.js.snap
+npm-debug.log
+.dockerignore
+.editorconfig
+node_modules
+CHANGELOG.md
+dbmigration
+README.md
+yarn.lock

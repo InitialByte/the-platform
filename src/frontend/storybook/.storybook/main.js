@@ -2,7 +2,7 @@ const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const {join} = require('path');
 const rootPath = process.cwd();
 
-async function yarn2WebpackConfig(config) {
+async function webpackFinal(config) {
   const newConfig = {
     ...(config || {}),
     resolve: {
@@ -85,5 +85,5 @@ const addons = [
 module.exports = {
   stories: [join(rootPath, 'src/**/*.stories.tsx')],
   addons,
-  webpackFinal: yarn2WebpackConfig,
+  webpackFinal,
 };

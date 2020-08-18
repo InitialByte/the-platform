@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useNavigate} from 'react-router-dom';
 import {
   Button,
   TextField,
@@ -37,11 +38,17 @@ const validationSchema = validation.object({
 });
 
 const onSubmit = (
+  navigate: typeof useNavigate,
+  navigateAfterSignin: string = '/',
+) => (
   values: ILoginFormValues,
   {setSubmitting}: {setSubmitting: (value: boolean) => void},
 ): void => {
   signIn(values)
-    .then(console.log)
+    .then(() => {
+      navigate(navigateAfterSignin);
+      return;
+    })
     .catch(console.error)
     .finally(() => {
       setSubmitting(false);
@@ -49,10 +56,11 @@ const onSubmit = (
 };
 
 export const LoginForm = (): JSX.Element => {
+  const navigate = useNavigate();
   const form = Form.useFormik({
     initialValues,
     validationSchema,
-    onSubmit,
+    onSubmit: onSubmit(navigate),
   });
 
   return (

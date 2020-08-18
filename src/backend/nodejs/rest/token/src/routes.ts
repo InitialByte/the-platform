@@ -1,12 +1,10 @@
 import {Router} from 'express';
-import {signinController} from './controller/signin';
-// import {signoutController} from './controller/signout';
-// import {updateTokenController} from './controller/refreshtoken';
+import {refreshController} from './controller/refresh';
+import {checkController} from './controller/check';
 import {healthController} from './controller/health';
 
 export const router = Router();
 
 router.get('/health', healthController);
-router.get('/signin', signinController);
-// router.get('/updatetoken', updateTokenController);
-// router.get('/signout', signoutController);
+router.get('/refresh', refreshController);
+router.get('/check', checkController);

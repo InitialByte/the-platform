@@ -24,7 +24,7 @@ export const RBAC_GRANT_USERS = 'users';
 export const DEFAULT_ID = '12345';
 export const DEFAULT_USERNAME = 'a@a.a';
 export const DEFAULT_PASSWORD = '12345';
-export const DEFAULT_ROLE = RBAC_ROLE_CONFIRMED;
+export const DEFAULT_ROLE = RBAC_ROLE_ADMIN;
 export const DEFAULT_FULLNAME = 'John Doe';
 
 // COOKIE ---------------------------------------

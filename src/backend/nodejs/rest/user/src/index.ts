@@ -6,12 +6,12 @@ import {router} from './routes';
 import {name} from '../package.json';
 
 const {APP_HOST = '127.0.0.1', APP_PORT = '8080'} = process.env;
-const checkURL = `http://${APP_HOST}:${APP_PORT}/token/health`;
+const checkURL = `http://${APP_HOST}:${APP_PORT}/user/health`;
 
 const app: Application = express();
 app.disable('x-powered-by');
 
-app.use('/token', router);
+app.use('/user', router);
 
 const bootstrap = (): void => {
   registerService({

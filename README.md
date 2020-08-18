@@ -77,7 +77,8 @@ DevOps
 FrontEnd
 
 - **Typescript**          - static type-checking along with the latest ECMAScript features.
-- **React, Redux**        - view layer and state managment.
+- **React**               - view layer.
+- **Redux toolkit**       - state management.
 - **Formik, Yup**         - forms and validation.
 - **Ky**                  - http request.
 - **SwaggerUI**           - REST-API documentation.

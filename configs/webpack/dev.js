@@ -29,7 +29,8 @@ module.exports = merge(webpackConfig, {
   },
 
   watchOptions: {
-    aggregateTimeout: 600,
+    ignored: ['node_modules/**'],
+    aggregateTimeout: 200,
     poll: 2000,
   },
 

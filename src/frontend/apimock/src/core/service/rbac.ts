@@ -15,7 +15,7 @@ export const bootstrapRBAC = (): AccessControl => {
   ac.grant(RBAC_ROLE_CONFIRMED)
     .extend(RBAC_ROLE_GUEST)
     .readOwn(RBAC_GRANT_USER)
-    .readAny(RBAC_GRANT_USERS, ['fullName', 'createdAt']);
+    .readAny(RBAC_GRANT_USER, ['fullName', 'createdAt']);
 
   ac.grant(RBAC_ROLE_ADMIN)
     .extend(RBAC_ROLE_CONFIRMED)
