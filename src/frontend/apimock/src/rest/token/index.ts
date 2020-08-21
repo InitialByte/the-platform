@@ -19,7 +19,12 @@ token.get('/check', (req, res): void => {
   if (isValid) {
     res.status(SUCCESS_STATUS).send();
   } else {
-    res.status(UNAUTHORIZED_STATUS).send();
+    res.status(UNAUTHORIZED_STATUS).json({
+      error: {
+        code: 1000,
+        message: 'Incorrect JWT token',
+      },
+    });
   }
 });
 

@@ -14,5 +14,10 @@ export const isAuthenticated = (req, res, next): any => {
     return next();
   }
 
-  res.status(UNAUTHORIZED_STATUS).send();
+  res.status(UNAUTHORIZED_STATUS).json({
+    error: {
+      code: 1002,
+      message: 'You is authenticated',
+    },
+  });
 };

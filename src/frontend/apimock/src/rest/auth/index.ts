@@ -22,7 +22,12 @@ auth.post('/signin', (req, res): void => {
       },
     });
   } else {
-    res.status(UNAUTHORIZED_STATUS).send();
+    res.status(UNAUTHORIZED_STATUS).json({
+      error: {
+        code: 1001,
+        message: 'Incorrect email or password',
+      },
+    });
   }
 });
 

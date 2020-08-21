@@ -15,7 +15,7 @@
     "consul": "^0.37.0",
     "express": "^5.0.0-alpha.8",
     "jsonwebtoken": "^8.5.1",
-    "pg": "^8.3.0",
+    "pg": "^8.3.2",
     "redis": "^3.0.2",
     "sequelize": "^6.3.4"
   }

@@ -280,4 +280,5 @@ Keep it fast. How to check:
 - Add testing via [visual](https://applitools.com/) or [wix](https://github.com/wix-incubator/match-screenshot).
 - Add [Content editor](https://github.com/wix-incubator/rich-content).
 - Add mount point for modules without routing.
-- Add Protocol Buffers to communicate betweet services.
+- Add Protocol Buffers to communicate betweet micro services.
+- Add message bus to communicate between fronend modules.

@@ -5,10 +5,10 @@
   "main": "./src/index.js",
   "port": "9000",
   "dependencies": {
-    "swagger-ui-dist": "^3.32.1"
+    "swagger-ui-dist": "^3.32.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.1",
+    "@babel/core": "^7.11.4",
     "babel-loader": "^8.1.0",
     "cache-loader": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",

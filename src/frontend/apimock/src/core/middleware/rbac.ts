@@ -26,5 +26,10 @@ export const checkRole = (action: TActions, grant: string) => (
     return next();
   }
 
-  res.status(UNAUTHORIZED_STATUS).send();
+  res.status(UNAUTHORIZED_STATUS).json({
+    error: {
+      code: 1003,
+      message: 'You is authorized for this action',
+    },
+  });
 };

@@ -3,12 +3,12 @@
   "description": "Storybook for app's react components",
   "version": "1.0.0",
   "dependencies": {
-    "@storybook/addon-a11y": "^6.0.12",
-    "@storybook/addon-actions": "^6.0.12",
-    "@storybook/addon-backgrounds": "^6.0.12",
-    "@storybook/addon-knobs": "^6.0.12",
-    "@storybook/addon-viewport": "^6.0.12",
-    "@storybook/react": "^6.0.12",
+    "@storybook/addon-a11y": "^6.0.16",
+    "@storybook/addon-actions": "^6.0.16",
+    "@storybook/addon-backgrounds": "^6.0.16",
+    "@storybook/addon-knobs": "^6.0.16",
+    "@storybook/addon-viewport": "^6.0.16",
+    "@storybook/react": "^6.0.16",
     "core-js": "^3.6.5",
     "react": "^17.0.0-rc.0",
     "react-dom": "^17.0.0-rc.0"
@@ -18,7 +18,7 @@
     "start": "yarn start-storybook -p 8010"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.1",
+    "@babel/core": "^7.11.4",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
