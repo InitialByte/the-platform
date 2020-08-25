@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {useNavigate} from 'react-router-dom';
+import {connect} from 'react-redux';
 import {
   Button,
   TextField,
@@ -10,6 +11,7 @@ import {
 } from '@the_platform/react-uikit';
 import {validation} from '@the_platform/core';
 import {signIn} from '../provider';
+import {login as loginReducer} from '../reducer';
 
 interface ILoginFormValues {
   email: string;
@@ -39,14 +41,16 @@ const validationSchema = validation.object({
 
 const onSubmit = (
   navigate: typeof useNavigate,
+  login: typeof loginReducer,
   navigateAfterSignin: string = '/',
-) => (
+): void => (
   values: ILoginFormValues,
   {setSubmitting}: {setSubmitting: (value: boolean) => void},
 ): void => {
   signIn(values)
     .then(() => {
       navigate(navigateAfterSignin);
+      login('Eugene');
       return;
     })
     .catch(console.error)
@@ -55,93 +59,101 @@ const onSubmit = (
     });
 };
 
-export const LoginForm = (): JSX.Element => {
-  const navigate = useNavigate();
-  const form = Form.useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit: onSubmit(navigate),
-  });
+const mapState = (): Record<string, string> => ({});
+const mapDispatch = {loginReducer};
 
-  return (
-    <form>
-      <Grid container spacing={8} alignItems="flex-end">
-        <Grid item md={true} sm={true} xs={true}>
-          <TextField
-            name="email"
-            helperText={form.touched.email ? form.errors.email : ''}
-            error={form.touched.email && Boolean(form.errors.email)}
-            label="Email"
-            fullWidth
-            autoFocus
-            type="email"
-            onChange={form.handleChange}
-            onBlur={form.handleBlur}
-            value={form.values.email}
-            variant="outlined"
-          />
-        </Grid>
-      </Grid>
+export const LoginForm = connect(
+  mapState,
+  mapDispatch,
+)(
+  ({loginReducer}): JSX.Element => {
+    const navigate = useNavigate();
+    const form = Form.useFormik({
+      initialValues,
+      validationSchema,
+      onSubmit: onSubmit(navigate, loginReducer),
+    });
 
-      <Grid container spacing={8} alignItems="flex-end">
-        <Grid item md={true} sm={true} xs={true}>
-          <TextField
-            name="password"
-            helperText={form.touched.password ? form.errors.password : ''}
-            error={form.touched.password && Boolean(form.errors.password)}
-            label="Password"
-            fullWidth
-            type="password"
-            onChange={form.handleChange}
-            onBlur={form.handleBlur}
-            value={form.values.password}
-            variant="outlined"
-          />
-        </Grid>
-      </Grid>
-
-      <Grid container alignItems="center" justify="space-between">
-        <Grid item>
-          <FormControlLabel
-            control={<Checkbox color="primary" />}
-            label="Remember me"
-          />
+    return (
+      <form>
+        <Grid container spacing={8} alignItems="flex-end">
+          <Grid item md sm xs>
+            <TextField
+              name="email"
+              helperText={form.touched.email ? form.errors.email : ''}
+              error={form.touched.email && Boolean(form.errors.email)}
+              label="Email"
+              fullWidth
+              autoFocus
+              type="email"
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              value={form.values.email}
+              variant="outlined"
+            />
+          </Grid>
         </Grid>
 
-        <Grid item>
+        <Grid container spacing={8} alignItems="flex-end">
+          <Grid item md sm xs>
+            <TextField
+              name="password"
+              helperText={form.touched.password ? form.errors.password : ''}
+              error={form.touched.password && Boolean(form.errors.password)}
+              label="Password"
+              fullWidth
+              type="password"
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              value={form.values.password}
+              variant="outlined"
+            />
+          </Grid>
+        </Grid>
+
+        <Grid container alignItems="center" justify="space-between">
+          <Grid item>
+            <FormControlLabel
+              control={<Checkbox color="primary" />}
+              label="Remember me"
+            />
+          </Grid>
+
+          <Grid item>
+            <Button
+              disableFocusRipple
+              disableRipple
+              style={{textTransform: 'none'}}
+              variant="text"
+              color="primary">
+              Forgot password ?
+            </Button>
+          </Grid>
+
+          <Grid item>
+            <Button
+              disableFocusRipple
+              disableRipple
+              style={{textTransform: 'none'}}
+              variant="text"
+              color="primary">
+              Login via certificate
+            </Button>
+          </Grid>
+        </Grid>
+
+        <Grid container justify="center" style={{marginTop: '10px'}}>
           <Button
-            disableFocusRipple
-            disableRipple
-            style={{textTransform: 'none'}}
-            variant="text"
-            color="primary">
-            Forgot password ?
+            variant="outlined"
+            color="primary"
+            disabled={form.isSubmitting || form.isValidating}
+            onClick={form.handleSubmit}>
+            SignIn
           </Button>
         </Grid>
-
-        <Grid item>
-          <Button
-            disableFocusRipple
-            disableRipple
-            style={{textTransform: 'none'}}
-            variant="text"
-            color="primary">
-            Login via certificate
-          </Button>
-        </Grid>
-      </Grid>
-
-      <Grid container justify="center" style={{marginTop: '10px'}}>
-        <Button
-          variant="outlined"
-          color="primary"
-          disabled={form.isSubmitting || form.isValidating}
-          onClick={form.handleSubmit}>
-          SignIn
-        </Button>
-      </Grid>
-    </form>
-  );
-};
+      </form>
+    );
+  },
+);
 
 LoginForm.displayName = 'LoginForm';

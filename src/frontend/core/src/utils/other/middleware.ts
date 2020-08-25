@@ -5,7 +5,7 @@ export class Middleware {
   // Add function or array of functions to the execution stack.
   use(fn: TFn) {
     if (fn instanceof Array) {
-      fn.forEach(fn => this.use(fn));
+      fn.forEach((fn) => this.use(fn));
       return this;
     }
 
@@ -14,12 +14,10 @@ export class Middleware {
     }
 
     // LIFO.
-    this.run = ((stack: any) =>
-      (next: any) =>
-        stack(() =>
-          fn.call(this.context || this, next.bind(this.context || this))
-        )
-    )(this.run);
+    this.run = ((stack: any) => (next: any) =>
+      stack(() =>
+        fn.call(this.context || this, next.bind(this.context || this)),
+      ))(this.run);
 
     return this;
   }

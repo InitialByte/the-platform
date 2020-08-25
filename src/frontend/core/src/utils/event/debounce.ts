@@ -28,10 +28,10 @@ export function debounce<F extends TNoop>(
 ): (this: ThisParameterType<F>, ...args: Parameters<F>) => void {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
-  return function(this: ThisParameterType<F>, ...args: Parameters<F>) {
+  return function (this: ThisParameterType<F>, ...args: Parameters<F>) {
     const context = this;
 
-    const doLater = function() {
+    const doLater = function () {
       timeoutId = undefined;
 
       if (!options.isImmediate) {

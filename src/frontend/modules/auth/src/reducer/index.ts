@@ -11,9 +11,15 @@ const initialState: IAuthState = {
 };
 const reducers = {
   login: {
-    reducer: (state: IAuthState, action: PayloadAction<string>) => {
+    reducer: (state: IAuthState, action: PayloadAction<string>): void => {
       state.isAuth = true;
       state.fullName = action.payload;
+    },
+  },
+  logout: {
+    reducer: (state: IAuthState): void => {
+      state.isAuth = false;
+      state.fullName = undefined;
     },
   },
 };
@@ -24,5 +30,5 @@ export const authSlice = createSlice({
   reducers,
 });
 
-export const {login} = authSlice.actions;
+export const {login, logout} = authSlice.actions;
 export const {reducer} = authSlice;

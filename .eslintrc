@@ -67,6 +67,7 @@
     ],
     "implicit-arrow-linebreak": "off",
     "props-no-spreading": "off",
+    "no-param-reassign": ["error", { "props": false }],
     "function-paren-newline": ["error", "consistent"],
     "object-curly-spacing": [1, "never"],
     "array-bracket-spacing": [1, "never"],
@@ -84,6 +85,8 @@
     "react/jsx-filename-extension": [1, {
       "extensions": [".tsx"]
     }],
+    "react/jsx-closing-bracket-location": ["warn", {"selfClosing": "line-aligned", "nonEmpty": "after-props"}],
+    "react/jsx-no-literals": ["warn", {"ignoreProps": true}],
     "react/no-access-state-in-setstate": "error",
     "react/prefer-stateless-function": "error",
     "react/jsx-no-useless-fragment": "error",
@@ -96,7 +99,6 @@
     "react/jsx-indent": ["error", 2],
     "react/no-this-in-sfc": "error",
     "react/no-multi-comp": "error",
-    "react/jsx-no-literals": "warn",
     "react/display-name": "error",
     "react/jsx-no-bind": "error",
     "react/no-danger": "error",

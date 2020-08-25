@@ -1,4 +1,6 @@
-/* eslint @typescript-eslint/no-magic-numbers: 0, no-bitwise: 0, max-len: 0 */
+/* eslint @typescript-eslint/no-magic-numbers: 0, no-bitwise: 0, max-len: 0,
+  @typescript-eslint/no-unsafe-member-access: 0, @typescript-eslint/no-unsafe-call: 0,
+  @typescript-eslint/restrict-template-expressions: 0 */
 export const webgl = (): string[] | null => {
   const fa2s = (gl, [fa1, fa2]): string => {
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -23,8 +25,10 @@ export const webgl = (): string[] | null => {
   }
 
   const result = [];
-  const vShaderTemplate = 'attribute vec2 attrVertex;varying vec2 varyinTexCoordinate;uniform vec2 uniformOffset;void main(){varyinTexCoordinate=attrVertex+uniformOffset;gl_Position=vec4(attrVertex,0,1);}';
-  const fShaderTemplate = 'precision mediump float;varying vec2 varyinTexCoordinate;void main() {gl_FragColor=vec4(varyinTexCoordinate,0,1);}';
+  const vShaderTemplate =
+    'attribute vec2 attrVertex;varying vec2 varyinTexCoordinate;uniform vec2 uniformOffset;void main(){varyinTexCoordinate=attrVertex+uniformOffset;gl_Position=vec4(attrVertex,0,1);}';
+  const fShaderTemplate =
+    'precision mediump float;varying vec2 varyinTexCoordinate;void main() {gl_FragColor=vec4(varyinTexCoordinate,0,1);}';
   const vertexPosBuffer = gl.createBuffer();
 
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexPosBuffer);
@@ -118,7 +122,10 @@ export const webgl = (): string[] | null => {
               format,
             ].join(''),
           );
-        }))));
+        }),
+      ),
+    ),
+  );
 
   return result;
 };

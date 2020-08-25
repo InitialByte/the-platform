@@ -1,7 +1,7 @@
 import {debounce} from '../debounce';
 
 describe('1. Debounce.', () => {
-  test('it properly debounces function', () =>{
+  test('it properly debounces function', () => {
     jest.useFakeTimers();
 
     const func = jest.fn();
@@ -18,11 +18,11 @@ describe('1. Debounce.', () => {
     expect(func.mock.calls.length).toBe(1);
   });
 
-  test('it properly debounces function with isImmediate set to true ', () =>{
+  test('it properly debounces function with isImmediate set to true ', () => {
     jest.useFakeTimers();
 
     const func = jest.fn();
-    const debouncedFunction = debounce(func, 100, { isImmediate: true });
+    const debouncedFunction = debounce(func, 100, {isImmediate: true});
 
     debouncedFunction();
     expect(func).toBeCalled();
