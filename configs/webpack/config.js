@@ -1,6 +1,7 @@
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const {join} = require('path');
 const {writeFileSync} = require('fs');
@@ -38,10 +39,14 @@ writeFileSync(pathToSaveRoutes, (moduleRoutes || []).join('\n'));
 const webpackConfig = {
   context: join(rootPath, 'src'),
   target: 'web',
-  bail: true,
+  // bail: true,
   name,
 
   entry: [join(rootPath, `src/frontend/${APP}/src/index.tsx`)],
+
+  resolveLoader: {
+    plugins: [PnpWebpackPlugin.moduleLoader(module)],
+  },
 
   output: {
     path: join(rootPath, 'dist'),
@@ -75,6 +80,7 @@ const webpackConfig = {
     cacheWithContext: false,
     symlinks: false,
 
+    plugins: [PnpWebpackPlugin],
     alias: {
       '@the_platform/routes': pathToSaveRoutes,
     },
@@ -99,7 +105,9 @@ const webpackConfig = {
         }
       },
     }),
+
     new CleanWebpackPlugin(),
+
     new HtmlWebpackPlugin({
       favicon: join(rootPath, 'public/favicon.ico'),
       template: join(rootPath, 'public/index.html'),

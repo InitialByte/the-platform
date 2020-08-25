@@ -10,8 +10,9 @@ const {version, port} = require('./package.json');
 
 const rootPath = process.cwd();
 const baseRoot = join(rootPath, '/../../../');
-const modules = collectSwaggerApi(baseRoot)
-  .filter(({swagger}) => swagger !== null);
+const modules = collectSwaggerApi(baseRoot).filter(
+  ({swagger}) => swagger !== null,
+);
 
 module.exports = {
   entry: {
@@ -51,15 +52,11 @@ module.exports = {
     extensions: ['.js'],
     symlinks: false,
 
-    plugins: [
-      PnpWebpackPlugin,
-    ],
+    plugins: [PnpWebpackPlugin],
   },
 
   resolveLoader: {
-    plugins: [
-      PnpWebpackPlugin.moduleLoader(module),
-    ],
+    plugins: [PnpWebpackPlugin.moduleLoader(module)],
   },
 
   stats: 'errors-only',
@@ -93,8 +90,8 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: modules.map(({swagger: from, moduleName}) => ({
-          to: `${rootPath}/dist/swagger/${moduleName}.yaml`,
-          from,
+        to: `${rootPath}/dist/swagger/${moduleName}.yaml`,
+        from,
       })),
     }),
 

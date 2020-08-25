@@ -24,8 +24,8 @@ class ExtraWatchlugin {
     compiler.hooks.afterCompile.tap(
       'after-compile',
       ({contextDependencies}) => {
-        console.log('contextDependencies', contextDependencies);
-        contextDependencies = [];
+        console.log('\n Watching: ', contextDependencies.values());
+        // contextDependencies = [];
         // Add an additional directory to watch.
         // contextDependencies.push(join(__dirname, 'path/to/directory'));
       },
@@ -105,7 +105,7 @@ module.exports = merge(webpackConfig, {
       if (apiProxyServer.type === 'local') {
         killByPort(apiMockServerPort);
         // Run local apimock server if external proxy does not enabled.
-        const {stdout, stderr} = await exec('yarn apimock');
+        // const {stdout, stderr} = await exec('yarn apimock');
       }
     },
   },
