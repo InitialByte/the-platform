@@ -4,5 +4,6 @@ declare namespace Platform {
     Page: JSX.Element | React.ReactNode;
     exact?: boolean;
     isPrivate?: boolean;
+    module: string;
   }
 }

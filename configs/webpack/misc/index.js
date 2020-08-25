@@ -4,6 +4,7 @@ const {
   statSync,
   mkdirSync,
   existsSync,
+  readFileSync,
 } = require('fs');
 const {execSync} = require('child_process');
 
@@ -16,8 +17,7 @@ const buildInfo = (version) => ({
 });
 
 const getDirectories = (path) =>
-  readdirSync(path)
-    .filter((file) => statSync(`${path}/${file}`).isDirectory());
+  readdirSync(path).filter((file) => statSync(`${path}/${file}`).isDirectory());
 
 const createCacheDir = (path) => {
   if (!existsSync(path)) {
@@ -30,11 +30,26 @@ const collectModuleRoutes = (rootPath, workspace, dependencies) => {
     return [];
   }
   const modulesPath = join(rootPath, 'src/frontend/modules');
+  const readRouterFile = (filePath, moduleName) => {
+    const data = readFileSync(filePath, 'utf8');
+
+    if (data) {
+      return data.replace('../../src', join(modulesPath, moduleName, 'src'));
+    }
+
+    return data;
+  };
 
   return dependencies.map((moduleName) => {
-    const routerFile = join(modulesPath, moduleName, `export/entry/${workspace}.ts`);
+    const routerFile = join(
+      modulesPath,
+      moduleName,
+      `export/entry/${workspace}.ts`,
+    );
 
-    return existsSync(routerFile) ? routerFile : null;
+    return existsSync(routerFile)
+      ? readRouterFile(routerFile, moduleName)
+      : null;
   });
 };
 
@@ -44,26 +59,30 @@ const collectSwaggerApi = (rootPath) => {
   }
   const modulesPath = join(rootPath, 'src/backend/nodejs/rest');
 
-  return getDirectories(modulesPath).map((moduleName) => {
-    const packageJson = join(modulesPath, moduleName, 'package.json');
+  return getDirectories(modulesPath)
+    .map((moduleName) => {
+      const packageJson = join(modulesPath, moduleName, 'package.json');
 
-    if (existsSync(packageJson)) {
-      const {name: fullName, description = ''} = require(packageJson);
-      const swaggerFile = join(modulesPath, moduleName, 'swagger.yaml');
+      if (existsSync(packageJson)) {
+        const {name: fullName, description = ''} = require(packageJson);
+        const swaggerFile = join(modulesPath, moduleName, 'swagger.yaml');
 
-      return {
-        moduleName,
-        fullName,
-        description,
-        swagger: existsSync(swaggerFile) ? swaggerFile : null,
+        return {
+          moduleName,
+          fullName,
+          description,
+          swagger: existsSync(swaggerFile) ? swaggerFile : null,
+        };
       }
-    }
-  }).filter(({swagger}) => swagger !== null);
+    })
+    .filter(({swagger}) => swagger !== null);
 };
 
 const killByPort = (port) => {
   // TODO check in MacOS, Windows.
-  execSync(`lsof -n -i:${port} | grep LISTEN | awk '{ print $2 }' | uniq | xargs -r kill -9`);
+  execSync(
+    `lsof -n -i:${port} | grep LISTEN | awk '{ print $2 }' | uniq | xargs -r kill -9`,
+  );
 };
 
 module.exports = {

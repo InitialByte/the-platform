@@ -129,7 +129,7 @@ Installing Yarn 2.x globally is discouraged. Yarn team advise to keep Yarn 1.x a
 
 ```bash
 cd <PROJECT_PATH>
-yarn policies set-version berry
+yarn policies set-version latest
 ```
 
 * Run `yarn`

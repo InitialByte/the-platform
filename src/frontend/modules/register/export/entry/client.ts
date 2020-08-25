@@ -1,1 +1,1 @@
-export {router as registerRouter} from '@the_platform/module-register';
+export {router as registerRouter} from '../../src';

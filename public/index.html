@@ -14,6 +14,10 @@
     <div id="modal"></div>
     <div id="app"></div>
 
+    <script>
+      window.__INITIAL_STATE__ = <%= htmlWebpackPlugin.options.initialState %>;
+    </script>
+
     <!--
       version: <%= htmlWebpackPlugin.options.buildInfo.PACKAGE_VERSION %>
       build time: <%= htmlWebpackPlugin.options.buildInfo.BUILD_TIME %>

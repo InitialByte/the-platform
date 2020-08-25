@@ -7,6 +7,7 @@ import {
   Spinner,
   CSSBaseline,
 } from '@the_platform/react-uikit';
+import {AppContainer} from '../containers/App';
 import {router} from './router';
 import {ROUTE_LOGIN} from './routes';
 
@@ -14,6 +15,7 @@ interface IProps {
   modulesRoute: Platform.IRoute[];
 }
 
+// @TODO
 const isAuthed = false;
 
 export const AppRouter = ({modulesRoute = []}: IProps): JSX.Element => (
@@ -22,24 +24,26 @@ export const AppRouter = ({modulesRoute = []}: IProps): JSX.Element => (
       <CSSBaseline />
       <Suspense fallback={<Spinner />}>
         <BrowserRouter>
-          <Navigation />
-          <Routes>
-            {[...router, ...modulesRoute].map(
-              ({path, Page, isPrivate = false}) => (
-                <Route
-                  element={
-                    isPrivate && !isAuthed ? (
-                      <Navigate to={ROUTE_LOGIN} replace />
-                    ) : (
-                      <Page />
-                    )
-                  }
-                  path={path}
-                  key={path}
-                />
-              ),
-            )}
-          </Routes>
+          <AppContainer>
+            <Navigation />
+            <Routes>
+              {[...router, ...modulesRoute].map(
+                ({path, Page, isPrivate = false}) => (
+                  <Route
+                    element={
+                      isPrivate && !isAuthed ? (
+                        <Navigate to={ROUTE_LOGIN} replace />
+                      ) : (
+                        <Page />
+                      )
+                    }
+                    path={path}
+                    key={path}
+                  />
+                ),
+              )}
+            </Routes>
+          </AppContainer>
         </BrowserRouter>
       </Suspense>
     </StrictMode>

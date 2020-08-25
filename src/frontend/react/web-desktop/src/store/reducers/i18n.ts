@@ -11,8 +11,8 @@ interface Ii18nState {
 
 const name = 'platform_i18n';
 const initialState: Ii18nState = {
-  active: EN,
-  available: [EN, RU],
+  active: window?.__INITIAL_STATE__?.i18n?.default ?? 'EN',
+  available: window?.__INITIAL_STATE__?.i18n?.available ?? [EN, RU],
 };
 const reducers = {
   changeLocale: {
@@ -22,8 +22,11 @@ const reducers = {
   },
 };
 
-export const i18nSlice = createSlice({
+const i18nSlice = createSlice({
   name,
   initialState,
   reducers,
 });
+
+export const {changeLocale} = i18nSlice.actions;
+export const i18nReducer = i18nSlice.reducer;

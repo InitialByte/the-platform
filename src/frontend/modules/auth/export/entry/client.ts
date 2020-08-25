@@ -1,1 +1,5 @@
-export {router as authRouter} from '@the_platform/module-auth';
+export {
+  router as authRouter,
+  bootstrap as authBootstrap,
+  reducer as authReducer,
+} from '../../src';

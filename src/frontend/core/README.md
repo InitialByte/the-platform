@@ -24,6 +24,7 @@
 2. Json
 3. KindOf
 4. Pick
+5. GroupBy
 
 ### Event
 

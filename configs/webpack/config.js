@@ -1,8 +1,9 @@
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const {join} = require('path');
-const {readFileSync, writeFileSync} = require('fs');
+const {writeFileSync} = require('fs');
 
 const LoaderIMAGE_COMPRESS = require('./loaders/compress-images');
 const LoaderIMAGE_FONTS = require('./loaders/image-fonts');
@@ -18,6 +19,7 @@ const {
   APP = 'react/web-desktop',
   WORKSPACE = 'client',
   LANG = 'en-US',
+  MODE = 'development',
 } = process.env;
 const rootPath = process.cwd();
 const cachePath = join(rootPath, '.cache');
@@ -26,11 +28,10 @@ createCacheDir(cachePath);
 
 const pathToSaveRoutes = join(cachePath, 'routes.ts');
 const dependencies = config.app.dependencies.frontend[WORKSPACE] || [];
-const moduleRoutes = collectModuleRoutes(
-  rootPath,
-  WORKSPACE,
-  dependencies,
-).map((routeFile) => readFileSync(routeFile, 'utf8'));
+const moduleRoutes = collectModuleRoutes(rootPath, WORKSPACE, dependencies);
+
+const MAX_CYCLES = 5;
+let numCyclesDetected = 0;
 
 writeFileSync(pathToSaveRoutes, (moduleRoutes || []).join('\n'));
 
@@ -75,32 +76,29 @@ const webpackConfig = {
     symlinks: false,
 
     alias: {
-      '@the_platform/react-web-desktop': join(
-        rootPath,
-        'src/frontend/react/web-desktop/src',
-      ),
-      '@the_platform/module-register': join(
-        rootPath,
-        'src/frontend/modules/register/src',
-      ),
-      '@the_platform/nodejs-core': join(
-        rootPath,
-        'src/backend/nodejs/rest/core/src',
-      ),
-      '@the_platform/module-auth': join(
-        rootPath,
-        'src/frontend/modules/auth/src',
-      ),
-      '@the_platform/react-uikit': join(
-        rootPath,
-        'src/frontend/react/uikit/src',
-      ),
-      '@the_platform/core': join(rootPath, 'src/frontend/core/src'),
       '@the_platform/routes': pathToSaveRoutes,
     },
   },
 
   plugins: [
+    new CircularDependencyPlugin({
+      onStart() {
+        numCyclesDetected = 0;
+      },
+      onDetected({paths, compilation}) {
+        numCyclesDetected++;
+        compilation.warnings.push(new Error(paths.join(' -> ')));
+      },
+      onEnd({compilation}) {
+        if (numCyclesDetected > MAX_CYCLES) {
+          compilation.warnings.push(
+            new Error(
+              `Detected ${numCyclesDetected} cycles which exceeds configured limit of ${MAX_CYCLES}`,
+            ),
+          );
+        }
+      },
+    }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       favicon: join(rootPath, 'public/favicon.ico'),
@@ -122,6 +120,19 @@ const webpackConfig = {
         removeComments: false,
       },
       buildInfo: buildInfo(version),
+      initialState: JSON.stringify({
+        env: {
+          workspace: WORKSPACE,
+          mode: MODE,
+        },
+        i18n: {
+          default: config.app.settings.defaultLanguage,
+          available: config.app.settings.availableLanguages,
+        },
+        modules: {
+          available: dependencies,
+        },
+      }),
     }),
 
     new CopyPlugin({

@@ -14,4 +14,9 @@ export const appErrors: Platform.IError[] = [
     type: E_TYPE.CRITICAL,
     title: 'No mount point (id or class) in HTML.',
   },
+  {
+    code: E_CODE.E_102,
+    type: E_TYPE.CRITICAL,
+    title: 'Duplicate routes.',
+  },
 ];

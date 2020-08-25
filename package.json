@@ -31,7 +31,12 @@
     },
     "app": {
       "settings": {
-        "hasServerTracking": true
+        "hasServerTracking": true,
+        "defaultLanguage": "EN",
+        "availableLanguages": [
+          "EN",
+          "RU"
+        ]
       },
       "dependencies": {
         "backend": {
@@ -45,7 +50,6 @@
             "register"
           ],
           "admin": [
-            "authinternal",
             "adminpanel"
           ]
         }
@@ -53,9 +57,7 @@
     }
   },
   "workspaces": [
-    "./src/backend/nodejs/rest/auth",
-    "./src/backend/nodejs/rest/user",
-    "./src/backend/nodejs/rest/core",
+    "./src/backend/nodejs/rest/*",
     "./src/frontend/modules/*",
     "./src/frontend/react/*",
     "./src/frontend/*"
@@ -100,8 +102,8 @@
     "swagger": "yarn workspace @the_platform/swagger start",
     "apimock": "cross-env TZ=Asia/Novosibirsk yarn workspace @the_platform/apimock start",
     "smoke": "yarn workspace @the_platform/smoke start",
-    "start": "webpack-dev-server --progress --open --config ./configs/webpack/dev.js",
-    "build": "cross-env TZ=Asia/Novosibirsk webpack --progress --config ./configs/webpack/prod.js",
+    "start": "cross-env MODE=development webpack-dev-server --progress --open --config ./configs/webpack/dev.js",
+    "build": "cross-env MODE=production TZ=Asia/Novosibirsk webpack --progress --config ./configs/webpack/prod.js",
     "lint": "yarn eslint \"./src/frontend/core/**/*.@(ts|tsx)\" --cache --cache-location ./.cache",
     "prettier": "prettier --write '**/*.{ts,tsx,css,scss}' --config ./configs/core/.prettierrc",
     "tslint": "yarn run tsc --noEmitOnError --pretty",
@@ -126,20 +128,22 @@
     "@babel/preset-typescript": "^7.10.4",
     "@babel/runtime": "^7.11.2",
     "@babel/runtime-corejs3": "^7.11.2",
+    "@types/circular-dependency-plugin": "^5",
     "@types/jest": "^26.0.10",
-    "@typescript-eslint/eslint-plugin": "^3.9.1",
-    "@typescript-eslint/parser": "^3.9.1",
+    "@typescript-eslint/eslint-plugin": "^3.10.0",
+    "@typescript-eslint/parser": "^3.10.0",
     "@yarnpkg/pnpify": "^2.1.0",
     "autoprefixer": "^9.8.6",
     "babel-loader": "^8.1.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "cache-loader": "^4.1.0",
+    "circular-dependency-plugin": "^5.2.0",
     "clean-webpack-plugin": "^3.0.0",
-    "compression-webpack-plugin": "^5.0.0",
+    "compression-webpack-plugin": "^5.0.1",
     "copy-webpack-plugin": "^6.0.3",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.2",
-    "css-loader": "^4.2.1",
+    "css-loader": "^4.2.2",
     "enzyme": "^3.11.0",
     "eslint": "^7.7.0",
     "eslint-config-airbnb-typescript": "^9.0.0",
@@ -154,13 +158,13 @@
     "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
     "image-webpack-loader": "^6.0.0",
-    "jest": "^26.4.1",
+    "jest": "^26.4.2",
     "lerna": "^3.22.1",
     "lerna-changelog": "^1.0.1",
     "lint-staged": "^10.2.11",
     "postcss-js": "^2.0.3",
     "postcss-loader": "^3.0.0",
-    "prettier": "^2.0.5",
+    "prettier": "^2.1.0",
     "pretty-quick": "^3.0.0",
     "regenerator-runtime": "^0.13.7",
     "style-loader": "^1.2.1",
@@ -168,7 +172,7 @@
     "terser-webpack-plugin": "^4.1.0",
     "typescript": "^4.0.2",
     "url-loader": "^4.1.0",
-    "webpack": "^5.0.0-beta.28",
+    "webpack": "^5.0.0-beta.23",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",

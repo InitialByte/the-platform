@@ -4,6 +4,8 @@
   "description": "Module for registration",
   "main": "./src/index.tsx",
   "dependencies": {
+    "@the_platform/core": "workspace:*",
+    "@the_platform/react-uikit": "workspace:*",
     "core-js": "^3.6.5",
     "react": "^17.0.0-rc.0",
     "react-dom": "^17.0.0-rc.0"

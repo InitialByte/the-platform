@@ -123,7 +123,7 @@ export class ErrorTracking implements Platform.IErrorTracking {
     type: 'log' | 'table' | 'error' = 'log',
   ): void {
     const error = appErrors.find(
-      (appError: IErrorWithTimestamp) => appError === errorCode,
+      ({code}: IErrorWithTimestamp) => code === errorCode,
     );
 
     this.collect({
@@ -161,7 +161,9 @@ export class ErrorTracking implements Platform.IErrorTracking {
       },
     };
 
-    this.fetch(errorData);
+    if (this.fetch) {
+      this.fetch(errorData);
+    }
   }
 
   private collect(error: IErrorWithTimestamp): void {

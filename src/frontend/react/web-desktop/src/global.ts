@@ -15,6 +15,7 @@ enum E_CODE {
   E_1 = 1,
   E_100 = 100,
   E_101 = 101,
+  E_102 = 102,
 }
 
 window.E_TYPE = E_TYPE;

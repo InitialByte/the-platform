@@ -19,6 +19,20 @@ const {
   TO_SMOKE = false,
 } = process.env;
 
+class ExtraWatchlugin {
+  apply(compiler) {
+    compiler.hooks.afterCompile.tap(
+      'after-compile',
+      ({contextDependencies}) => {
+        console.log('contextDependencies', contextDependencies);
+        contextDependencies = [];
+        // Add an additional directory to watch.
+        // contextDependencies.push(join(__dirname, 'path/to/directory'));
+      },
+    );
+  }
+}
+
 module.exports = merge(webpackConfig, {
   mode: 'development',
   devtool: 'eval',
@@ -40,6 +54,8 @@ module.exports = merge(webpackConfig, {
     runtimeChunk: 'single',
     splitChunks: false,
   },
+
+  plugins: [new ExtraWatchlugin()],
 
   devServer: {
     contentBase: join(rootPath, 'dist'),
@@ -90,8 +106,6 @@ module.exports = merge(webpackConfig, {
         killByPort(apiMockServerPort);
         // Run local apimock server if external proxy does not enabled.
         const {stdout, stderr} = await exec('yarn apimock');
-        console.log('ApiMock, success: ', stdout);
-        console.error('ApiMock, error: ', stderr);
       }
     },
   },

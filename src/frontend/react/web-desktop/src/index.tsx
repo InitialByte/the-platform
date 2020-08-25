@@ -4,10 +4,9 @@ import * as React from 'react';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';
 import {loggerInit} from '@the_platform/core';
-import * as routes from '@the_platform/routes';
 import {AppRouter} from './routes';
 import {bootstrapApp} from './bootstrap';
-import {store} from './store';
+import {moduleRoutes, store} from './store';
 
 const logger = loggerInit();
 const MOUNT_POINT: HTMLElement | null = document.getElementById('app');
@@ -19,9 +18,7 @@ if (!MOUNT_POINT) {
     .then((): null => {
       render(
         <Provider store={store}>
-          <AppRouter
-            modulesRoute={Object.values(routes).flat() as Platform.IRoute[]}
-          />
+          <AppRouter modulesRoute={moduleRoutes} />
         </Provider>,
         MOUNT_POINT,
       );

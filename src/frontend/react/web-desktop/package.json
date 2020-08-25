@@ -5,6 +5,8 @@
   "main": "./src/index.tsx",
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
+    "@the_platform/core": "workspace:*",
+    "@the_platform/react-uikit": "workspace:*",
     "connected-react-router": "^6.8.0",
     "core-js": "^3.6.5",
     "history": "^5.0.0",
