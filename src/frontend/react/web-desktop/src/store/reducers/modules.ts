@@ -18,26 +18,26 @@ interface IModuleState {
   active: string | null;
   available: Array<string>;
   imported: Array<string>;
+  pathsGrouped: any;
   paths: any;
 }
 
 const name = 'platform_modules';
+const pathsNonGrouped = moduleRoutes.map(({path, module}) => ({
+  path,
+  module,
+}));
 const initialState: IModuleState = {
   active: null,
   available: window?.__INITIAL_STATE__?.modules?.available ?? [],
-  paths: groupBy(
-    moduleRoutes.map(({path, module}) => ({
-      path,
-      module,
-    })),
-    'module',
-  ),
+  paths: pathsNonGrouped,
+  pathsGrouped: groupBy(pathsNonGrouped, 'module'),
   imported: [],
 };
 const reducers = {
   importModule: {
     reducer: (state: IModuleState, {payload}: PayloadAction<string>) => {
-      if (state.imported.includes(payload)) {
+      if (!state.imported.includes(payload)) {
         state.imported.push(payload);
       }
     },
