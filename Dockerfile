@@ -1,62 +1,62 @@
 FROM alpine:3
 
 LABEL name="The Platform. Docker image." \
-      maintainer="Zlobin Eugene <creastar@gmail.com>"
+  maintainer="Zlobin Eugene <creastar@gmail.com>"
 
 ENV PATH="/opt/gtk/bin:${PATH}"
-ENV NGINX_VERSION=1.18.0
+ENV NGINX_VERSION=1.19.2
 
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   && CONFIG="\
-    --http-client-body-temp-path=/var/cache/nginx/client_temp \
-    --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp \
-    --http-proxy-temp-path=/var/cache/nginx/proxy_temp \
-    --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp \
-    --http-scgi-temp-path=/var/cache/nginx/scgi_temp \
-    --error-log-path=/var/log/nginx/error.log \
-    --http-log-path=/var/log/nginx/access.log \
-    --modules-path=/usr/lib/nginx/modules \
-    --conf-path=/etc/nginx/nginx.conf \
-    --lock-path=/var/run/nginx.lock \
-    --pid-path=/var/run/nginx.pid \
-    --sbin-path=/usr/sbin/nginx \
-    --prefix=/etc/nginx \
-    --group=nginx \
-    --user=nginx \
-    --add-dynamic-module=/usr/src/ngx_http_js/nginx \
-    --add-dynamic-module=/usr/src/ngx_headers_more \
-    --add-dynamic-module=/usr/src/ngx_brotli \
-    --with-cc-opt=-I/usr/src/boringssl/.openssl/include \
-    --with-ld-opt=-L/usr/src/boringssl/.openssl/lib \
-    --with-http_image_filter_module=dynamic \
-    --with-stream_geoip_module=dynamic \
-    --with-stream_ssl_preread_module \
-    --with-http_geoip_module=dynamic \
-    --with-http_random_index_module \
-    --with-http_auth_request_module \
-    --with-http_xslt_module=dynamic \
-    --with-http_gzip_static_module \
-    --with-http_secure_link_module \
-    --with-http_stub_status_module \
-    --with-http_perl_module=dynamic \
-    --with-stream_realip_module \
-    --with-http_addition_module \
-    --with-http_realip_module \
-    --with-http_gunzip_module \
-    --with-stream_ssl_module \
-    --with-http_slice_module \
-    --with-http_ssl_module \
-    --with-http_sub_module \
-    --with-mail_ssl_module \
-    --with-http_dav_module \
-    --with-http_flv_module \
-    --with-http_mp4_module \
-    --with-http_v2_module \
-    --with-file-aio \
-    --with-threads \
-    --with-compat \
-    --with-stream \
-    --with-mail \
+  --http-client-body-temp-path=/var/cache/nginx/client_temp \
+  --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp \
+  --http-proxy-temp-path=/var/cache/nginx/proxy_temp \
+  --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp \
+  --http-scgi-temp-path=/var/cache/nginx/scgi_temp \
+  --error-log-path=/var/log/nginx/error.log \
+  --http-log-path=/var/log/nginx/access.log \
+  --modules-path=/usr/lib/nginx/modules \
+  --conf-path=/etc/nginx/nginx.conf \
+  --lock-path=/var/run/nginx.lock \
+  --pid-path=/var/run/nginx.pid \
+  --sbin-path=/usr/sbin/nginx \
+  --prefix=/etc/nginx \
+  --group=nginx \
+  --user=nginx \
+  --add-dynamic-module=/usr/src/ngx_http_js/nginx \
+  --add-dynamic-module=/usr/src/ngx_headers_more \
+  --add-dynamic-module=/usr/src/ngx_brotli \
+  --with-cc-opt=-I/usr/src/boringssl/.openssl/include \
+  --with-ld-opt=-L/usr/src/boringssl/.openssl/lib \
+  --with-http_image_filter_module=dynamic \
+  --with-stream_geoip_module=dynamic \
+  --with-stream_ssl_preread_module \
+  --with-http_geoip_module=dynamic \
+  --with-http_random_index_module \
+  --with-http_auth_request_module \
+  --with-http_xslt_module=dynamic \
+  --with-http_gzip_static_module \
+  --with-http_secure_link_module \
+  --with-http_stub_status_module \
+  --with-http_perl_module=dynamic \
+  --with-stream_realip_module \
+  --with-http_addition_module \
+  --with-http_realip_module \
+  --with-http_gunzip_module \
+  --with-stream_ssl_module \
+  --with-http_slice_module \
+  --with-http_ssl_module \
+  --with-http_sub_module \
+  --with-mail_ssl_module \
+  --with-http_dav_module \
+  --with-http_flv_module \
+  --with-http_mp4_module \
+  --with-http_v2_module \
+  --with-file-aio \
+  --with-threads \
+  --with-compat \
+  --with-stream \
+  --with-mail \
   " \
   # ^^^
   # --with-http_v3_module \
@@ -65,48 +65,48 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   && addgroup -S nginx \
   && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
   && apk add --no-cache --virtual .build-deps \
-    ca-certificates \
-    linux-headers \
-    libxslt-dev \
-    build-base \
-    bind-tools \
-    mercurial \
-    geoip-dev \
-    libstdc++ \
-    autoconf \
-    automake \
-    binutils \
-    zlib-dev \
-    pcre-dev \
-    perl-dev \
-    libc-dev \
-    libtool \
-    su-exec \
-    gd-dev \
-    libgcc \
-    tzdata \
-    gnupg \
-    cmake \
-    zlib \
-    make \
-    pcre \
-    curl \
-    gcc \
-    git \
-    tar \
-    go \
+  ca-certificates \
+  linux-headers \
+  libxslt-dev \
+  build-base \
+  bind-tools \
+  mercurial \
+  geoip-dev \
+  libstdc++ \
+  autoconf \
+  automake \
+  binutils \
+  zlib-dev \
+  pcre-dev \
+  perl-dev \
+  libc-dev \
+  libtool \
+  su-exec \
+  gd-dev \
+  libgcc \
+  tzdata \
+  gnupg \
+  cmake \
+  zlib \
+  make \
+  pcre \
+  curl \
+  gcc \
+  git \
+  tar \
+  go \
   && curl -fSL https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
   && curl -fSL https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz.asc  -o nginx.tar.gz.asc \
   && export GNUPGHOME="$(mktemp -d)" \
   && found=''; \
   for server in \
-    ha.pool.sks-keyservers.net \
-    hkp://keyserver.ubuntu.com:80 \
-    hkp://p80.pool.sks-keyservers.net:80 \
-    pgp.mit.edu \
+  ha.pool.sks-keyservers.net \
+  hkp://keyserver.ubuntu.com:80 \
+  hkp://p80.pool.sks-keyservers.net:80 \
+  pgp.mit.edu \
   ; do \
-    echo "Fetching GPG key $GPG_KEYS from $server"; \
-    gpg --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$GPG_KEYS" && found=yes && break; \
+  echo "Fetching GPG key $GPG_KEYS from $server"; \
+  gpg --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$GPG_KEYS" && found=yes && break; \
   done; \
   test -z "$found" && echo >&2 "error: failed to fetch GPG key $GPG_KEYS" && exit 1; \
   gpg --batch --verify nginx.tar.gz.asc nginx.tar.gz \
@@ -118,24 +118,24 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   # && git clone --depth=1 --recursive https://github.com/cloudflare/quiche /usr/src/quiche \
   && hg clone http://hg.nginx.org/njs /usr/src/ngx_http_js \
   && (git clone --depth=1 https://boringssl.googlesource.com/boringssl /usr/src/boringssl \
-    && sed -i 's@out \([>=]\) TLS1_2_VERSION@out \1 TLS1_3_VERSION@' /usr/src/boringssl/ssl/ssl_lib.cc \
-    && sed -i 's@ssl->version[ ]*=[ ]*TLS1_2_VERSION@ssl->version = TLS1_3_VERSION@' /usr/src/boringssl/ssl/s3_lib.cc \
-    && sed -i 's@(SSL3_VERSION, TLS1_2_VERSION@(SSL3_VERSION, TLS1_3_VERSION@' /usr/src/boringssl/ssl/ssl_test.cc \
-    && sed -i 's@\$shaext[ ]*=[ ]*0;@\$shaext = 1;@' /usr/src/boringssl/crypto/*/asm/*.pl \
-    && sed -i 's@\$avx[ ]*=[ ]*[0|1];@\$avx = 2;@' /usr/src/boringssl/crypto/*/asm/*.pl \
-    && sed -i 's@\$addx[ ]*=[ ]*0;@\$addx = 1;@' /usr/src/boringssl/crypto/*/asm/*.pl \
-    && mkdir -p /usr/src/boringssl/build /usr/src/boringssl/.openssl/lib /usr/src/boringssl/.openssl/include \
-    && ln -sf /usr/src/boringssl/include/openssl /usr/src/boringssl/.openssl/include/openssl \
-    && touch /usr/src/boringssl/.openssl/include/openssl/ssl.h \
-    && cmake -B/usr/src/boringssl/build -H/usr/src/boringssl -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-    && make -C/usr/src/boringssl/build -j$(getconf _NPROCESSORS_ONLN) \
-    && cp /usr/src/boringssl/build/crypto/libcrypto.a /usr/src/boringssl/build/ssl/libssl.a /usr/src/boringssl/.openssl/lib/) \
+  && sed -i 's@out \([>=]\) TLS1_2_VERSION@out \1 TLS1_3_VERSION@' /usr/src/boringssl/ssl/ssl_lib.cc \
+  && sed -i 's@ssl->version[ ]*=[ ]*TLS1_2_VERSION@ssl->version = TLS1_3_VERSION@' /usr/src/boringssl/ssl/s3_lib.cc \
+  && sed -i 's@(SSL3_VERSION, TLS1_2_VERSION@(SSL3_VERSION, TLS1_3_VERSION@' /usr/src/boringssl/ssl/ssl_test.cc \
+  && sed -i 's@\$shaext[ ]*=[ ]*0;@\$shaext = 1;@' /usr/src/boringssl/crypto/*/asm/*.pl \
+  && sed -i 's@\$avx[ ]*=[ ]*[0|1];@\$avx = 2;@' /usr/src/boringssl/crypto/*/asm/*.pl \
+  && sed -i 's@\$addx[ ]*=[ ]*0;@\$addx = 1;@' /usr/src/boringssl/crypto/*/asm/*.pl \
+  && mkdir -p /usr/src/boringssl/build /usr/src/boringssl/.openssl/lib /usr/src/boringssl/.openssl/include \
+  && ln -sf /usr/src/boringssl/include/openssl /usr/src/boringssl/.openssl/include/openssl \
+  && touch /usr/src/boringssl/.openssl/include/openssl/ssl.h \
+  && cmake -B/usr/src/boringssl/build -H/usr/src/boringssl -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+  && make -C/usr/src/boringssl/build -j$(getconf _NPROCESSORS_ONLN) \
+  && cp /usr/src/boringssl/build/crypto/libcrypto.a /usr/src/boringssl/build/ssl/libssl.a /usr/src/boringssl/.openssl/lib/) \
   \
   && tar -zxC /usr/src -f nginx.tar.gz \
   && rm nginx.tar.gz \
   && cd /usr/src/nginx-$NGINX_VERSION \
   # && patch --verbose --dry-run -p01 < /usr/src/quiche/extras/nginx/nginx-1.16.patch \
-  && curl -fSL https://raw.githubusercontent.com/nginx-modules/ngx_http_tls_dyn_size/0.5/nginx__dynamic_tls_records_1.15.5%2B.patch -o dynamic_tls_records.patch \
+  && curl -fSL https://raw.githubusercontent.com/nginx-modules/ngx_http_tls_dyn_size/0.5/nginx__dynamic_tls_records_1.17.7%2B.patch -o dynamic_tls_records.patch \
   && patch -p1 < dynamic_tls_records.patch \
   && ./configure $CONFIG --with-debug \
   && make -j$(getconf _NPROCESSORS_ONLN) \
@@ -170,11 +170,11 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   && mv /usr/bin/envsubst /tmp/ \
   \
   && runDeps="$( \
-    scanelf --needed --nobanner /usr/sbin/nginx /usr/lib/nginx/modules/*.so /tmp/envsubst \
-      | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
-      | sort -u \
-      | xargs -r apk info --installed \
-      | sort -u \
+  scanelf --needed --nobanner /usr/sbin/nginx /usr/lib/nginx/modules/*.so /tmp/envsubst \
+  | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
+  | sort -u \
+  | xargs -r apk info --installed \
+  | sort -u \
   ) tzdata ca-certificates" \
   && apk add --no-cache --virtual .nginx-rundeps $runDeps \
   && apk del .build-deps \
@@ -188,8 +188,8 @@ WORKDIR /usr/src/app
 
 ## Install yarn v2.
 RUN apk add yarn git && \
-    yarn policies set-version berry \
-    yarn set version berry
+  yarn policies set-version berry \
+  yarn set version berry
 
 ## Install dependencies and cache it.
 COPY package.json .
@@ -206,34 +206,34 @@ COPY . .
 
 ## Build application and remove sources.
 RUN yarn build && \
-    rm -rf node_modules && \
-    rm -rf configs/docker/consul.d && \
-    rm -rf configs/docker/nginx && \
-    rm -rf configs/webpack && \
-    rm -rf configs/core && \
-    rm -f tsconfig.json && \
-    rm -rf configs/tyk && \
-    rm -f package.json && \
-    rm -f .yarnrc.yml && \
-    rm -f Dockerfile && \
-    rm -f yarn.lock && \
-    rm -f .yarnrc && \
-    rm -f .pnp.js && \
-    rm -rf public && \
-    rm -rf .cache && \
-    rm -rf report && \
-    rm -rf .yarn && \
-    rm -rf .git && \
-    rm -rf src && \
-    chmod +x configs/docker/build.sh
+  rm -rf node_modules && \
+  rm -rf configs/docker/consul.d && \
+  rm -rf configs/docker/nginx && \
+  rm -rf configs/webpack && \
+  rm -rf configs/core && \
+  rm -f tsconfig.json && \
+  rm -rf configs/tyk && \
+  rm -f package.json && \
+  rm -f .yarnrc.yml && \
+  rm -f Dockerfile && \
+  rm -f yarn.lock && \
+  rm -f .yarnrc && \
+  rm -f .pnp.js && \
+  rm -rf public && \
+  rm -rf .cache && \
+  rm -rf report && \
+  rm -rf .yarn && \
+  rm -rf .git && \
+  rm -rf src && \
+  chmod +x configs/docker/build.sh
 
 RUN apk del yarn git
 
 RUN rm -rf /usr/share/perl5 \
-    rm -rf /usr/lib/perl5 \
-    rm -rf /root/.cache \
-    rm -rf /lib/apk/db \
-    rm -rf /root/.yarn
+  rm -rf /usr/lib/perl5 \
+  rm -rf /root/.cache \
+  rm -rf /lib/apk/db \
+  rm -rf /root/.yarn
 
 ARG WORKSTATION
 ARG COOKIE_NAME

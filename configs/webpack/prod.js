@@ -19,8 +19,8 @@ module.exports = merge(webpackConfig, {
   },
 
   performance: {
-    maxEntrypointSize: 512000, // 500 Kb
-    maxAssetSize: 512000, // 500 Kb
+    maxEntrypointSize: 819200, // 800 Kb
+    maxAssetSize: 819200, // 800 Kb
     hints: 'error',
   },
 

@@ -161,7 +161,7 @@
     "jest": "^26.4.2",
     "lerna": "^3.22.1",
     "lerna-changelog": "^1.0.1",
-    "lint-staged": "^10.2.11",
+    "lint-staged": "^10.2.13",
     "pnp-webpack-plugin": "^1.6.4",
     "postcss-js": "^2.0.3",
     "postcss-loader": "^3.0.0",
