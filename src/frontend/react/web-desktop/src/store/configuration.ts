@@ -1,19 +1,46 @@
-import {configureStore} from '@reduxjs/toolkit';
+import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
+import {combineReducers} from 'redux';
 import {
   envReducer,
   i18nReducer,
   moduleReducer,
-  moduleRoutes as mroutes,
+  moduleRoutes as mRoutes,
 } from './reducers';
 
+const asyncReducers = {};
+
+const middleware = getDefaultMiddleware({
+  immutableCheck: true,
+  serializableCheck: true,
+  thunk: true,
+});
+
+const reducer = {
+  env: envReducer,
+  i18n: i18nReducer,
+  modules: moduleReducer,
+};
+
+const createReducer = (): any =>
+  combineReducers({
+    ...reducer,
+    ...asyncReducers,
+  });
+
 export const store = configureStore({
-  reducer: {
-    env: envReducer,
-    i18n: i18nReducer,
-    modules: moduleReducer,
-  },
+  reducer,
+  middleware,
   devTools: window?.__INITIAL_STATE__?.env?.mode === 'development' ?? false,
 });
 
-export type AppDispatch = typeof store.dispatch;
-export const moduleRoutes = mroutes;
+export const injectReducer = (key: string, reducer): void => {
+  asyncReducers[key] = reducer;
+
+  if (store) {
+    store.replaceReducer(createReducer());
+  }
+};
+export const moduleRoutes = mRoutes;
+
+export type TAppDispatch = typeof store.dispatch;
+export type TRootState = ReturnType<typeof store.getState>;

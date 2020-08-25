@@ -1,5 +1,6 @@
 {
   "name": "@the_platform/module-register",
+  "shortName": "register",
   "version": "1.0.0",
   "description": "Module for registration",
   "main": "./src/index.tsx",

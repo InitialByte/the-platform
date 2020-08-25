@@ -1,5 +1,6 @@
 {
   "name": "@the_platform/module-auth",
+  "shortName": "auth",
   "version": "1.0.0",
   "description": "Module for authentication",
   "main": "./src/index.tsx",

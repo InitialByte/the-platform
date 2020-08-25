@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {logger, groupBy, kindOf} from '@the_platform/core';
+
 import * as routes from '@the_platform/routes';
-import {logger, groupBy} from '@the_platform/core';
 
 export const moduleRoutes = Object.values(routes as Platform.IRoute[])
   .flat()
@@ -23,15 +24,15 @@ interface IModuleState {
 }
 
 const name = 'platform_modules';
-const pathsNonGrouped = moduleRoutes.map(({path, module}) => ({
+const pathsNonGrouped = moduleRoutes.map(({path, shortName}) => ({
   path,
-  module,
+  shortName,
 }));
 const initialState: IModuleState = {
   active: null,
   available: window?.__INITIAL_STATE__?.modules?.available ?? [],
   paths: pathsNonGrouped,
-  pathsGrouped: groupBy(pathsNonGrouped, 'module'),
+  pathsGrouped: groupBy(pathsNonGrouped, 'shortName'),
   imported: [],
 };
 const reducers = {

@@ -17,7 +17,9 @@ const initialState: Ii18nState = {
 const reducers = {
   changeLocale: {
     reducer: (state: Ii18nState, action: PayloadAction<'RU' | 'EN'>) => {
-      state.active = action.payload;
+      if (state.active !== action.payload) {
+        state.active = action.payload;
+      }
     },
   },
 };

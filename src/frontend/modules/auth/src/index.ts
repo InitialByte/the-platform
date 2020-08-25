@@ -1,7 +1,7 @@
 import {lazy} from 'react';
 import {logger} from '@the_platform/core';
 import * as routes from './constants/routes';
-import {name as module} from '../package.json';
+import {shortName} from '../package.json';
 
 const LoginPage = lazy(
   () => import(/* webpackChunkName: "pages/auth_login" */ './pages/login'),
@@ -36,30 +36,30 @@ export const router: Platform.IRoute[] = [
   {
     path: routes.ROUTE_AUTH_LOGIN,
     Page: LoginPage,
-    module,
+    shortName,
   },
   {
     path: routes.ROUTE_AUTH_LOGOUT,
     Page: LogoutPage,
     isPrivate: true,
-    module,
+    shortName,
   },
   {
     path: routes.ROUTE_AUTH_LOGIN_CERTIFICATE,
     Page: LoginCertificatePage,
-    module,
+    shortName,
   },
   {
     path: routes.ROUTE_AUTH_RECOVERY_PASSWORD,
     Page: RecoveryPasswordPage,
     isPrivate: true,
-    module,
+    shortName,
   },
   {
     path: routes.ROUTE_AUTH_UPDATE_PASSWORD,
     Page: UpdatePasswordPage,
     isPrivate: true,
-    module,
+    shortName,
   },
 ];
 
