@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import {Router, Response, Request} from 'express';
 import {verifyJwtToken, addJwtCookie, isAuthenticated} from '../../core';
 import {
   SUCCESS_STATUS,
@@ -9,7 +9,7 @@ import {
 export const token = Router();
 
 // /api/v1/token/check
-token.get('/check', (req, res): void => {
+token.get('/check', (req: Request, res: Response): void => {
   let isValid = false;
 
   try {
@@ -29,7 +29,7 @@ token.get('/check', (req, res): void => {
 });
 
 // /api/v1/token/refresh
-token.get('/refresh', isAuthenticated, (_, res): void => {
+token.get('/refresh', isAuthenticated, (_, res: Response): void => {
   addJwtCookie(res.cookie);
   res.status(SUCCESS_STATUS).send();
 });

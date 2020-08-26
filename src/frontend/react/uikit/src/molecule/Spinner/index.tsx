@@ -2,7 +2,7 @@ import * as React from 'react';
 import {ReactNode} from 'react';
 
 interface IProps {
-  preloader?: ReactNode;
+  preloader: ReactNode;
 }
 
 export function Spinner({preloader = '🌀'}: IProps): JSX.Element {

@@ -45,13 +45,12 @@ const onSubmit = (
   navigateAfterSignin: string = '/',
 ): void => (
   values: ILoginFormValues,
-  {setSubmitting}: {setSubmitting: (value: boolean) => void},
+  {setSubmitting}: {setSubmitting: (value: boolean) => void, },
 ): void => {
   signIn(values)
     .then(() => {
       navigate(navigateAfterSignin);
       login('Eugene');
-      return;
     })
     .catch(console.error)
     .finally(() => {

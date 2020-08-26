@@ -1,6 +1,8 @@
 /* eslint @typescript-eslint/no-magic-numbers: 0, no-bitwise: 0, max-len: 0,
   @typescript-eslint/no-unsafe-member-access: 0, @typescript-eslint/no-unsafe-call: 0,
-  @typescript-eslint/restrict-template-expressions: 0 */
+  @typescript-eslint/restrict-template-expressions: 0, @typescript-eslint/ban-ts-comment: 0,
+  @typescript-eslint/no-unsafe-assignment: 0 */
+// @ts-nocheck
 export const webgl = (): string[] | null => {
   const fa2s = (gl, [fa1, fa2]): string => {
     gl.clearColor(0.0, 0.0, 0.0, 1.0);

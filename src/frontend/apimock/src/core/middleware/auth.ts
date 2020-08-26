@@ -1,7 +1,12 @@
+import {Response, Request, NextFunction} from 'express';
 import {verifyJwtToken} from '../service';
 import {UNAUTHORIZED_STATUS, JWT_COOKIE_NAME} from '../../constants';
 
-export const isAuthenticated = (req, res, next): any => {
+export const isAuthenticated = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): void => {
   console.log('Auth middleware');
 
   let isValid = false;

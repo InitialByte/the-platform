@@ -32,8 +32,7 @@ export const AppContainer = connect(
     const {imported, active, paths} = modules;
 
     useEffect(() => {
-      const {shortName} =
-        paths.find(({path}) => path === location.pathname) || [];
+      const {shortName} = paths.find(({path}) => path === location.pathname) || [];
 
       if (shortName) {
         if (!imported.includes(shortName)) {

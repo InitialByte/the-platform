@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {logger, groupBy, kindOf} from '@the_platform/core';
+import {logger, groupBy} from '@the_platform/core';
 
 import * as routes from '@the_platform/routes';
 

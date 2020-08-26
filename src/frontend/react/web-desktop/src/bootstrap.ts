@@ -6,31 +6,32 @@ import {
   resourcesMeasure,
 } from '@the_platform/core';
 
-const storagePrefix = 'APP_';
-
-// Can be accessed across the whole application.
-/* const session = */ sessionStorageInit(storagePrefix);
-/* const local = */ localStorageInit(storagePrefix);
-
-window.onload = () => {
-  setTimeout(() => {
+window.onload = (): void => {
+  setTimeout((): void => {
     console.log(paintMeasure());
     console.log(browserMeasure());
     console.log(resourcesMeasure());
   }, 1000);
 };
 
-export const bootstrapApp = async (): Promise<string> => {
+export const bootstrapApp = async (): Promise<void> => {
+  const storagePrefix = 'APP_';
+
+  // Can be accessed across the whole application.
+  sessionStorageInit(storagePrefix);
+  localStorageInit(storagePrefix);
+
   getFingerprint()
-    .then((fp) => {
-      customRequestInit({
-        beforeRequest: [
-          (req) => {
-            req.headers.set('X-FP', fp);
-          },
-        ],
-      });
-    })
+    .then(
+      (fp: string): ReturnType<typeof customRequestInit> =>
+        customRequestInit({
+          beforeRequest: [
+            (req: Request): void => {
+              req.headers.set('X-FP', fp);
+            },
+          ],
+        }),
+    )
     .catch(console.error);
 
   return Promise.resolve();

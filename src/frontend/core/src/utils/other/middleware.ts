@@ -16,8 +16,7 @@ export class Middleware {
     // LIFO.
     this.run = ((stack: any) => (next: any) =>
       stack(() =>
-        fn.call(this.context || this, next.bind(this.context || this)),
-      ))(this.run);
+        fn.call(this.context || this, next.bind(this.context || this))))(this.run);
 
     return this;
   }

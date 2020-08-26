@@ -83,7 +83,7 @@ describe('1. Shallow clone.', () => {
         prop: Symbol(),
       };
       const clonedValue = shallowClone(testValue) as {
-        prop: symbol;
+        prop: symbol,
       };
 
       expect(typeof clonedValue.prop).toBe('symbol');

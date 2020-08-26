@@ -5,7 +5,7 @@ describe('1. Deep Freeze.', () => {
     const obj = deepFreeze({
       foo: 'bar',
       baz: 'foo',
-    }) as {foo: string; baz: string; bar: unknown};
+    }) as {foo: string, baz: string, bar: unknown, };
 
     try {
       obj.bar = 'foo';

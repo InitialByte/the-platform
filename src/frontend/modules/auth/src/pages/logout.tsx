@@ -1,6 +1,18 @@
-import * as React from 'react';
+import {connect} from 'react-redux';
+import {signOut} from '../provider';
+import {logout} from '../reducer';
 
-const LogoutPage = (): JSX.Element => <div>Logout</div>;
+const mapState = (): Record<string, string> => ({});
+const mapDispatch = {logoutReducer: logout};
+
+const LogoutPage = connect(
+  mapState,
+  mapDispatch,
+)(({logoutReducer}): null => {
+  signOut().catch(console.error).finally(logoutReducer);
+
+  return null;
+});
 
 LogoutPage.displayName = 'LogoutPage';
 

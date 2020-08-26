@@ -9,6 +9,14 @@ interface Ii18nState {
   available: Array<string>;
 }
 
+declare global {
+  interface Window {
+    _INITIAL_STATE__: {
+      i18n: Ii18nState,
+    };
+  }
+}
+
 const name = 'platform_i18n';
 const initialState: Ii18nState = {
   active: window?.__INITIAL_STATE__?.i18n?.default ?? 'EN',

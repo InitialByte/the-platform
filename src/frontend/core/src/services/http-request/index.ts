@@ -6,7 +6,8 @@ export {default as pureRequest} from 'ky';
 
 type TKy = typeof ky;
 
-export let customRequest: TKy = proxyErrorHandler('HttpRequest');
+// eslint-disable-next-line import/no-mutable-exports
+export let customRequest: TKy = proxyErrorHandler('HttpRequest') as TKy;
 
 export const customRequestInit = (hooks: any): TKy => {
   customRequest = ky.extend({hooks});

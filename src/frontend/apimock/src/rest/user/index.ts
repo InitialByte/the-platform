@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import {Router, Response} from 'express';
 import {checkRole, isAuthenticated} from '../../core';
 import {RBAC_GRANT_USER, RBAC_GRANT_USERS} from '../../constants';
 import * as faker from 'faker';
@@ -12,7 +12,7 @@ const NUMBER_OF_USERS = 100;
 user.get(
   '/',
   [isAuthenticated, checkRole('readAny', RBAC_GRANT_USERS)],
-  (_, res): void => {
+  (_, res: Response): void => {
     res.status(SUCCESS_STATUS).json({
       data: [...Array(NUMBER_OF_USERS)].map(() => ({
         id: faker.random.uuid(),
@@ -29,7 +29,7 @@ user.get(
 user.get(
   '/:id',
   [isAuthenticated, checkRole('readAny', RBAC_GRANT_USER)],
-  (_, res): void => {
+  (_, res: Response): void => {
     res.status(SUCCESS_STATUS).json({
       data: {
         fullname: faker.name.findName(),
@@ -45,7 +45,7 @@ user.get(
 user.post(
   '/',
   [isAuthenticated, checkRole('createAny', RBAC_GRANT_USER)],
-  (_, res): void => {
+  (_, res: Response): void => {
     res.status(SUCCESS_STATUS).send();
   },
 );
@@ -55,7 +55,7 @@ user.post(
 user.put(
   '/:id',
   [isAuthenticated, checkRole('updateAny', RBAC_GRANT_USER)],
-  (_, res): void => {
+  (_, res: Response): void => {
     res.status(SUCCESS_STATUS).send();
   },
 );
@@ -65,7 +65,7 @@ user.put(
 user.delete(
   '/:id',
   [isAuthenticated, checkRole('deleteAny', RBAC_GRANT_USER)],
-  (_, res): void => {
+  (_, res: Response): void => {
     res.status(SUCCESS_STATUS).send();
   },
 );

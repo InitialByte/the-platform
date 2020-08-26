@@ -53,8 +53,7 @@ class StorageManager implements Storage {
 
   get length(): number {
     return Object.keys(this.storage).map((key: string) =>
-      key.startsWith(this.prefix),
-    ).length;
+      key.startsWith(this.prefix)).length;
   }
 
   key(index: number): string {

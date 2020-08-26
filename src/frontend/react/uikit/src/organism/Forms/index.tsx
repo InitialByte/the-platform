@@ -1,1 +1,1 @@
-export * as Form from 'formik';
+export * from 'formik';

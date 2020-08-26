@@ -1,4 +1,5 @@
-/* eslint @typescript-eslint/no-magic-numbers: 0 */
+/* eslint @typescript-eslint/no-magic-numbers: 0, @typescript-eslint/ban-ts-comment: 0 */
+// @ts-nocheck
 export const audio = (): null | Promise<string> => {
   const {OfflineAudioContext} = window;
 

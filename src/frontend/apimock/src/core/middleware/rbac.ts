@@ -1,3 +1,4 @@
+import {Response, Request, NextFunction} from 'express';
 import {decodeJwtToken} from '../service';
 import {UNAUTHORIZED_STATUS, JWT_COOKIE_NAME} from '../../constants';
 
@@ -12,10 +13,10 @@ type TActions =
   | 'deleteAny';
 
 export const checkRole = (action: TActions, grant: string) => (
-  req,
-  res,
-  next,
-): any => {
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): void => {
   console.log(`Rbac middleware: ${grant}`);
   const decodedJwt = decodeJwtToken(req.cookies[JWT_COOKIE_NAME] || '');
 

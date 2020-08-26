@@ -47,11 +47,14 @@ interface IErrorData {
 }
 
 type TServerRequest = (errorData: IErrorWithTimestamp | IErrorData) => void;
-
-type TLoggerInstance = ErrorTracking | ProxyHandler<{}>;
+type TReason = Record<'reason', string>;
+type TLoggerInstance = ErrorTracking | ProxyHandler<Record<string, unknown>>;
 
 const errorCollection: IErrorWithTimestamp[] = [];
-export let logger: TLoggerInstance = proxyErrorHandler('Logger');
+// eslint-disable-next-line import/no-mutable-exports
+export let logger: TLoggerInstance = proxyErrorHandler(
+  'Logger',
+) as TLoggerInstance;
 
 export class ErrorTracking implements Platform.IErrorTracking {
   private readonly defaults: IOptions = {
@@ -60,11 +63,11 @@ export class ErrorTracking implements Platform.IErrorTracking {
     fingerprint: '',
   };
 
-  private readonly fetch: TServerRequest;
+  private readonly fetch: TServerRequest | undefined;
 
   private readonly options: IOptions;
 
-  constructor(options: IOptions, fetch: TServerRequest) {
+  constructor(options?: IOptions, fetch?: TServerRequest) {
     this.fetch = fetch;
     this.options = {
       ...this.defaults,
@@ -74,14 +77,17 @@ export class ErrorTracking implements Platform.IErrorTracking {
     // This event is sent to the global scope of a script when
     // a JavaScript Promise that has no rejection handler is rejected.
     if (this.options.trackAllErrorEvents) {
-      window.addEventListener('unhandledrejection', ({reason}) => {
-        this.collect({
-          code: E_CODE.E_1,
-          type: E_TYPE.UNKNOWN,
-          title: 'Unhandled promise rejection',
-          message: reason,
-        });
-      });
+      window.addEventListener(
+        'unhandledrejection',
+        ({reason}: TReason): void => {
+          this.collect({
+            code: E_CODE.E_1,
+            type: E_TYPE.UNKNOWN,
+            title: 'Unhandled promise rejection',
+            message: reason,
+          });
+        },
+      );
 
       window.addEventListener(
         'error',
@@ -132,10 +138,11 @@ export class ErrorTracking implements Platform.IErrorTracking {
     });
 
     if (typeof console !== 'undefined') {
-      // eslint-disable-next-line no-console
       if (error) {
+        // eslint-disable-next-line no-console
         console[type](error?.title, ...message);
       } else {
+        // eslint-disable-next-line no-console
         console[type](message);
       }
     }

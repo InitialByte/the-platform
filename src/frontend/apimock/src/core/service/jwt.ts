@@ -19,7 +19,7 @@ export const verifyJwtToken = (token: string = ''): string | object =>
 
 export const decodeJwtToken = (token: string = ''): any => decode(token);
 
-export const addJwtCookie = (cookie: any): any => {
+export const addJwtCookie = (cookie: any): void => {
   cookie(
     JWT_COOKIE_NAME,
     createJwtToken({

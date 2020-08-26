@@ -35,6 +35,6 @@ describe('1. isPlainObject.', () => {
   });
 
   it('1.8: should detect class as plain object.', () => {
-    expect(isPlainObject(new (class {})())).toBe(true);
+    expect(isPlainObject(new class {}())).toBe(true);
   });
 });

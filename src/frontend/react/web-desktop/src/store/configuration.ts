@@ -33,8 +33,8 @@ export const store = configureStore({
   devTools: window?.__INITIAL_STATE__?.env?.mode === 'development' ?? false,
 });
 
-export const injectReducer = (key: string, reducer): void => {
-  asyncReducers[key] = reducer;
+export const injectReducer = (key: string, injectableReducer: any): void => {
+  asyncReducers[key] = injectableReducer;
 
   if (store) {
     store.replaceReducer(createReducer());

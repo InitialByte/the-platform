@@ -93,7 +93,7 @@ export class EventEmitter {
     if (this.hasEvent(eventName)) {
       if (!callback) {
         this.events.delete(eventName);
-        this.callbacks[eventName] = null;
+        delete this.callbacks[eventName];
       } else {
         callbackInd = this.getCallbackIndex(eventName, callback);
 

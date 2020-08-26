@@ -1,4 +1,5 @@
-/* eslint @typescript-eslint/no-magic-numbers: 0 */
+/* eslint @typescript-eslint/no-magic-numbers: 0, @typescript-eslint/ban-ts-comment: 0 */
+// @ts-nocheck
 export const fpCanvas = (): string[] => {
   const result = [];
   // Very simple now, need to make it more complex (geo shapes etc)
@@ -10,7 +11,8 @@ export const fpCanvas = (): string[] => {
 
   const ctx = canvas.getContext('2d');
   // eslint-disable-next-line max-len
-  const someText = 'By the pricking of my thumbs, Something wicked this way comes. Open, locks, Whoever knocks!, \ud83d\ude09';
+  const someText =
+    'By the pricking of my thumbs, Something wicked this way comes. Open, locks, Whoever knocks!, \ud83d\ude09';
   const someNumber = Math.PI * 2;
 
   ctx.rect(0, 0, 10, 10);
