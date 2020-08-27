@@ -1,5 +1,5 @@
 type TNoop = () => void;
-type TFn = TNoop | Array<TNoop>;
+type TFn = TNoop | TNoop[];
 
 export class Middleware {
   // Add function or array of functions to the execution stack.

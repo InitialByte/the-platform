@@ -1,4 +1,7 @@
-import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
+import {
+  configureStore,
+  getDefaultMiddleware,
+} from '@reduxjs/toolkit';
 import {combineReducers} from 'redux';
 import {
   envReducer,
@@ -7,7 +10,9 @@ import {
   moduleRoutes as mRoutes,
 } from './reducers';
 
-const asyncReducers = {};
+type TReducer = Object<string, ReducerFunction | ReducerAndPrepareObject>;
+
+const asyncReducers: Record<string, any> = [];
 
 const middleware = getDefaultMiddleware({
   immutableCheck: true,
@@ -21,7 +26,7 @@ const reducer = {
   modules: moduleReducer,
 };
 
-const createReducer = (): any =>
+const createReducer = (): ReturnType<typeof combineReducers> =>
   combineReducers({
     ...reducer,
     ...asyncReducers,
@@ -34,7 +39,7 @@ export const store = configureStore({
 });
 
 export const injectReducer = (key: string, injectableReducer: any): void => {
-  asyncReducers[key] = injectableReducer;
+  asyncReducers.push({[key]: injectableReducer});
 
   if (store) {
     store.replaceReducer(createReducer());

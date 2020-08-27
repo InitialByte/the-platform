@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 
-const cachedScripts: Array<string> = [];
+const cachedScripts: string[] = [];
 type TEmptyFn = () => void;
 
 export const useScript = (src: string): number => {

@@ -13,6 +13,15 @@
 - [Optimization](#optimization)
 - [Todo](#todo)
 
+## External Readme
+
+- [BackEnd](backend/README.md)
+- [FrontEnd](frontend/README.md)
+- [ApiMock](frontend/apimock/README.md)
+- [Core functions](frontend/core/README.md)
+- [How to create a module](frontend/modules/README.md)
+- [UiKit Usage](frontend/react/uikit//README.md)
+
 ## Synopsis
 
 This is scalable fullstack "framework" for configuring complex medium and large size SPA projects. Any part of this project can be easy replaced. Here is using mono-repository with modular architecture, it similar to [micro-frontend](https://micro-frontends.org/). Lerna and Yarn 2 Workspaces gives the ability to build project in a single repo (a.k.a. monorepo). This makes it faster to iterate locally when building components that depends on each other. Monorepo is NOT about mixing everything together inside a project (do not confuse with monolith). Monorepo is about having source codes of multiple applications, services, and libraries that belong to one domain inside a single repository. Using monorepo decreases velocity and maintaining time.
@@ -45,13 +54,12 @@ Micro-frontend (a.k.a. micro-services) allows multiple teams to work independent
 - Single clone. No need to clone several repositories.
 - Access to all parts of the system. Simplified refactoring of the whole system.
 - Linting only files to commit.
-- Custom light weight nginx+alpine Docker build with HTTP/2, TLSv1.3, brotli.
+- Custom light weight nginx 1.19 +alpine Docker build with HTTP/2, TLSv1.3, brotli.
 - Extra small size of Docker containers.
 - Ability to separate applications, for example, a mobile application and a desktop application in easy way.
 - Smoke testing after deploying, which can be used to rollback if deploy was failed.
 - Optimized by lighthouse rules.
 - [Atomic design](https://atomicdesign.bradfrost.com/) methodology for building UI.
-- [TODO] BEM methodology for naming css classes.
 - Easier upgrade of the underlying technologies for each workspace.
 - Allow to fit the best the technology to each need.
 - Webpack 5 fastest speed and smallest bundle size.
@@ -112,7 +120,7 @@ BackEnd
 - index-db [TODO];
 - browser fingerprint;
 - error-tracking (including send to server);
-- i18n, l10n [TODO];
+- i18n, l10n;
 - heart-beating;
 - print (pdf, image, text) + preview [TODO];
 - save files;

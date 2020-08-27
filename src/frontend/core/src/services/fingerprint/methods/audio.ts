@@ -26,8 +26,8 @@ export const audio = (): null | Promise<string> => {
     ['release', 0.25],
   ].forEach(([type, value]: [string, number]) => {
     if (
-      compressor[type] !== undefined &&
-      typeof compressor[type].setValueAtTime === 'function'
+      compressor[type] !== undefined
+      && typeof compressor[type].setValueAtTime === 'function'
     ) {
       compressor[type].setValueAtTime(value, context.currentTime);
     }

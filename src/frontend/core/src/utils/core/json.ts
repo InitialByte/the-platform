@@ -16,7 +16,9 @@
  * }
  */
 
-export const parseJson = <T>(
+type TObj = Record<string | number | symbol, string>;
+
+export const parseJson = <T extends TObj>(
   jsonData: string,
   reviver?: (this: unknown, key: string, value: unknown) => T,
 ): T => {
@@ -28,7 +30,7 @@ export const parseJson = <T>(
 };
 
 export const stringifyJson = (
-  data: object,
+  data: TObj,
   replacer?: (this: unknown, key: string, value: unknown) => unknown,
   space?: string | number,
 ): string => {

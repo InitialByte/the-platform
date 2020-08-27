@@ -1,8 +1,9 @@
-export {};
+import {IEnvState, IModuleState, Ii18nState} from './store/reducers';
 
 // DON'T FORGET TO ADD THE SAME VALUES FROM E_TYPE AND E_CODE
 // INTO <root>/src/frontend/@types/global-errors.d.ts
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 enum E_TYPE {
   CRITICAL = 'CRITICAL',
   WARNING = 'WARNING',
@@ -11,6 +12,7 @@ enum E_TYPE {
   UNKNOWN = 'UNKNOWN',
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 enum E_CODE {
   E_1 = 1,
   E_100 = 100,
@@ -25,5 +27,10 @@ declare global {
   interface Window {
     E_CODE: typeof E_CODE;
     E_TYPE: typeof E_TYPE;
+    __INITIAL_STATE__: {
+      modules: IModuleState,
+      i18n: Ii18nState,
+      env: IEnvState,
+    };
   }
 }

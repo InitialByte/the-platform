@@ -15,12 +15,17 @@ if (duplicateRoutes.length) {
   logger.error(E_CODE.E_102, duplicateRoutes);
 }
 
-interface IModuleState {
+interface IPaths {
+  path: string;
+  shortName: string;
+}
+
+export interface IModuleState {
   active: string | null;
-  available: Array<string>;
-  imported: Array<string>;
-  pathsGrouped: any;
-  paths: any;
+  available: string[];
+  imported: string[];
+  pathsGrouped: Record<keyof IPaths, IPaths>[];
+  paths: IPaths[];
 }
 
 const name = 'platform_modules';
@@ -32,7 +37,7 @@ const initialState: IModuleState = {
   active: null,
   available: window?.__INITIAL_STATE__?.modules?.available ?? [],
   paths: pathsNonGrouped,
-  pathsGrouped: groupBy(pathsNonGrouped, 'shortName'),
+  pathsGrouped: groupBy<IPaths[]>(pathsNonGrouped, 'shortName'),
   imported: [],
 };
 const reducers = {
@@ -53,9 +58,9 @@ const reducers = {
 };
 
 const moduleSlice = createSlice({
-  name,
   initialState,
   reducers,
+  name,
 });
 
 export const {importModule, activateModule} = moduleSlice.actions;

@@ -13,7 +13,7 @@
  * // ]
  */
 
-export const groupBy = (array: Array<any>, key: string): Array<any> =>
+export const groupBy = <T>(array: T[], key: keyof T): Record<keyof T, T>[] =>
   array.reduce((result, currentValue) => {
     (result[currentValue[key]] = result[currentValue[key]] || []).push(
       currentValue,

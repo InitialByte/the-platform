@@ -27,10 +27,8 @@ export const webgl = (): string[] | null => {
   }
 
   const result = [];
-  const vShaderTemplate =
-    'attribute vec2 attrVertex;varying vec2 varyinTexCoordinate;uniform vec2 uniformOffset;void main(){varyinTexCoordinate=attrVertex+uniformOffset;gl_Position=vec4(attrVertex,0,1);}';
-  const fShaderTemplate =
-    'precision mediump float;varying vec2 varyinTexCoordinate;void main() {gl_FragColor=vec4(varyinTexCoordinate,0,1);}';
+  const vShaderTemplate = 'attribute vec2 attrVertex;varying vec2 varyinTexCoordinate;uniform vec2 uniformOffset;void main(){varyinTexCoordinate=attrVertex+uniformOffset;gl_Position=vec4(attrVertex,0,1);}';
+  const fShaderTemplate = 'precision mediump float;varying vec2 varyinTexCoordinate;void main() {gl_FragColor=vec4(varyinTexCoordinate,0,1);}';
   const vertexPosBuffer = gl.createBuffer();
 
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexPosBuffer);
@@ -124,10 +122,7 @@ export const webgl = (): string[] | null => {
               format,
             ].join(''),
           );
-        }),
-      ),
-    ),
-  );
+        }))));
 
   return result;
 };

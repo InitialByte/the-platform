@@ -1,5 +1,6 @@
 // based on @link https://github.com/jonschlinkert/kind-of
-/* eslint @typescript-eslint/no-explicit-any: 0 */
+/* eslint @typescript-eslint/no-explicit-any: 0, @typescript-eslint/no-unsafe-member-access: 0,
+  @typescript-eslint/no-unsafe-return: 0 */
 
 const hasArrayBuffer = typeof ArrayBuffer === 'function';
 const ctorName = (value: any): string =>

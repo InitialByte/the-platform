@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Paper as MUIPaper} from '@material-ui/core';
+import {Paper as MUIPaper, PaperProps} from '@material-ui/core';
 
-export const Paper = (props: any): ReturnType<typeof MUIPaper> => (
+export const Paper = (props: PaperProps): ReturnType<typeof MUIPaper> => (
   <MUIPaper {...props} />
 );

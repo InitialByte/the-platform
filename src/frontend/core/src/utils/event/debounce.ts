@@ -12,6 +12,7 @@
  * A function that emits a side effect and does not return anything.
  */
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type TNoop = (...args: any[]) => void;
 export interface TOptions {
   isImmediate: boolean;
@@ -28,10 +29,13 @@ export function debounce<F extends TNoop>(
 ): (this: ThisParameterType<F>, ...args: Parameters<F>) => void {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
-  return function (this: ThisParameterType<F>, ...args: Parameters<F>) {
+  return function debounceFn(
+    this: ThisParameterType<F>,
+    ...args: Parameters<F>
+  ): void {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const context = this;
-
-    const doLater = function () {
+    const doLater = function doLater(): void {
       timeoutId = undefined;
 
       if (!options.isImmediate) {
