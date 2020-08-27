@@ -23,6 +23,7 @@ export const parseJson = <T extends TObj>(
   reviver?: (this: unknown, key: string, value: unknown) => T,
 ): T => {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return JSON.parse(jsonData, reviver);
   } catch (e) {
     throw Error(e);

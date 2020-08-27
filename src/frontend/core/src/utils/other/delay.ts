@@ -13,8 +13,9 @@
  * delay(a, 1000); // Call a fn after 1000ms
  */
 
-export const delay = (fn: () => void, ms: number): any => new Proxy(fn, {
-  apply(target, thisArg, args) {
-    setTimeout(() => target.apply(thisArg, args), ms);
-  },
-});
+export const delay = (fn: () => void, ms: number): unknown =>
+  new Proxy(fn, {
+    apply(target: () => void, thisArg: unknown, args: []) {
+      setTimeout(() => target.apply(thisArg, args), ms);
+    },
+  });

@@ -48,13 +48,13 @@ interface IErrorData {
 
 type TServerRequest = (errorData: IErrorWithTimestamp | IErrorData) => void;
 type TReason = Record<'reason', string>;
-type TLoggerInstance = ErrorTracking | ProxyHandler<Record<string, unknown>>;
+type TLoggerInstance = Platform.IErrorTracking | ProxyHandler<Record<string, unknown>>;
 
 const errorCollection: IErrorWithTimestamp[] = [];
 // eslint-disable-next-line import/no-mutable-exports
 export let logger: TLoggerInstance = proxyErrorHandler(
   'Logger',
-) as TLoggerInstance;
+) as Platform.IErrorTracking;
 
 export class ErrorTracking implements Platform.IErrorTracking {
   private readonly defaults: IOptions = {
@@ -125,7 +125,7 @@ export class ErrorTracking implements Platform.IErrorTracking {
 
   private out(
     errorCode: E_CODE | null,
-    message?: Platform.TMessage,
+    message: string | string[] = '',
     type: 'log' | 'table' | 'error' = 'log',
   ): void {
     const error = appErrors.find(
@@ -189,7 +189,7 @@ export class ErrorTracking implements Platform.IErrorTracking {
 export const loggerInit = (
   config?: IOptions,
   fetch?: TServerRequest,
-): ErrorTracking => {
+): Platform.IErrorTracking => {
   logger = new ErrorTracking(config, fetch);
   return logger;
 };

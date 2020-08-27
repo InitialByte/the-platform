@@ -1,23 +1,23 @@
 // based on @link https://github.com/jonschlinkert/kind-of
-/* eslint @typescript-eslint/no-explicit-any: 0, @typescript-eslint/no-unsafe-member-access: 0,
-  @typescript-eslint/no-unsafe-return: 0 */
+/* eslint-disable */
+// @ts-nocheck
 
 const hasArrayBuffer = typeof ArrayBuffer === 'function';
 const ctorName = (value: any): string =>
-  (value.constructor ? value.constructor.name : null);
+  value.constructor ? value.constructor.name : null;
 const isGeneratorFn = (name: any): boolean =>
   ctorName(name) === 'GeneratorFunction';
 const isGeneratorObj = (value: any): boolean =>
-  typeof value.throw === 'function'
-  && typeof value.return === 'function'
-  && typeof value.next === 'function';
+  typeof value.throw === 'function' &&
+  typeof value.return === 'function' &&
+  typeof value.next === 'function';
 const isArray = (value: any): boolean =>
-  (Array.isArray ? Array.isArray(value) : value instanceof Array);
+  Array.isArray ? Array.isArray(value) : value instanceof Array;
 const isError = (value: any): boolean =>
-  value instanceof Error
-  || (typeof value.message === 'string'
-    && value.constructor
-    && typeof value.constructor.stackTraceLimit === 'number');
+  value instanceof Error ||
+  (typeof value.message === 'string' &&
+    value.constructor &&
+    typeof value.constructor.stackTraceLimit === 'number');
 
 const isDate = (value: any): boolean => {
   if (value instanceof Date) {
@@ -25,9 +25,9 @@ const isDate = (value: any): boolean => {
   }
 
   return (
-    typeof value.toDateString === 'function'
-    && typeof value.getDate === 'function'
-    && typeof value.setDate === 'function'
+    typeof value.toDateString === 'function' &&
+    typeof value.getDate === 'function' &&
+    typeof value.setDate === 'function'
   );
 };
 
@@ -37,18 +37,18 @@ const isRegexp = (value: any): boolean => {
   }
 
   return (
-    typeof value.flags === 'string'
-    && typeof value.ignoreCase === 'boolean'
-    && typeof value.multiline === 'boolean'
-    && typeof value.global === 'boolean'
+    typeof value.flags === 'string' &&
+    typeof value.ignoreCase === 'boolean' &&
+    typeof value.multiline === 'boolean' &&
+    typeof value.global === 'boolean'
   );
 };
 
 const isArguments = (value: any): boolean => {
   try {
     if (
-      typeof value.length === 'number'
-      && typeof value.callee === 'function'
+      typeof value.length === 'number' &&
+      typeof value.callee === 'function'
     ) {
       return true;
     }
@@ -62,14 +62,14 @@ const isArguments = (value: any): boolean => {
 };
 
 const isBuffer = (value: any): boolean =>
-  (value.constructor && typeof value.constructor.isBuffer === 'function'
+  value.constructor && typeof value.constructor.isBuffer === 'function'
     ? value.constructor.isBuffer(value)
-    : false);
+    : false;
 
 const isArrayBuffer = (value: any): boolean =>
-  hasArrayBuffer
-  && (value instanceof ArrayBuffer
-    || Object.prototype.toString.call(value) === '[object ArrayBuffer]');
+  hasArrayBuffer &&
+  (value instanceof ArrayBuffer ||
+    Object.prototype.toString.call(value) === '[object ArrayBuffer]');
 
 type TKindOf =
   | 'undefined'

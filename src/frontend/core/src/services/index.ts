@@ -9,5 +9,5 @@ export * from './object-cache';
 export * from './permissions';
 export * from './rum';
 export * from './service-worker';
-export * from './validation';
+export * as validation from './validation';
 export * from './storage-manager';

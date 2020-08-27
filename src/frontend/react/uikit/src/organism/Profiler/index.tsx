@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Profiler, ReactElement} from 'react';
+import {Profiler, ReactElement, Component} from 'react';
 
 type TRenderCallback = (
   // the "id" prop of the Profiler tree that has just committed
@@ -19,11 +19,11 @@ type TRenderCallback = (
 ) => void;
 
 export const withProfiler = (
-  WrappedComponent: ReactElement,
+  WrappedComponent: new () => Component<unknown, unknown>,
   id: string,
   onRender: TRenderCallback,
 ): ReactElement => (
   <Profiler id={id} onRender={onRender}>
-    <WrappedComponent {...this.props} />
+    <WrappedComponent {...(this?.props ?? {})} />
   </Profiler>
 );

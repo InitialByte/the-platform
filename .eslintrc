@@ -72,6 +72,7 @@
     "function-paren-newline": ["error", "consistent"],
     "object-curly-spacing": [1, "never"],
     "array-bracket-spacing": [1, "never"],
+    "operator-linebreak": "off",
     "max-len": ["error", 100, 2, {
       "ignoreRegExpLiterals": true,
       "ignoreComments": false,

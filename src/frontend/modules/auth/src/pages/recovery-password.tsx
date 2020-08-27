@@ -1,6 +1,7 @@
 import * as React from 'react';
+import {FC} from 'react';
 
-const RecoveryPasswordPage = (): JSX.Element => <div>RecoveryPasswordPage</div>;
+const RecoveryPasswordPage: FC = () => <div>RecoveryPasswordPage</div>;
 
 RecoveryPasswordPage.displayName = 'RecoveryPasswordPage';
 

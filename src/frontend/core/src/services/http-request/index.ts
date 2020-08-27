@@ -13,3 +13,5 @@ export const customRequestInit = (hooks: any): TKy => {
   customRequest = ky.extend({hooks});
   return customRequest;
 };
+
+export {ResponsePromise} from 'ky';

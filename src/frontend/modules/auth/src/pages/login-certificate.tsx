@@ -1,6 +1,7 @@
 import * as React from 'react';
+import {FC} from 'react';
 
-const LoginCertificatePage = (): JSX.Element => <div>LoginCertificatePage</div>;
+const LoginCertificatePage: FC = () => <div>LoginCertificatePage</div>;
 
 LoginCertificatePage.displayName = 'LoginCertificatePage';
 

@@ -12,6 +12,8 @@
  * //   3 => [{bar: 5, group: 3}],
  * // ]
  */
+/* eslint-disable */
+// @ts-nocheck
 
 export const groupBy = <T>(array: T[], key: keyof T): Record<keyof T, T>[] =>
   array.reduce((result, currentValue) => {

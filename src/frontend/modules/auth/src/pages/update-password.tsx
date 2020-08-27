@@ -1,6 +1,7 @@
 import * as React from 'react';
+import {FC} from 'react';
 
-const UpdatePasswordPage = (): JSX.Element => <div>UpdatePasswordPage</div>;
+const UpdatePasswordPage: FC = () => <div>UpdatePasswordPage</div>;
 
 UpdatePasswordPage.displayName = 'UpdatePasswordPage';
 

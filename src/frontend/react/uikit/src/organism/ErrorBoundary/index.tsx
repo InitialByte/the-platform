@@ -1,5 +1,5 @@
 import {Component, ReactNode, ErrorInfo} from 'react';
-// import {logger} from '@the_platform/core';
+import {logger} from '@the_platform/core';
 
 interface Props {
   fallback?: ReactNode;
@@ -16,8 +16,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     this.setState({hasError: true});
-    console.error(error, errorInfo.componentStack);
-    // logger.error(E_CODE.E_1, [error, componentStack]);
+    logger.error(E_CODE.E_1, error, errorInfo.componentStack);
   }
 
   render(): ReactNode {

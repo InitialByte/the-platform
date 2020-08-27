@@ -18,7 +18,10 @@
  * preventUnload();
  */
 
-export const onUnload = (apiUrl: string, data?: object | string): void => {
+export const onUnload = (
+  apiUrl: string,
+  data?: Record<string, unknown> | string,
+): void => {
   window.addEventListener('unload', () => {
     // @link https://w3c.github.io/beacon/
     if (navigator.sendBeacon) {
@@ -27,7 +30,9 @@ export const onUnload = (apiUrl: string, data?: object | string): void => {
   });
 };
 
-export const preventUnload = (textPreventClose: string | false = false): void => {
+export const preventUnload = (
+  textPreventClose: string | false = false,
+): void => {
   window.onbeforeunload = () =>
     // Text may not work in new browsers. It will show only an default message like:
     // "Changes you made may not be saved."

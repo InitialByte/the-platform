@@ -13,7 +13,8 @@
  * on screen and you want to guarantee smooth changes or animations.
  */
 
-type TNoop = () => void;
+/* eslint-disable */
+// @ts-nocheck
 
 export function throttle(func, ms) {
   let isThrottled = false;

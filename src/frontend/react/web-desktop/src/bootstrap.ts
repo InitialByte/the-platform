@@ -15,7 +15,7 @@ window.onload = (): void => {
 };
 
 export const bootstrapApp = async (): Promise<void> => {
-  const storagePrefix = 'APP_';
+  const storagePrefix = 'PLT_';
 
   // Can be accessed across the whole application.
   sessionStorageInit(storagePrefix);

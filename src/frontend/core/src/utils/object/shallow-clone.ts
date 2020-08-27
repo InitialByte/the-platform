@@ -1,4 +1,6 @@
 // Based on @link https://github.com/jonschlinkert/shallow-clone
+/* eslint-disable */
+// @ts-nocheck
 import {kindOf} from '../core';
 
 type TTypedArray =
@@ -14,9 +16,10 @@ type TTypedArray =
 const {valueOf} = Symbol.prototype;
 
 const cloneRegExp = (target: RegExp): RegExp => {
-  const flags = target.flags !== undefined
-    ? target.flags
-    : /\w+$/.exec(target) || undefined;
+  const flags =
+    target.flags !== undefined
+      ? target.flags
+      : /\w+$/.exec(target) || undefined;
   const result = new target.constructor(target.source, flags);
 
   result.lastIndex = target.lastIndex;
@@ -46,7 +49,7 @@ const cloneBuffer = (target: Buffer): Buffer => {
 };
 
 const cloneSymbol = (target: symbol): object =>
-  (valueOf ? Object(valueOf.call(target)) : {});
+  valueOf ? Object(valueOf.call(target)) : {};
 
 export const shallowClone = (target: any): unknown => {
   switch (kindOf(target)) {

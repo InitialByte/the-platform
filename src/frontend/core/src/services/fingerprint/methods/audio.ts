@@ -26,9 +26,12 @@ export const audio = (): null | Promise<string> => {
     ['release', 0.25],
   ].forEach(([type, value]: [string, number]) => {
     if (
-      compressor[type] !== undefined
-      && typeof compressor[type].setValueAtTime === 'function'
+      compressor &&
+      compressor[type] !== undefined &&
+      typeof compressor[type].setValueAtTime === 'function'
     ) {
+      /* eslint @typescript-eslint/no-unsafe-call: 0,
+        @typescript-eslint/no-unsafe-member-access: 0 */
       compressor[type].setValueAtTime(value, context.currentTime);
     }
   });
@@ -36,6 +39,7 @@ export const audio = (): null | Promise<string> => {
   oscillator.connect(compressor);
   compressor.connect(context.destination);
   oscillator.start(0);
+  // eslint-disable-next-line @typescript-eslint/no-floating-promises
   context.startRendering();
 
   return new Promise((resolve, reject) => {

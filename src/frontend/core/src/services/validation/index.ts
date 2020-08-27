@@ -1,1 +1,1 @@
-export * as validation from 'yup';
+export * from 'yup';

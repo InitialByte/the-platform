@@ -1,6 +1,7 @@
 import * as React from 'react';
+import {FC} from 'react';
 
-const NotFoundPage = (): JSX.Element => <div>NotFound</div>;
+const NotFoundPage: FC = () => <div>NotFound</div>;
 
 NotFoundPage.displayName = 'NotFoundPage';
 

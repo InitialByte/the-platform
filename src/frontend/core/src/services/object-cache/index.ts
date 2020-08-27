@@ -19,11 +19,14 @@
 
 import {deepFreeze} from '../../utils/object/deep-freeze';
 
-const globals: Map<string, unknown> = new Map();
+const globals = new Map();
 
 export const hasObjectCache = (key: string): boolean => globals.has(key);
-export const setObjectCache = (key: string, value: unknown): boolean =>
-  (globals.has(key) ? Boolean(globals.set(key, deepFreeze(value))) : false);
-export const getObjectCache = (key: string): unknown => globals.get(key);
+// eslint-disable-next-line no-confusing-arrow
+export const setObjectCache = <T>(key: string, value: T): boolean =>
+  globals.has(key) ? Boolean(globals.set(key, deepFreeze(value))) : false;
+export const getObjectCache = <T>(key: string): T | undefined =>
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  globals.get(key);
 export const removeObjectCache = (key: string): boolean => globals.delete(key);
 export const clearObjectCache = (): void => globals.clear();

@@ -1,6 +1,7 @@
 import * as React from 'react';
+import {FC} from 'react';
 
-const LoadingPage = (): JSX.Element => <div>Loading</div>;
+const LoadingPage: FC = () => <div>Loading</div>;
 
 LoadingPage.displayName = 'LoadingPage';
 

@@ -1,11 +1,15 @@
+/* eslint-disable */
+// @ts-nocheck
+
 import {kindOf, isPlainObject} from '../core';
 import {shallowClone} from './shallow-clone';
 
 const cloneObject = (target: object) => {
   if (isPlainObject(target)) {
-    const result = target.constructor && kindOf(target.constructor) === 'function'
-      ? new target.constructor()
-      : Object.create(null);
+    const result =
+      target.constructor && kindOf(target.constructor) === 'function'
+        ? new target.constructor()
+        : Object.create(null);
 
     for (const key in target) {
       result[key] = deepClone(target[key]);

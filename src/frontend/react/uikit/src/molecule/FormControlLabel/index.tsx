@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {FormControlLabel as MUIFormControlLabel} from '@material-ui/core';
+import {FormControlLabel as MUIFormControlLabel, FormControlLabelProps} from '@material-ui/core';
 
 export const FormControlLabel = (
-  props: any,
+  props: FormControlLabelProps,
 ): ReturnType<typeof MUIFormControlLabel> => <MUIFormControlLabel {...props} />;

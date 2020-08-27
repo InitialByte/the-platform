@@ -36,6 +36,9 @@
     "src/frontend/__mocks__",
     "src/frontend/smoke",
     "src/frontend/swagger",
-    "src/frontend/smoke"
+    "src/frontend/smoke",
+    "src/backend",
+    "*.test.*",
+    ".yarn"
   ]
 }

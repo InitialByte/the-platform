@@ -1,8 +1,9 @@
 import * as React from 'react';
+import {FC} from 'react';
 import {Paper} from '@the_platform/react-uikit';
 import {LoginForm} from '../parts/login-form';
 
-const LoginPage = (): JSX.Element => (
+const LoginPage: FC = () => (
   <Paper>
     <h1>Authentication</h1>
     <LoginForm />

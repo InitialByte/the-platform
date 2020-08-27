@@ -1,6 +1,7 @@
 import * as React from 'react';
+import {FC} from 'react';
 
-const RegisterPage = (): JSX.Element => <div>Register</div>;
+const RegisterPage: FC = () => <div>Register</div>;
 
 RegisterPage.displayName = 'RegisterPage';
 

@@ -1,6 +1,7 @@
 import * as React from 'react';
+import {FC} from 'react';
 
-const HomePage = (): JSX.Element => <div>Home</div>;
+const HomePage: FC = () => <div>Home</div>;
 
 HomePage.displayName = 'HomePage';
 

@@ -1,15 +1,20 @@
-import {createSlice, PayloadAction, createAsyncThunk} from '@reduxjs/toolkit';
-import {signIn, signOut} from '../provider';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+// import {signIn, signOut} from '../provider';
 
 interface IAuthState {
   isAuth: boolean;
   fullName?: string;
 }
 
-const fetchLogin = createAsyncThunk('auth/signin', async (payload) => {
+/* const fetchLogin = createAsyncThunk('auth/signin', async (payload) => {
   const response = await signIn(payload);
   return response.data;
 });
+
+const fetchLogout = createAsyncThunk('auth/signout', async () => {
+  const response = await signOut();
+  return response.data;
+}); */
 
 const name = 'module_auth';
 const initialState: IAuthState = {
@@ -29,7 +34,7 @@ const reducers = {
     },
   },
 };
-const extraReducers = {
+/* const extraReducers = {
   [fetchLogin.fulfilled]: (
     state: IAuthState,
     action: PayloadAction<string>,
@@ -37,13 +42,17 @@ const extraReducers = {
     state.isAuth = true;
     state.fullName = action.payload;
   },
-};
+  [fetchLogout.fulfilled]: (state: IAuthState) => {
+    state.isAuth = false;
+    state.fullName = undefined;
+  },
+}; */
 
 export const authSlice = createSlice({
   name,
   initialState,
   reducers,
-  extraReducers,
+  // extraReducers,
 });
 
 export const {login, logout} = authSlice.actions;

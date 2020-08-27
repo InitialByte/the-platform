@@ -49,7 +49,6 @@
 ### Other
 
 1. Delay
-2. Middleware
-3. Retry
-4. URL
-5. UUIDv4
+2. Retry
+3. URL
+4. UUIDv4

@@ -43,6 +43,7 @@ export const useScript = (src: string): number => {
     document.body.appendChild(script);
 
     // Remove event listeners on cleanup
+    // eslint-disable-next-line consistent-return
     return (): void => {
       script.removeEventListener('load', onScriptLoad);
       script.removeEventListener('error', onScriptError);
