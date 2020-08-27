@@ -9,6 +9,7 @@ const LogoutPage = connect(
   mapState,
   mapDispatch,
 )(({logoutReducer}): null => {
+  // eslint-disable-next-line promise/catch-or-return
   signOut().catch(console.error).finally(logoutReducer);
 
   return null;

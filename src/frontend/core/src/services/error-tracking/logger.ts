@@ -20,6 +20,8 @@
  * logger.info('any data');
  */
 
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 import {appErrors} from './errors';
 import {proxyErrorHandler} from '../../utils/event/error-handler';
 
@@ -48,11 +50,11 @@ interface IErrorData {
 
 type TServerRequest = (errorData: IErrorWithTimestamp | IErrorData) => void;
 type TReason = Record<'reason', string>;
-type TLoggerInstance = Platform.IErrorTracking | ProxyHandler<Record<string, unknown>>;
 
 const errorCollection: IErrorWithTimestamp[] = [];
-// eslint-disable-next-line import/no-mutable-exports
-export let logger: TLoggerInstance = proxyErrorHandler(
+/* eslint-disable @typescript-eslint/ban-ts-comment, import/no-mutable-exports */
+// @ts-ignore
+export let logger: Platform.IErrorTracking = proxyErrorHandler(
   'Logger',
 ) as Platform.IErrorTracking;
 
@@ -110,6 +112,8 @@ export class ErrorTracking implements Platform.IErrorTracking {
   error(errorCode: E_CODE, message?: Platform.TMessage): void {
     this.out(
       errorCode,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       typeof message === 'object' ? [message] : message,
       'error',
     );
@@ -132,6 +136,8 @@ export class ErrorTracking implements Platform.IErrorTracking {
       ({code}: IErrorWithTimestamp) => code === errorCode,
     );
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     this.collect({
       ...error,
       message: message.toString(),

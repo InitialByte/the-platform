@@ -6,7 +6,6 @@ export * from './fingerprint';
 export * from './http-request';
 export * from './jsonp';
 export * from './object-cache';
-export * from './permissions';
 export * from './rum';
 export * from './service-worker';
 export * as validation from './validation';

@@ -48,6 +48,8 @@ const sendRequest = (
 
   request.open(type, url, true);
   Object.entries(options).forEach(([key, val]) => {
+    /* eslint-disable @typescript-eslint/ban-ts-comment, import/no-mutable-exports */
+    // @ts-ignore
     request[key] = val;
   });
 
@@ -95,6 +97,7 @@ export const saveAs = (
         'GET',
         url,
         ({response}) => {
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
           saveAs(response, fileName);
         },
         reject,

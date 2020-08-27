@@ -10,11 +10,10 @@
 6. HttpRequest [Documentation KY](https://github.com/sindresorhus/ky)
 7. JsonP
 8. ObjectCache
-9. Permission
-10. RealUserMonitoring
-11. ServiceWorker
-12. StorageManager
-13. Validation [Documentation Yup](https://github.com/jquense/yup)
+9. RealUserMonitoring
+10. ServiceWorker
+11. StorageManager
+12. Validation [Documentation Yup](https://github.com/jquense/yup)
 
 ## Utils
 

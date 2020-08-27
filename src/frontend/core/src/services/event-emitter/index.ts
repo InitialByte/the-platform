@@ -62,7 +62,7 @@ export class EventEmitter {
       );
     } else if (this.callbackExists(eventName, callback, context)) {
       return new Error(
-        `Event "${eventName}" already has the callback ${callback}.`,
+        `Event "${eventName}" already has the callback ${callback.toString()}.`,
       );
     }
 
@@ -79,6 +79,8 @@ export class EventEmitter {
   ): this | Error {
     const onceCallback = (...args: unknown[]): void => {
       this.off(eventName, onceCallback);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       callback.call(context, args);
     };
 
@@ -114,6 +116,8 @@ export class EventEmitter {
     // eslint-disable-next-line no-plusplus
     while (i--) {
       const {callback, context} = callbacksForEvent[i];
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       callback.call(context, args);
     }
 
@@ -153,15 +157,15 @@ export class EventEmitter {
   private getCallbackIndex(eventName: string, callback: () => void): number {
     return this.hasEvent(eventName)
       ? this.getCallbacks(eventName).findIndex(
-        (element) => element.callback === callback,
-      )
+          (element) => element.callback === callback,
+        )
       : -1;
   }
 
   private achieveMaxListener(eventName: string): boolean {
     return (
-      this.maxListeners > 0
-      && this.maxListeners <= this.listenersNumber(eventName)
+      this.maxListeners > 0 &&
+      this.maxListeners <= this.listenersNumber(eventName)
     );
   }
 
@@ -169,14 +173,15 @@ export class EventEmitter {
     eventName: string,
     callback: () => void,
     context: unknown,
-  ): boolean {
+  ): boolean | null {
     const callbackInd = this.getCallbackIndex(eventName, callback);
-    const activeCallback = callbackInd !== -1 ? this.getCallbacks(eventName)[callbackInd] : null;
+    const activeCallback =
+      callbackInd !== -1 ? this.getCallbacks(eventName)[callbackInd] : null;
 
     return (
-      callbackInd !== null
-      && activeCallback
-      && activeCallback.context === context
+      callbackInd !== null &&
+      activeCallback &&
+      activeCallback.context === context
     );
   }
 

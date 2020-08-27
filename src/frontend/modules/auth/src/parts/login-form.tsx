@@ -11,7 +11,10 @@ import {
 } from '@the_platform/react-uikit';
 import {validation} from '@the_platform/core';
 import {signIn} from '../provider';
-import {login as loginReducer} from '../reducer';
+import {login as loginActon} from '../reducer';
+
+/* eslint-disable */
+// @ts-nocheck
 
 interface ILoginFormValues {
   email: string;
@@ -41,11 +44,15 @@ const validationSchema = validation.object({
 
 const onSubmit = (
   navigate: typeof useNavigate,
-  login: typeof loginReducer,
+  login: typeof loginActon,
   navigateAfterSignin: string = '/',
 ): void => (
   values: ILoginFormValues,
-  {setSubmitting}: {setSubmitting: (value: boolean) => void, },
+  {
+    setSubmitting,
+  }: {
+    setSubmitting: (value: boolean) => void;
+  },
 ): void => {
   signIn(values)
     .then(() => {
@@ -59,18 +66,18 @@ const onSubmit = (
 };
 
 const mapState = (): Record<string, string> => ({});
-const mapDispatch = {loginReducer};
+const mapDispatch = {loginDispatch: loginActon};
 
 export const LoginForm = connect(
   mapState,
   mapDispatch,
 )(
-  ({loginReducer}): JSX.Element => {
+  ({loginDispatch}): JSX.Element => {
     const navigate = useNavigate();
     const form = Form.useFormik({
       initialValues,
       validationSchema,
-      onSubmit: onSubmit(navigate, loginReducer),
+      onSubmit: onSubmit(navigate, loginDispatch),
     });
 
     return (

@@ -83,6 +83,43 @@ const resetResourceBufferSize = (size: number = 1000): void => {
 
 resetResourceBufferSize();
 
+/* Resources URL.
+name,
+Timestamp for the time a resource fetch started.
+This value is equivalent to PerformanceEntry.fetchStart.
+startTime,
+Timestamp that is the difference between
+the responseEnd and the startTime properties.
+duration,
+Represents the start time of the fetch which initiates the redirect.
+redirectStart,
+Immediately after receiving the last byte of the response of the last redirect.
+redirectEnd,
+Immediately before the browser starts the domain name lookup for the resource.
+domainLookupStart,
+Representing the time immediately after the browser
+finishes the domain name lookup for the resource.
+domainLookupEnd,
+Immediately before the browser starts to establish
+the connection to the server to retrieve the resource.
+connectStart,
+Immediately after the browser finishes establishing
+the connection to the server to retrieve the resource.
+connectEnd,
+Immediately before the browser starts
+the handshake process to secure the current connection.
+responseStart,
+Immediately after the browser receives the last byte
+of the resource or immediately before the transport
+connection is closed, whichever comes first.
+responseEnd,
+Immediately before the browser starts
+the handshake process to secure the current connection.
+secureConnectionStart,
+Representing the size (in octets) of the fetched resource.
+The size includes the response header fields plus the response payload body.
+transferSize, */
+
 export const resourcesMeasure = (
   type: TResourceType = 'all',
 ): IResourceMeasure[] => {
@@ -91,67 +128,48 @@ export const resourcesMeasure = (
   }
 
   // @link https://www.w3.org/TR/navigation-timing-2/
-  return (perf.getEntriesByType('resource') as PerformanceResourceTiming[])
-    .filter((resource): PerformanceResourceTiming | undefined => {
-      // TODO
-      if (type === 'all') {
-        return resource;
-      }
-    })
-    .map(
-      ({
-        // Resources URL.
-        name,
-        // Timestamp for the time a resource fetch started.
-        // This value is equivalent to PerformanceEntry.fetchStart.
-        startTime,
-        // Timestamp that is the difference between the responseEnd and the startTime properties.
-        duration,
-        // Represents the start time of the fetch which initiates the redirect.
-        redirectStart,
-        // Immediately after receiving the last byte of the response of the last redirect.
-        redirectEnd,
-        // Immediately before the browser starts the domain name lookup for the resource.
-        domainLookupStart,
-        // Representing the time immediately after the browser
-        // finishes the domain name lookup for the resource.
-        domainLookupEnd,
-        // Immediately before the browser starts to establish
-        // the connection to the server to retrieve the resource.
-        connectStart,
-        // Immediately after the browser finishes establishing
-        // the connection to the server to retrieve the resource.
-        connectEnd,
-        // Immediately before the browser starts
-        // the handshake process to secure the current connection.
-        responseStart,
-        // Immediately after the browser receives the last byte
-        // of the resource or immediately before the transport
-        // connection is closed, whichever comes first.
-        responseEnd,
-        // Immediately before the browser starts
-        // the handshake process to secure the current connection.
-        secureConnectionStart,
-        // Representing the size (in octets) of the fetched resource.
-        // The size includes the response header fields plus the response payload body.
-        transferSize,
-      }) => ({
-        name,
-        // DNS time.
-        dns: domainLookupEnd - domainLookupStart,
-        // TCP handshake time.
-        tcp: connectEnd - connectStart,
-        // Time to first byte (TTFB) is a measurement used as an
-        // indication of the responsiveness of a webserver or other network resource.
-        ttfb: responseStart - startTime,
-        secure:
-          secureConnectionStart > 0 ? connectEnd - secureConnectionStart : 0,
-        redirectTime: redirectEnd - redirectStart,
-        transfer: responseEnd - responseStart,
-        duration,
-        transferSize,
-      }),
-    );
+  return (
+    (perf.getEntriesByType('resource') as PerformanceResourceTiming[])
+      /* eslint-disable array-callback-return, consistent-return */
+      .filter((resource): PerformanceResourceTiming | undefined => {
+        // TODO
+        if (type === 'all') {
+          return resource;
+        }
+      })
+      .map(
+        ({
+          name,
+          startTime,
+          duration,
+          redirectStart,
+          redirectEnd,
+          domainLookupStart,
+          domainLookupEnd,
+          connectStart,
+          connectEnd,
+          responseStart,
+          responseEnd,
+          secureConnectionStart,
+          transferSize,
+        }) => ({
+          name,
+          // DNS time.
+          dns: domainLookupEnd - domainLookupStart,
+          // TCP handshake time.
+          tcp: connectEnd - connectStart,
+          // Time to first byte (TTFB) is a measurement used as an
+          // indication of the responsiveness of a webserver or other network resource.
+          ttfb: responseStart - startTime,
+          secure:
+            secureConnectionStart > 0 ? connectEnd - secureConnectionStart : 0,
+          redirectTime: redirectEnd - redirectStart,
+          transfer: responseEnd - responseStart,
+          duration,
+          transferSize,
+        }),
+      )
+  );
 };
 
 // @link https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming

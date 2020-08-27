@@ -53,7 +53,8 @@ class StorageManager implements Storage {
 
   get length(): number {
     return Object.keys(this.storage).map((key: string) =>
-      key.startsWith(this.prefix)).length;
+      key.startsWith(this.prefix),
+    ).length;
   }
 
   key(index: number): string | null {
@@ -81,6 +82,8 @@ class StorageManager implements Storage {
    *         undefined for empty value
    *         any real value
    */
+  // eslint-disable-next-line
+  // @ts-ignore
   getItem(key: string): string | null | undefined {
     const item = this.storage.getItem(this.getKey(key));
 
@@ -119,11 +122,13 @@ class StorageManager implements Storage {
 }
 
 // eslint-disable-next-line import/no-mutable-exports
-export let localStorage: StorageInstance = proxyErrorHandler('LocalStorage');
+export let localStorage: StorageInstance = proxyErrorHandler(
+  'LocalStorage',
+) as StorageInstance;
 // eslint-disable-next-line import/no-mutable-exports
 export let sessionStorage: StorageInstance = proxyErrorHandler(
   'SessionStorage',
-);
+) as StorageInstance;
 
 const createStorage = (storage: Storage) => (prefix: string) =>
   new StorageManager(storage, prefix);

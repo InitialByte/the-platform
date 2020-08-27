@@ -51,7 +51,7 @@ const statusCodes = {
   415: 'Unsupported Media Type',
   416: 'Requested Range Not Satisfiable',
   417: 'Expectation Failed',
-  418: 'I\'m a teapot',
+  418: "I'm a teapot",
   419: 'Insufficient Space on Resource',
   420: 'Method Failure',
   422: 'Unprocessable Entity',
@@ -68,7 +68,7 @@ const statusCodes = {
   505: 'HTTP Version Not Supported',
   507: 'Insufficient Storage',
   511: 'Network Authentication Required',
-};
+} as const;
 
 export const httpCodes = {
   CONTINUE: 100,
@@ -125,15 +125,15 @@ export const httpCodes = {
   HTTP_VERSION_NOT_SUPPORTED: 505,
   INSUFFICIENT_STORAGE: 507,
   NETWORK_AUTHENTICATION_REQUIRED: 511,
-};
+} as const;
 
-export const getHttpStatusText = (statusCode: number): string => (statusCodes[statusCode]
-  ? statusCodes[statusCode]
-  : null);
+type TValueOf<T extends Record<number, string>> = T[keyof T];
+type TCodeKeys = keyof typeof statusCodes;
 
-export const getHttpStatusCode = (reasonPhrase: string): number | null => {
-  const codes = Object.values(statusCodes);
-  const index = codes[reasonPhrase];
+export const getHttpStatusText = (
+  statusCode: TCodeKeys,
+): TValueOf<statusCodes> | undefined => statusCodes[statusCode];
 
-  return index ? statusCodes[index] : null;
-};
+export const getHttpStatusCode = (
+  reasonPhrase: keyof typeof httpCodes,
+): TValueOf<httpCodes> | undefined => httpCodes[reasonPhrase];
