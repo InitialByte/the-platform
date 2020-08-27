@@ -1,9 +1,6 @@
 # THE PLATFORM
 
-## Table Of Contents
-
 - [THE PLATFORM](#the-platform)
-  - [Table Of Contents](#table-of-contents)
   - [External Readme](#external-readme)
   - [Synopsis](#synopsis)
     - [Main goals](#main-goals)
