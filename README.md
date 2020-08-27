@@ -2,25 +2,34 @@
 
 ## Table Of Contents
 
-- [Synopsis](#synopsis)
-- [Advantages](#advantages)
-- [What Is Used](#what-is-used)
-- [Core FrondEnd Features](#core-frondend-features)
-- [Setup And Run Locally](#setup-and-run-the-project-locally)
-- [Main Bash Commands](#main-commands)
-- [Folder Structure](#folder-structure)
-- [Internal Features](#internal-features)
-- [Optimization](#optimization)
-- [Todo](#todo)
+- [THE PLATFORM](#the-platform)
+  - [Table Of Contents](#table-of-contents)
+  - [External Readme](#external-readme)
+  - [Synopsis](#synopsis)
+    - [Main goals](#main-goals)
+    - [You can use the-platform when have](#you-can-use-the-platform-when-have)
+  - [Advantages](#advantages)
+  - [What is used](#what-is-used)
+  - [Core FrondEnd Features](#core-frondend-features)
+  - [Setup and run the project locally](#setup-and-run-the-project-locally)
+    - [Check outdated dependencies](#check-outdated-dependencies)
+    - [Automatically intall @types](#automatically-intall-types)
+    - [To work with VSCode](#to-work-with-vscode)
+    - [Config for VSCode](#config-for-vscode)
+    - [Self-signed cert for localhost](#self-signed-cert-for-localhost)
+  - [Main Commands](#main-commands)
+  - [Folder Structure](#folder-structure)
+  - [Optimization](#optimization)
+  - [Todo](#todo)
 
 ## External Readme
 
-- [BackEnd](backend/README.md)
-- [FrontEnd](frontend/README.md)
-- [ApiMock](frontend/apimock/README.md)
-- [Core functions](frontend/core/README.md)
-- [How to create a module](frontend/modules/README.md)
-- [UiKit Usage](frontend/react/uikit//README.md)
+- [BackEnd](src/backend/README.md)
+- [FrontEnd](src/frontend/README.md)
+- [ApiMock](src/frontend/apimock/README.md)
+- [Core functions](src/frontend/core/README.md)
+- [How to create a module](src/frontend/modules/README.md)
+- [UiKit Usage](src/frontend/react/uikit//README.md)
 
 ## Synopsis
 
