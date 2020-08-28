@@ -3,18 +3,18 @@
   "description": "Storybook for app's react components",
   "version": "1.0.0",
   "dependencies": {
-    "@storybook/addon-a11y": "^6.0.19",
-    "@storybook/addon-actions": "^6.0.19",
-    "@storybook/addon-backgrounds": "^6.0.19",
-    "@storybook/addon-knobs": "^6.0.19",
-    "@storybook/addon-viewport": "^6.0.19",
-    "@storybook/react": "^6.0.19",
+    "@storybook/addon-a11y": "^6.0.20",
+    "@storybook/addon-actions": "^6.0.20",
+    "@storybook/addon-backgrounds": "^6.0.20",
+    "@storybook/addon-knobs": "^6.0.20",
+    "@storybook/addon-viewport": "^6.0.20",
+    "@storybook/react": "^6.0.20",
     "core-js": "^3.6.5",
     "react": "^17.0.0-rc.0",
     "react-dom": "^17.0.0-rc.0"
   },
   "scripts": {
-    "build": "yarn build-storybook -o dist --ci",
+    "build": "yarn build-storybook -o dist",
     "start": "yarn start-storybook -p 8010"
   },
   "devDependencies": {

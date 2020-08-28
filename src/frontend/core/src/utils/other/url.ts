@@ -23,9 +23,8 @@
  * reload();
  */
 
-export const parseUrl = (
-  url: string = window.location.toString(),
-): URL => new URL(url);
+export const parseUrl = (url: string = window.location.toString()): URL =>
+  new URL(url);
 
 export const parseSearchUrl = (
   url: string = window.location.search,
@@ -33,8 +32,5 @@ export const parseSearchUrl = (
 
 export const reload = (): void => window.location.reload();
 
-export const goTo = (url: string, keepHistory: boolean = true): void => (
-  keepHistory
-    ? window.location.assign(url)
-    : window.location.replace(url)
-);
+export const goTo = (url: string, keepHistory: boolean = true): void =>
+  keepHistory ? window.location.assign(url) : window.location.replace(url);

@@ -66,8 +66,14 @@ class StorageManager implements Storage {
     try {
       const stringifyValue = (value: unknown): string =>
         stringifyJson({
+          // eslint-disable-next-line
+          // @ts-ignore
           value,
+          // eslint-disable-next-line
+          // @ts-ignore
           timestamp: Date.now(),
+          // eslint-disable-next-line
+          // @ts-ignore
           timeout,
         });
 
@@ -89,6 +95,8 @@ class StorageManager implements Storage {
 
     if (item) {
       try {
+        // eslint-disable-next-line
+        // @ts-ignore
         const {timestamp, value, timeout} = parseJson<IStorage>(item);
 
         return isExpired(Number(timestamp), timeout) ? null : (value as string);

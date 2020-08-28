@@ -22,9 +22,7 @@ interface IBrowser {
 }
 
 const NA = 'N/A';
-const {
-  localStorage, indexedDB, screen, RTCPeerConnection,
-} = window;
+const {localStorage, indexedDB, screen, RTCPeerConnection} = window;
 const {
   platform = NA,
   // userAgent = NA,
@@ -58,7 +56,8 @@ const detectWebcam = (callback: (value: boolean) => void): void => {
         devices.some(
           ({kind}: MediaDeviceInfo): boolean => kind === 'videoinput',
         ),
-      ))
+      ),
+    )
     .catch(() => callback(false));
 };
 
@@ -70,9 +69,9 @@ function getVideoCardInfo(): string | false {
 
     return debugInfo
       ? [
-        gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL),
-        gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL),
-      ].join(', ')
+          gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL),
+          gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL),
+        ].join(', ')
       : false;
   }
 
@@ -101,4 +100,6 @@ export const browser = (): Promise<IBrowser> =>
         hasTouch: maxTouchPoints > 0,
         timezone: -(new Date().getTimezoneOffset() / 60),
         // browserName: browserName(userAgent),
-      })));
+      }),
+    ),
+  );

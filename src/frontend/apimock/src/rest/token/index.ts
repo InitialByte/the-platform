@@ -13,7 +13,9 @@ token.get('/check', (req: Request, res: Response): void => {
   let isValid = false;
 
   try {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     isValid = !!verifyJwtToken(req.cookies[JWT_COOKIE_NAME]);
+    // eslint-disable-next-line no-empty
   } catch {}
 
   if (isValid) {
@@ -29,7 +31,8 @@ token.get('/check', (req: Request, res: Response): void => {
 });
 
 // /api/v1/token/refresh
-token.get('/refresh', isAuthenticated, (_, res: Response): void => {
+token.get('/refresh', isAuthenticated, (_: Request, res: Response): void => {
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   addJwtCookie(res.cookie);
   res.status(SUCCESS_STATUS).send();
 });

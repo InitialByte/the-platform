@@ -37,7 +37,7 @@ const initialState: IModuleState = {
   active: null,
   available: window?.__INITIAL_STATE__?.modules?.available ?? [],
   paths: pathsNonGrouped,
-  pathsGrouped: groupBy<IPaths, 'shortName'>(pathsNonGrouped, 'shortName'),
+  pathsGrouped: groupBy<IPaths>(pathsNonGrouped, 'shortName'),
   imported: [],
 };
 const reducers = {

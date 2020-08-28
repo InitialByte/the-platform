@@ -12,8 +12,10 @@ export const auth = Router();
 
 // /api/v1/auth/signin
 auth.post('/signin', (req: Request, res: Response): void => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const {body} = req;
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   if (body?.email === DEFAULT_USERNAME && body?.password === DEFAULT_PASSWORD) {
     addJwtCookie(res.cookie.bind(res));
     res.status(SUCCESS_STATUS).json({
@@ -32,7 +34,7 @@ auth.post('/signin', (req: Request, res: Response): void => {
 });
 
 // /api/v1/auth/signout
-auth.get('/signout', isAuthenticated, (_, res: Response): void => {
+auth.get('/signout', isAuthenticated, (_: Request, res: Response): void => {
   clearJwtCookie(res.clearCookie.bind(res));
   res.status(SUCCESS_STATUS).send();
 });

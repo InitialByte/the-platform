@@ -79,6 +79,7 @@
       "ignoreUrls": true
     }],
     "indent": "off",
+    "no-confusing-arrow": "off",
     /* "indent": ["error", 2, {
       "SwitchCase": 1
     }], */

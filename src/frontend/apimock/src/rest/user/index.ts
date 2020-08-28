@@ -1,7 +1,7 @@
-import {Router, Response} from 'express';
+import {Router, Request, Response} from 'express';
+import * as faker from 'faker';
 import {checkRole, isAuthenticated} from '../../core';
 import {RBAC_GRANT_USER, RBAC_GRANT_USERS} from '../../constants';
-import * as faker from 'faker';
 
 export const user = Router();
 const SUCCESS_STATUS = 200;
@@ -12,8 +12,9 @@ const NUMBER_OF_USERS = 100;
 user.get(
   '/',
   [isAuthenticated, checkRole('readAny', RBAC_GRANT_USERS)],
-  (_, res: Response): void => {
+  (_: Request, res: Response): void => {
     res.status(SUCCESS_STATUS).json({
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       data: [...Array(NUMBER_OF_USERS)].map(() => ({
         id: faker.random.uuid(),
         fullname: faker.name.findName(),
@@ -29,7 +30,7 @@ user.get(
 user.get(
   '/:id',
   [isAuthenticated, checkRole('readAny', RBAC_GRANT_USER)],
-  (_, res: Response): void => {
+  (_: Request, res: Response): void => {
     res.status(SUCCESS_STATUS).json({
       data: {
         fullname: faker.name.findName(),
@@ -45,7 +46,7 @@ user.get(
 user.post(
   '/',
   [isAuthenticated, checkRole('createAny', RBAC_GRANT_USER)],
-  (_, res: Response): void => {
+  (_: Request, res: Response): void => {
     res.status(SUCCESS_STATUS).send();
   },
 );
@@ -55,7 +56,7 @@ user.post(
 user.put(
   '/:id',
   [isAuthenticated, checkRole('updateAny', RBAC_GRANT_USER)],
-  (_, res: Response): void => {
+  (_: Request, res: Response): void => {
     res.status(SUCCESS_STATUS).send();
   },
 );
@@ -65,7 +66,7 @@ user.put(
 user.delete(
   '/:id',
   [isAuthenticated, checkRole('deleteAny', RBAC_GRANT_USER)],
-  (_, res: Response): void => {
+  (_: Request, res: Response): void => {
     res.status(SUCCESS_STATUS).send();
   },
 );

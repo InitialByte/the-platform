@@ -91,7 +91,7 @@ export const AppContainer = connect(
       if (shortName && active !== shortName) {
         activateModuleDispatch(shortName);
       }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pathname]);
 
     return (

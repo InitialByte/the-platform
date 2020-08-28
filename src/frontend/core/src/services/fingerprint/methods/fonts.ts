@@ -1,4 +1,5 @@
-// eslint-disable-next-line
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 const fontList = [
   'Andale Mono',
   'Arial',
@@ -492,13 +493,12 @@ export const fpFonts = (): string[] => {
   const testString = 'mmmmmmmmmmwwwwwlli';
   const testSize = '72px';
   const fontFamily = (font: string | string[]): string =>
-    (typeof font === 'string' ? font : font.join(', '));
+    typeof font === 'string' ? font : font.join(', ');
 
   const canvasTester = (
     stringToTest: string,
     fontSize: string,
-  ): ((fontName: string | string[]) => number
-    ) => {
+  ): ((fontName: string | string[]) => number) => {
     const context = document.createElement('canvas').getContext('2d');
 
     return (fontName: string | string[]): number => {
@@ -509,11 +509,13 @@ export const fpFonts = (): string[] => {
 
   const canvasTest = canvasTester(testString, testSize);
   const defaultWidth: number[] = baseFonts.map((font: string) =>
-    canvasTest(font));
+    canvasTest(font),
+  );
 
   return fontList
     .sort()
     .map((font: string | null) =>
-      (defaultWidth.includes(canvasTest([font, baseFonts[0]])) ? font : null))
+      defaultWidth.includes(canvasTest([font, baseFonts[0]])) ? font : null,
+    )
     .filter(Boolean);
 };

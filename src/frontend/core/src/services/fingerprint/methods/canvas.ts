@@ -10,8 +10,9 @@ export const fpCanvas = (): string[] => {
   canvas.style.display = 'inline';
 
   const ctx = canvas.getContext('2d');
-  // eslint-disable-next-line max-len
-  const someText = 'By the pricking of my thumbs, Something wicked this way comes. Open, locks, Whoever knocks!, \ud83d\ude09';
+  const someText =
+    // eslint-disable-next-line max-len
+    'By the pricking of my thumbs, Something wicked this way comes. Open, locks, Whoever knocks!, \ud83d\ude09';
   const someNumber = Math.PI * 2;
 
   ctx.rect(0, 0, 10, 10);

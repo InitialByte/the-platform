@@ -25,20 +25,21 @@
     "src/frontend/react/web-desktop/src/global.ts"
   ],
   "include": [
-    "**/*.ts",
-    "**/*.tsx"
+    "src/frontend/**/*.ts",
+    "src/frontend/**/*.tsx"
   ],
   "exclude": [
     "**/node_modules/*",
     "**/__snapshots__/*",
+    "**/__tests__/*",
     "**/dist/*",
     "**/*.snap",
     "src/frontend/__mocks__",
     "src/frontend/smoke",
     "src/frontend/swagger",
-    "src/frontend/smoke",
+    "src/frontend/storybook",
     "src/backend",
-    "*.test.*",
-    ".yarn"
+    "*test*",
+    "yarn/*"
   ]
 }

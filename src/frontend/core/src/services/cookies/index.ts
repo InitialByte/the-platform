@@ -82,8 +82,8 @@ const regCheck = (key: string): string =>
   ].join('');
 
 const isInvalidKey = (key: string): boolean =>
-  !key
-  || /^(?:expires|max-age|path|domain|secure|samesite|httponly)$/i.test(key);
+  !key ||
+  /^(?:expires|max-age|path|domain|secure|samesite|httponly)$/i.test(key);
 
 export const getCookie = (key: string): string | null => {
   if (!key) {
@@ -102,17 +102,16 @@ export const setCookie = (
     return false;
   }
 
-  const {
-    end, path, domain, secure, sameSite, httpOnly,
-  } = options;
+  const {end, path, domain, secure, sameSite, httpOnly} = options;
 
   let expires = '';
 
   if (end) {
     if (typeof end === 'number') {
-      expires = end === Infinity
-        ? ';Expires=Thu, 31 Dec 2099 23:59:59 GMT'
-        : `;Max-Age=${end}`;
+      expires =
+        end === Infinity
+          ? ';Expires=Thu, 31 Dec 2099 23:59:59 GMT'
+          : `;Max-Age=${end}`;
     } else if (typeof end === 'string') {
       expires = `;Expires=${end}`;
     } else {

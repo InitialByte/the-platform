@@ -56,7 +56,7 @@ describe('1. Kind Of.', () => {
       expect(kindOf({})).toBe('object');
       expect(kindOf(Object.create(null))).toBe('object');
       expect(kindOf(Object.create({}))).toBe('object');
-      expect(kindOf(new class {}())).toBe('object');
+      expect(kindOf(new (class {})())).toBe('object');
       expect(kindOf(console)).toBe('object');
     });
 

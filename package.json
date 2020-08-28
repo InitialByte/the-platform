@@ -69,7 +69,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged && yarn lint --fix"
+      "pre-commit": "pretty-quick --staged && yarn lint-staged"
     }
   },
   "changelog": {
@@ -80,7 +80,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn check"
+      "yarn lint --fix"
     ]
   },
   "jest": {
@@ -105,7 +105,7 @@
     "start": "cross-env MODE=development webpack-dev-server --progress --open --config ./configs/webpack/dev.js",
     "build": "cross-env MODE=production TZ=Asia/Novosibirsk webpack --progress --config ./configs/webpack/prod.js",
     "lint": "yarn eslint \"./src/frontend/@(core|modules|react)/**/*.@(ts|tsx)\" --ignore-pattern \"*.test.*\" --cache --cache-location ./.cache",
-    "prettier": "prettier --write '**/*.{ts,tsx,css,scss}' --config ./configs/core/.prettierrc",
+    "prettier": "prettier --write '**/*.{ts,tsx,scss}'",
     "tslint": "yarn run tsc --noEmitOnError --pretty",
     "check": "yarn tslint && yarn lint && yarn test",
     "test": "lerna run test --stream",

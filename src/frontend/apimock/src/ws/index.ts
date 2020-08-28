@@ -2,7 +2,8 @@
  * Documentation
  * @link https://github.com/websockets/ws/blob/master/doc/ws.md
  */
-
+/* eslint-disable */
+// @ts-nocheck
 import {Server} from 'ws';
 
 export const webSocketServer = (server): void => {
@@ -18,7 +19,9 @@ export const webSocketServer = (server): void => {
   });
 
   wsServer.on('connection', (ws): void => {
-    ws.on('message', (message: string) => console.log('websocket received: ', message));
+    ws.on('message', (message: string) =>
+      console.log('websocket received: ', message),
+    );
     ws.send('WebSocket connected.');
 
     setInterval((): void => {

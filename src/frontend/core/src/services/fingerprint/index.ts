@@ -17,7 +17,7 @@ export function getFingerprint(): Promise<string> {
           Object.values(browser).join(','),
           methods.canvas().join(','),
           methods.plugins().join(','),
-          methods.webgl().join(','),
+          (methods.webgl() || []).join(','),
           methods.mimetypes().join(','),
         ].join('~~~');
 

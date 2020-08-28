@@ -1,7 +1,4 @@
-import {
-  configureStore,
-  getDefaultMiddleware,
-} from '@reduxjs/toolkit';
+import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
 import {combineReducers, Reducer} from 'redux';
 import {
   envReducer,
@@ -36,7 +33,10 @@ export const store = configureStore({
   devTools: window?.__INITIAL_STATE__?.env?.mode === 'development' ?? false,
 });
 
-export const injectReducer = (key: string, injectableReducer: Reducer): void => {
+export const injectReducer = (
+  key: string,
+  injectableReducer: Reducer,
+): void => {
   asyncReducers[key] = injectableReducer;
 
   if (store) {
