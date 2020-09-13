@@ -30,7 +30,7 @@ const defaults = {
   debug: true,
 };
 
-export const initI18n = (settings): ReturnType<typeof i18n> =>
+export const initI18n = (settings: any): ReturnType<typeof i18n> =>
   i18n
     // learn more: https://github.com/i18next/i18next-browser-languageDetector
     .use(LanguageDetector)

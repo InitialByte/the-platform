@@ -14,7 +14,9 @@ export const DEFAULT_LANG: TLangs = EN;
 
 const name = 'platform_i18n';
 const initialState: Ii18nState = {
+  // eslint-disable-next-line no-underscore-dangle
   active: window?.__INITIAL_STATE__?.i18n?.default ?? 'EN',
+  // eslint-disable-next-line no-underscore-dangle
   available: window?.__INITIAL_STATE__?.i18n?.available ?? [EN, RU],
 };
 const reducers = {

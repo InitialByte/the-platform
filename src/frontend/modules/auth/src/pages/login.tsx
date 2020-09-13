@@ -1,14 +1,8 @@
 import * as React from 'react';
 import {FC} from 'react';
-import {Paper} from '@the_platform/react-uikit';
 import {LoginForm} from '../parts/login-form';
 
-const LoginPage: FC = () => (
-  <Paper>
-    <h1>Authentication</h1>
-    <LoginForm />
-  </Paper>
-);
+const LoginPage: FC = () => <LoginForm />;
 
 LoginPage.displayName = 'LoginPage';
 

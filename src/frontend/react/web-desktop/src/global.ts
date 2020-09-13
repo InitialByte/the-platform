@@ -23,6 +23,7 @@ enum E_CODE {
 window.E_TYPE = E_TYPE;
 window.E_CODE = E_CODE;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare global {
   interface Window {
     E_CODE: typeof E_CODE;

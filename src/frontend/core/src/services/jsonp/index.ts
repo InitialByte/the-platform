@@ -16,6 +16,7 @@
 
 type TCallback = (data: unknown) => void;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare global {
   interface Window {
     jsonpRegistry: Record<string, TCallback>;

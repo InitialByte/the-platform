@@ -10,6 +10,7 @@ const defaultState: IEnvState = {
   mode: 'production',
   workspace: 'client',
 };
+// eslint-disable-next-line no-underscore-dangle
 const initialState: IEnvState = window?.__INITIAL_STATE__?.env ?? defaultState;
 const reducers = {};
 

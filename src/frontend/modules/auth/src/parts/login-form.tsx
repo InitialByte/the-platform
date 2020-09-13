@@ -1,6 +1,7 @@
 import * as React from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+
 import {
   Button,
   TextField,
@@ -8,10 +9,16 @@ import {
   Grid,
   Checkbox,
   FormControlLabel,
+  makeStyles,
+  Link as UILink,
 } from '@the_platform/react-uikit';
 import {validation} from '@the_platform/core';
 import {signIn} from '../provider';
 import {login as loginActon} from '../reducer';
+import {
+  ROUTE_AUTH_LOGIN_CERTIFICATE,
+  ROUTE_AUTH_RECOVERY_PASSWORD,
+} from '../constants/routes';
 
 /* eslint-disable */
 // @ts-nocheck
@@ -65,6 +72,16 @@ const onSubmit = (
     });
 };
 
+const useStyles = makeStyles((theme) => ({
+  form: {
+    width: '100%',
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
 const mapState = (): Record<string, string> => ({});
 const mapDispatch = {loginDispatch: loginActon};
 
@@ -74,6 +91,7 @@ export const LoginForm = connect(
 )(
   ({loginDispatch}): JSX.Element => {
     const navigate = useNavigate();
+    const classes = useStyles();
     const form = Form.useFormik({
       initialValues,
       validationSchema,
@@ -81,81 +99,68 @@ export const LoginForm = connect(
     });
 
     return (
-      <form>
-        <Grid container spacing={8} alignItems="flex-end">
-          <Grid item md sm xs>
-            <TextField
-              name="email"
-              helperText={form.touched.email ? form.errors.email : ''}
-              error={form.touched.email && Boolean(form.errors.email)}
-              label="Email"
-              fullWidth
-              autoFocus
-              type="email"
-              onChange={form.handleChange}
-              onBlur={form.handleBlur}
-              value={form.values.email}
-              variant="outlined"
-            />
-          </Grid>
-        </Grid>
+      <form className={classes.form}>
+        <TextField
+          name="email"
+          helperText={form.touched.email ? form.errors.email : ''}
+          error={form.touched.email && Boolean(form.errors.email)}
+          label="Email"
+          autoFocus
+          type="email"
+          onChange={form.handleChange}
+          onBlur={form.handleBlur}
+          value={form.values.email}
+          variant="outlined"
+          margin="normal"
+          fullWidth
+        />
+        <TextField
+          name="password"
+          helperText={form.touched.password ? form.errors.password : ''}
+          error={form.touched.password && Boolean(form.errors.password)}
+          label="Password"
+          type="password"
+          onChange={form.handleChange}
+          onBlur={form.handleBlur}
+          value={form.values.password}
+          variant="outlined"
+          margin="normal"
+          fullWidth
+        />
+        <FormControlLabel
+          control={<Checkbox color="primary" />}
+          label="Remember me"
+        />
 
-        <Grid container spacing={8} alignItems="flex-end">
-          <Grid item md sm xs>
-            <TextField
-              name="password"
-              helperText={form.touched.password ? form.errors.password : ''}
-              error={form.touched.password && Boolean(form.errors.password)}
-              label="Password"
-              fullWidth
-              type="password"
-              onChange={form.handleChange}
-              onBlur={form.handleBlur}
-              value={form.values.password}
-              variant="outlined"
-            />
-          </Grid>
-        </Grid>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          disabled={form.isSubmitting || form.isValidating}
+          onClick={form.handleSubmit}>
+          SignIn
+        </Button>
 
-        <Grid container alignItems="center" justify="space-between">
+        <Grid container>
+          <Grid item xs>
+            <Link
+              component={UILink}
+              to={ROUTE_AUTH_RECOVERY_PASSWORD}
+              variant="body2">
+              Forgot password?
+            </Link>
+          </Grid>
+
           <Grid item>
-            <FormControlLabel
-              control={<Checkbox color="primary" />}
-              label="Remember me"
-            />
-          </Grid>
-
-          <Grid item>
-            <Button
-              disableFocusRipple
-              disableRipple
-              style={{textTransform: 'none'}}
-              variant="text"
-              color="primary">
-              Forgot password ?
-            </Button>
-          </Grid>
-
-          <Grid item>
-            <Button
-              disableFocusRipple
-              disableRipple
-              style={{textTransform: 'none'}}
-              variant="text"
-              color="primary">
+            <Link
+              component={UILink}
+              to={ROUTE_AUTH_LOGIN_CERTIFICATE}
+              variant="body2">
               Login via certificate
-            </Button>
+            </Link>
           </Grid>
-        </Grid>
-
-        <Grid container justify="center" style={{marginTop: '10px'}}>
-          <Button
-            variant="outlined"
-            color="primary"
-            disabled={form.isSubmitting || form.isValidating}
-            onClick={form.handleSubmit}>
-            SignIn
-          </Button>
         </Grid>
       </form>
     );

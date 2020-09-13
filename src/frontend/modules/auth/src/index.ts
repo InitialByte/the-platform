@@ -36,6 +36,7 @@ export const router: Platform.IRoute[] = [
   {
     path: routes.ROUTE_AUTH_LOGIN,
     Page: LoginPage,
+    layout: 'Auth',
     shortName,
   },
   {
@@ -47,18 +48,21 @@ export const router: Platform.IRoute[] = [
   {
     path: routes.ROUTE_AUTH_LOGIN_CERTIFICATE,
     Page: LoginCertificatePage,
+    layout: 'Auth',
     shortName,
   },
   {
     path: routes.ROUTE_AUTH_RECOVERY_PASSWORD,
     Page: RecoveryPasswordPage,
     isPrivate: true,
+    layout: 'Auth',
     shortName,
   },
   {
     path: routes.ROUTE_AUTH_UPDATE_PASSWORD,
     Page: UpdatePasswordPage,
     isPrivate: true,
+    layout: 'Auth',
     shortName,
   },
 ];

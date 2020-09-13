@@ -35,6 +35,7 @@ const pathsNonGrouped = moduleRoutes.map(({path, shortName}) => ({
 }));
 const initialState: IModuleState = {
   active: null,
+  // eslint-disable-next-line no-underscore-dangle
   available: window?.__INITIAL_STATE__?.modules?.available ?? [],
   paths: pathsNonGrouped,
   pathsGrouped: groupBy<IPaths>(pathsNonGrouped, 'shortName'),

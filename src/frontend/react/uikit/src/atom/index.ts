@@ -1,6 +1,12 @@
-export * from './Button';
-export * from './Grid';
 export * as Icon from './Icon';
-export * from './CheckBox';
-export * from './Paper';
 export * from './CSSBaseline';
+export * from './Typography';
+export * from './Container';
+export * from './CheckBox';
+export * from './Avatar';
+export * from './Button';
+export * from './Styles';
+export * from './Paper';
+export * from './Grid';
+export * from './Box';
+export * from './Link';

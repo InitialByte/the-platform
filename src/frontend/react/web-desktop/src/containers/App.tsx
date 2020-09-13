@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {useEffect} from 'react';
+import {useEffect, FC} from 'react';
 import {Reducer} from 'redux';
 import {useLocation} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Routes, Route, Navigate} from 'react-router-dom';
-import {Navigation} from '@the_platform/react-uikit';
+import {AuthLayout, WithSidebarLayout} from '@the_platform/react-uikit';
 import * as routes from '@the_platform/routes';
 import {
   importModule,
@@ -66,6 +66,14 @@ export const AppContainer = connect(
     const {pathname} = useLocation();
     const {imported, active, paths} = modules;
 
+    const RenderLayout: FC = ({layout, children}) => {
+      if (layout === 'Auth') {
+        return <AuthLayout>{children}</AuthLayout>;
+      }
+
+      return <WithSidebarLayout>{children}</WithSidebarLayout>;
+    };
+
     useEffect((): void => {
       const found = paths.find(({path}) => path === pathname);
       const shortName = found ? found.shortName : '';
@@ -95,28 +103,30 @@ export const AppContainer = connect(
     }, [pathname]);
 
     return (
-      <>
-        <Navigation />
-        <Routes>
-          {[...router, ...modulesRoute].map(
-            ({path, Page, isPrivate = false}: Platform.IRoute) => (
-              <Route
-                element={
-                  isPrivate && !isAuth ? (
-                    <Navigate to={ROUTE_LOGIN} replace />
-                  ) : (
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
+      <Routes>
+        {[...router, ...modulesRoute].map(
+          ({
+            path,
+            Page,
+            isPrivate = false,
+            layout = 'WithSidebar',
+          }: Platform.IRoute) => (
+            <Route
+              element={
+                isPrivate && !isAuth ? (
+                  <Navigate to={ROUTE_LOGIN} replace />
+                ) : (
+                  <RenderLayout layout={layout}>
                     <Page />
-                  )
-                }
-                path={path}
-                key={path}
-              />
-            ),
-          )}
-        </Routes>
-      </>
+                  </RenderLayout>
+                )
+              }
+              path={path}
+              key={path}
+            />
+          ),
+        )}
+      </Routes>
     );
   },
 );

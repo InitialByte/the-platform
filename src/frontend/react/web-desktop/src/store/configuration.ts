@@ -30,6 +30,7 @@ const createReducer = (): Reducer<ReturnType<typeof reducer>> =>
 export const store = configureStore({
   reducer,
   middleware,
+  // eslint-disable-next-line no-underscore-dangle
   devTools: window?.__INITIAL_STATE__?.env?.mode === 'development' ?? false,
 });
 

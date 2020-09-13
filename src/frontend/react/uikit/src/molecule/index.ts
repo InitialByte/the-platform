@@ -1,3 +1,4 @@
-export * from './Spinner';
-export * from './TextField';
 export * from './FormControlLabel';
+export * from './Copyright';
+export * from './TextField';
+export * from './Spinner';
