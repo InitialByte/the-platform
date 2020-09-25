@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {useNavigate, Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-
+import {connect, useDispatch} from 'react-redux';
 import {
   Button,
   TextField,
@@ -13,8 +12,7 @@ import {
   Link as UILink,
 } from '@the_platform/react-uikit';
 import {validation} from '@the_platform/core';
-import {signIn} from '../provider';
-import {login as loginActon} from '../reducer';
+import {fetchLogin} from '../reducer';
 import {
   ROUTE_AUTH_LOGIN_CERTIFICATE,
   ROUTE_AUTH_RECOVERY_PASSWORD,
@@ -51,7 +49,7 @@ const validationSchema = validation.object({
 
 const onSubmit = (
   navigate: typeof useNavigate,
-  login: typeof loginActon,
+  dispatch: any,
   navigateAfterSignin: string = '/',
 ): void => (
   values: ILoginFormValues,
@@ -61,10 +59,9 @@ const onSubmit = (
     setSubmitting: (value: boolean) => void;
   },
 ): void => {
-  signIn(values)
+  dispatch(fetchLogin(values))
     .then(() => {
       navigate(navigateAfterSignin);
-      login('Eugene');
     })
     .catch(console.error)
     .finally(() => {
@@ -83,19 +80,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const mapState = (): Record<string, string> => ({});
-const mapDispatch = {loginDispatch: loginActon};
 
-export const LoginForm = connect(
-  mapState,
-  mapDispatch,
-)(
-  ({loginDispatch}): JSX.Element => {
+export const LoginForm = connect(mapState)(
+  (): JSX.Element => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const classes = useStyles();
     const form = Form.useFormik({
       initialValues,
       validationSchema,
-      onSubmit: onSubmit(navigate, loginDispatch),
+      onSubmit: onSubmit(navigate, dispatch),
     });
 
     return (

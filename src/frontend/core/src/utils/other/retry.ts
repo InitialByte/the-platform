@@ -25,7 +25,7 @@ export const retry = (
       .then(resolve)
       .catch((error) => {
         setTimeout(() => {
-          if (retriesLeft === 1) {
+          if (retriesLeft === 0) {
             reject(error);
           } else {
             // eslint-disable-next-line promise/no-nesting

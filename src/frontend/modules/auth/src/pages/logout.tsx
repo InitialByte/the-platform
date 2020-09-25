@@ -1,19 +1,11 @@
-import {connect} from 'react-redux';
-import {signOut} from '../provider';
-import {logout} from '../reducer';
+import {useDispatch} from 'react-redux';
+import {fetchLogout} from '../reducer';
 
-const mapState = (): Record<string, string> => ({});
-const mapDispatch = {logoutReducer: logout};
-
-const LogoutPage = connect(
-  mapState,
-  mapDispatch,
-)(({logoutReducer}): null => {
-  // eslint-disable-next-line promise/catch-or-return
-  signOut().catch(console.error).finally(logoutReducer);
-
+const LogoutPage = (): null => {
+  const dispatch = useDispatch();
+  dispatch(fetchLogout());
   return null;
-});
+};
 
 LogoutPage.displayName = 'LogoutPage';
 

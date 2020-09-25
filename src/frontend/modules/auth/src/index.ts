@@ -54,7 +54,6 @@ export const router: Platform.IRoute[] = [
   {
     path: routes.ROUTE_AUTH_RECOVERY_PASSWORD,
     Page: RecoveryPasswordPage,
-    isPrivate: true,
     layout: 'Auth',
     shortName,
   },

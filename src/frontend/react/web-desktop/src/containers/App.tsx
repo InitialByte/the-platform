@@ -78,6 +78,7 @@ export const AppContainer = connect(
       const found = paths.find(({path}) => path === pathname);
       const shortName = found ? found.shortName : '';
 
+      // Attaching reducers on demand and run bootstrap function for module if exists
       if (shortName && !imported.includes(shortName)) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         const reducer = routes[`${shortName}Reducer`] as Reducer;

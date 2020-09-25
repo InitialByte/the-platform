@@ -8,13 +8,13 @@
     "i18next": "^19.7.0",
     "i18next-browser-languagedetector": "^6.0.1",
     "ky": "^0.23.0",
-    "react-i18next": "^11.7.2",
+    "react-i18next": "^11.7.3",
     "yup": "^0.29.3"
   },
   "devDependencies": {
     "@babel/runtime": "^7.11.2",
     "@babel/runtime-corejs3": "^7.11.2",
-    "@types/jest": "^26.0.13",
+    "@types/jest": "^26.0.14",
     "@types/yup": "^0.29.7",
     "regenerator-runtime": "^0.13.7"
   }

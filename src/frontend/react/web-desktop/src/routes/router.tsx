@@ -16,6 +16,7 @@ export const router: Platform.IRoute[] = [
     path: routes.ROUTE_HOME,
     Page: HomePage,
     exact: true,
+    isPrivate: true,
     shortName,
   },
   {
