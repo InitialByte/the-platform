@@ -1,1 +1,17 @@
-{}
+{
+  "signin": {
+    "fields": {
+      "password": "Password",
+      "email": "Email"
+    },
+    "buttons": {
+      "remember": "Remember Me",
+      "submit": "Sign In",
+      "forgot": "Forgon password?"
+    },
+    "errors": {
+      "required": "Required",
+      "invalidEmail": "Invalid Email"
+    }
+  }
+}

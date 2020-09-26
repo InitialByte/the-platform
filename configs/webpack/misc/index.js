@@ -53,6 +53,43 @@ const collectModuleRoutes = (rootPath, workspace, dependencies) => {
   });
 };
 
+const collectI18n = (rootPath, workspace, dependencies, rootModuleFolder) => {
+  const modulesPath = join(rootPath, 'src/frontend/modules');
+  const i18nRootModuleFolder = join(
+    rootPath,
+    `src/frontend/${rootModuleFolder}`,
+    `export/i18n/${workspace}`,
+  );
+  const modulesWithI18n = dependencies
+    .map((moduleName) => {
+      const i18nFolder = join(
+        modulesPath,
+        moduleName,
+        `export/i18n/${workspace}`,
+      );
+
+      if (existsSync(i18nFolder) && statSync(i18nFolder).isDirectory()) {
+        return {
+          moduleName,
+          folder: i18nFolder,
+        };
+      }
+    })
+    .filter(Boolean);
+
+  if (
+    existsSync(i18nRootModuleFolder) &&
+    statSync(i18nRootModuleFolder).isDirectory()
+  ) {
+    modulesWithI18n.push({
+      moduleName: 'root',
+      folder: i18nRootModuleFolder,
+    });
+  }
+
+  return modulesWithI18n;
+};
+
 const collectSwaggerApi = (rootPath) => {
   if (!rootPath) {
     return [];
@@ -87,6 +124,7 @@ const killByPort = (port) => {
 
 module.exports = {
   collectModuleRoutes,
+  collectI18n,
   collectSwaggerApi,
   killByPort,
   createCacheDir,

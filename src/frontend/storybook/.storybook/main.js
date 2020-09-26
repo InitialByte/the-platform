@@ -71,6 +71,11 @@ async function webpackFinal(config) {
   const jsRule = newConfig.module.rules.find((rule) => rule.test.test('.js'));
   jsRule.exclude = /node_modules/;
 
+  newConfig.module.rules[0].use[0].options.cacheDirectory = join(
+    rootPath,
+    '/../../../.cache/babel',
+  );
+
   return newConfig;
 }
 

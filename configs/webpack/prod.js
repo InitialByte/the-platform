@@ -19,8 +19,8 @@ module.exports = merge(webpackConfig, {
   },
 
   performance: {
-    maxEntrypointSize: 819200, // 800 Kb
-    maxAssetSize: 819200, // 800 Kb
+    maxEntrypointSize: 3072000, // 3 MB
+    maxAssetSize: 3072000, // 3 MB
     hints: 'error',
   },
 
@@ -29,6 +29,7 @@ module.exports = merge(webpackConfig, {
 
     minimizer: [
       new TerserPlugin({
+        cache: join(rootPath, '.cache'),
         exclude: /\/node_modules/,
         sourceMap: true,
         parallel: true,
@@ -64,8 +65,7 @@ module.exports = merge(webpackConfig, {
 
     new CompressionPlugin({
       cache: join(rootPath, '.cache'),
-      test: /\.js$|\.css$|\.html$/,
-      filename: '[path].gz[query]',
+      test: /\.(js|css|html|svg)$/,
       algorithm: 'gzip',
       threshold: 1024,
       minRatio: 1,
@@ -74,8 +74,8 @@ module.exports = merge(webpackConfig, {
     new CompressionPlugin({
       cache: join(rootPath, '.cache'),
       test: /\.(js|css|html|svg)$/,
-      filename: '[path].br[query]',
       algorithm: 'brotliCompress',
+      filename: '[path][base].br',
       deleteOriginalAssets: false,
       threshold: 1024,
       minRatio: 1,

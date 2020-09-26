@@ -1,1 +1,17 @@
-{}
+{
+  "signin": {
+    "fields": {
+      "password": "Пароль",
+      "email": "Email"
+    },
+    "buttons": {
+      "remember": "Запомнить меня",
+      "submit": "Войти",
+      "forgot": "Забыли пароль?"
+    },
+    "errors": {
+      "required": "Обязательно",
+      "invalidEmail": "Некорректный email"
+    }
+  }
+}

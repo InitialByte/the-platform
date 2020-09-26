@@ -12,7 +12,12 @@ const LoaderPZF_ZIP = require('./loaders/pdf-zip');
 const LoaderTS = require('./loaders/typescript');
 const LoaderCSS = require('./loaders/css');
 const LoaderSVG = require('./loaders/svg');
-const {buildInfo, collectModuleRoutes, createCacheDir} = require('./misc');
+const {
+  buildInfo,
+  collectModuleRoutes,
+  createCacheDir,
+  collectI18n,
+} = require('./misc');
 
 const {name, version, config} = require('../../package.json');
 
@@ -30,6 +35,13 @@ createCacheDir(cachePath);
 const pathToSaveRoutes = join(cachePath, 'routes.ts');
 const dependencies = config.app.dependencies.frontend[WORKSPACE] || [];
 const moduleRoutes = collectModuleRoutes(rootPath, WORKSPACE, dependencies);
+const i18nFolders = collectI18n(rootPath, WORKSPACE, dependencies, APP);
+const i18nToCopy = i18nFolders.map(({moduleName, folder: from}) => {
+  return {
+    from,
+    to: join(rootPath, `dist/i18n/${moduleName}`),
+  };
+});
 
 const MAX_CYCLES = 5;
 let numCyclesDetected = 0;
@@ -151,8 +163,9 @@ const webpackConfig = {
         },
         {
           from: join(rootPath, 'public/stuff/'),
-          to: join(rootPath, 'dist/'),
+          to: join(rootPath, 'dist'),
         },
+        ...i18nToCopy,
       ],
     }),
   ],

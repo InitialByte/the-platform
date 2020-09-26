@@ -4,7 +4,6 @@ src/frontend/apimock
 src/frontend/swagger
 src/frontend/smoke
 configs/register
-lerna-debug.log
 **/__mocks__/*
 **/__tests__/*
 npm-debug.log
@@ -17,7 +16,6 @@ CHANGELOG.md
 src/backend
 configs/tyk
 .yarnrc.yml
-lerna.json
 .gitignore
 README.md
 yarn.lock

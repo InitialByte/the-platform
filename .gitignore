@@ -122,7 +122,6 @@ Temporary Items
 report
 
 ## NPM & YARN
-lerna-debug.log*
 yarn-debug.log*
 yarn-error.log*
 npm-debug.log*

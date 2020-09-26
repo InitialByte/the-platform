@@ -30,9 +30,9 @@
 
 ## Synopsis
 
-This is scalable fullstack "framework" for configuring complex medium and large size SPA projects. Any part of this project can be easy replaced. Here is using mono-repository with modular architecture, it similar to [micro-frontend](https://micro-frontends.org/). Lerna and Yarn 2 Workspaces gives the ability to build project in a single repo (a.k.a. monorepo). This makes it faster to iterate locally when building components that depends on each other. Monorepo is NOT about mixing everything together inside a project (do not confuse with monolith). Monorepo is about having source codes of multiple applications, services, and libraries that belong to one domain inside a single repository. Using monorepo decreases velocity and maintaining time.
+This is scalable fullstack "framework" for configuring complex medium and large SPA projects. Any part of this project can be easy replaced. Here is using mono-repository with modular architecture, it similar to [micro-frontend](https://micro-frontends.org/). Yarn 2 Workspaces gives the ability to build project in a single repo (a.k.a. monorepo). This makes it faster to iterate locally when building components that depends on each other. Monorepo is NOT about mixing everything together inside a project (do not confuse with monolith). Monorepo+modules is about having source codes of multiple applications, services, and libraries that belong to one domain inside a single repository. Using monorepo decreases velocity and maintaining time.
 
-Micro-frontend (a.k.a. micro-services) allows multiple teams to work independently from each other, choose their own technology stacks and establish their own release cycles. Bringing micro-services to the frontend requires a layout service that composes a website out of fragments.
+Modular architecture allows multiple teams to work independently from each other, choose their own technology stacks and establish their own release cycles. Bringing micro-services to the frontend requires a layout service that composes a website out of fragments.
 
 ### Main goals
 
@@ -100,7 +100,6 @@ FrontEnd
 - **Jest, Enzyme, Mocha** - unit testing.
 - **Webpack**             - bundle JavaScript files for usage in a browser.
 - **Yarn2**               - organize npm dependencies and workspaces.
-- **Lerna**               - a tool for managing JavaScript projects with multiple packages.
 - **StoryBook**           - developing UI components in isolation mode.
 - **MaterialUI**          - react UI framework.
 
@@ -296,3 +295,4 @@ Keep it fast. How to check:
 - Add mount point for modules without routing.
 - Add Protocol Buffers to communicate betweet micro services.
 - Add message bus to communicate between fronend modules.
+- Add SAGA pattern to microservices

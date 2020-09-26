@@ -22,6 +22,7 @@ export const AuthLayout: FC = ({children}) => {
 
   return (
     <Container component="main" maxWidth="xs">
+      <Box mt={8}>Change language</Box>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <Icon.LockOutlined />

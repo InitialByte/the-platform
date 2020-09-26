@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-type TLangs = 'RU' | 'EN';
+type TLangs = 'ru_ru' | 'en_us';
 
 export interface Ii18nState {
   active: TLangs;
@@ -8,14 +8,14 @@ export interface Ii18nState {
   default?: TLangs;
 }
 
-export const RU = 'RU';
-export const EN = 'EN';
+export const RU = 'ru_ru';
+export const EN = 'en_us';
 export const DEFAULT_LANG: TLangs = EN;
 
 const name = 'platform_i18n';
 const initialState: Ii18nState = {
   // eslint-disable-next-line no-underscore-dangle
-  active: window?.__INITIAL_STATE__?.i18n?.default ?? 'EN',
+  active: window?.__INITIAL_STATE__?.i18n?.default ?? EN,
   // eslint-disable-next-line no-underscore-dangle
   available: window?.__INITIAL_STATE__?.i18n?.available ?? [EN, RU],
 };

@@ -11,13 +11,6 @@ const LogoutPage = lazy(
   () => import(/* webpackChunkName: "pages/auth_logout" */ './pages/logout'),
 );
 
-const LoginCertificatePage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "pages/auth_login_certificate" */ './pages/login-certificate'
-    ),
-);
-
 const RecoveryPasswordPage = lazy(
   () =>
     import(
@@ -43,12 +36,6 @@ export const router: Platform.IRoute[] = [
     path: routes.ROUTE_AUTH_LOGOUT,
     Page: LogoutPage,
     isPrivate: true,
-    shortName,
-  },
-  {
-    path: routes.ROUTE_AUTH_LOGIN_CERTIFICATE,
-    Page: LoginCertificatePage,
-    layout: 'Auth',
     shortName,
   },
   {

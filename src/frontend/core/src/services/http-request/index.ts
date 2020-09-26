@@ -17,3 +17,5 @@ export const customRequestInit = (hooks: Hooks): TKy => {
 };
 
 export {ResponsePromise} from 'ky';
+
+export const loadJsonFile = (filePath: string): any => ky(filePath).json();

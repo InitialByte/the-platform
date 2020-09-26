@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "yarn build-storybook -o dist",
-    "start": "yarn start-storybook -p 8010"
+    "start": "yarn start-storybook -p 8010 --debug-webpack"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",

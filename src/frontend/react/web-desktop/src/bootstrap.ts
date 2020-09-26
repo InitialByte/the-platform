@@ -1,9 +1,13 @@
-import {sessionStorageInit, localStorageInit} from '@the_platform/core';
-import {getFingerprint, customRequestInit} from '@the_platform/core';
 import {
-  paintMeasure,
-  browserMeasure,
+  sessionStorageInit,
+  customRequestInit,
   resourcesMeasure,
+  localStorageInit,
+  getFingerprint,
+  browserMeasure,
+  paintMeasure,
+  initI18n,
+  i18next,
 } from '@the_platform/core';
 
 window.onload = (): void => {
@@ -16,6 +20,8 @@ window.onload = (): void => {
 
 export const bootstrapApp = async (): Promise<void> => {
   const storagePrefix = 'PLT_';
+
+  initI18n().then(() => i18next.changeLanguage('en_us'));
 
   // Can be accessed across the whole application.
   sessionStorageInit(storagePrefix);

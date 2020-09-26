@@ -11,12 +11,9 @@ import {
   makeStyles,
   Link as UILink,
 } from '@the_platform/react-uikit';
-import {validation} from '@the_platform/core';
+import {validation, useTranslation} from '@the_platform/core';
 import {fetchLogin} from '../reducer';
-import {
-  ROUTE_AUTH_LOGIN_CERTIFICATE,
-  ROUTE_AUTH_RECOVERY_PASSWORD,
-} from '../constants/routes';
+import {ROUTE_AUTH_RECOVERY_PASSWORD} from '../constants/routes';
 
 /* eslint-disable */
 // @ts-nocheck
@@ -32,20 +29,6 @@ const initialValues: ILoginFormValues = {
 };
 
 const MIN_NUMBER_CHARS_IN_PASSWORD = 5;
-
-const validationSchema = validation.object({
-  password: validation
-    .string()
-    .min(
-      MIN_NUMBER_CHARS_IN_PASSWORD,
-      `Must be ${MIN_NUMBER_CHARS_IN_PASSWORD} characters or more`,
-    )
-    .required('Required'),
-  email: validation
-    .string()
-    .email('Invalid email address')
-    .required('Required'),
-});
 
 const onSubmit = (
   navigate: typeof useNavigate,
@@ -79,13 +62,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const mapState = (): Record<string, string> => ({});
-
-export const LoginForm = connect(mapState)(
+export const LoginForm = connect()(
   (): JSX.Element => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const {t} = useTranslation('auth');
     const classes = useStyles();
+
+    const validationSchema = validation.object({
+      password: validation
+        .string()
+        .min(
+          MIN_NUMBER_CHARS_IN_PASSWORD,
+          `Must be ${MIN_NUMBER_CHARS_IN_PASSWORD} characters or more`,
+        )
+        .required(t('signin.errors.required')),
+      email: validation
+        .string()
+        .email(t('signin.errors.invalidEmail'))
+        .required(t('signin.errors.required')),
+    });
     const form = Form.useFormik({
       initialValues,
       validationSchema,
@@ -98,7 +94,7 @@ export const LoginForm = connect(mapState)(
           name="email"
           helperText={form.touched.email ? form.errors.email : ''}
           error={form.touched.email && Boolean(form.errors.email)}
-          label="Email"
+          label={t('signin.fields.email')}
           autoFocus
           type="email"
           onChange={form.handleChange}
@@ -108,11 +104,12 @@ export const LoginForm = connect(mapState)(
           margin="normal"
           fullWidth
         />
+
         <TextField
           name="password"
           helperText={form.touched.password ? form.errors.password : ''}
           error={form.touched.password && Boolean(form.errors.password)}
-          label="Password"
+          label={t('signin.fields.password')}
           type="password"
           onChange={form.handleChange}
           onBlur={form.handleBlur}
@@ -121,9 +118,10 @@ export const LoginForm = connect(mapState)(
           margin="normal"
           fullWidth
         />
+
         <FormControlLabel
           control={<Checkbox color="primary" />}
-          label="Remember me"
+          label={t('signin.buttons.remember')}
         />
 
         <Button
@@ -134,7 +132,7 @@ export const LoginForm = connect(mapState)(
           className={classes.submit}
           disabled={form.isSubmitting || form.isValidating}
           onClick={form.handleSubmit}>
-          SignIn
+          {t('signin.buttons.submit')}
         </Button>
 
         <Grid container>
@@ -143,16 +141,7 @@ export const LoginForm = connect(mapState)(
               component={UILink}
               to={ROUTE_AUTH_RECOVERY_PASSWORD}
               variant="body2">
-              Forgot password?
-            </Link>
-          </Grid>
-
-          <Grid item>
-            <Link
-              component={UILink}
-              to={ROUTE_AUTH_LOGIN_CERTIFICATE}
-              variant="body2">
-              Login via certificate
+              {t('signin.buttons.forgot')}
             </Link>
           </Grid>
         </Grid>

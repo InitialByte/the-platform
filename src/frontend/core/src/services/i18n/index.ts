@@ -2,6 +2,8 @@ import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+const storageName = 'lang';
+
 const defaults = {
   // order and from where user language should be detected
   order: [
@@ -16,21 +18,24 @@ const defaults = {
   ],
 
   // keys or params to lookup language from
-  lookupQuerystring: 'lang',
-  lookupCookie: 'lang',
-  lookupLocalStorage: 'lang',
-  lookupSessionStorage: 'lang',
-  lookupFromPathIndex: 0,
   lookupFromSubdomainIndex: 0,
+  lookupSessionStorage: storageName,
+  lookupLocalStorage: storageName,
+  lookupQuerystring: storageName,
+  lookupCookie: storageName,
+  lookupFromPathIndex: 0,
 
   // cache user language on
   caches: ['localStorage', 'cookie'],
-  excludeCacheFor: ['cimode'], // languages to not persist (cookie, localStorage)
-  fallbackLng: 'en',
+  // languages to not persist (cookie, localStorage)
+  excludeCacheFor: ['cimode'],
+  fallbackLng: 'en_us',
   debug: true,
 };
 
-export const initI18n = (settings: any): ReturnType<typeof i18n> =>
+export {I18nextProvider, useTranslation} from 'react-i18next';
+export const i18next = i18n;
+export const initI18n = (settings: any = {}): ReturnType<typeof i18n> =>
   i18n
     // learn more: https://github.com/i18next/i18next-browser-languageDetector
     .use(LanguageDetector)

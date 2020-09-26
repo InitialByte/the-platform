@@ -32,10 +32,10 @@
     "app": {
       "settings": {
         "hasServerTracking": true,
-        "defaultLanguage": "EN",
+        "defaultLanguage": "en_us",
         "availableLanguages": [
-          "EN",
-          "RU"
+          "en_us",
+          "ru_ru"
         ]
       },
       "dependencies": {
@@ -108,11 +108,8 @@
     "prettier": "prettier --write '**/*.{ts,tsx,scss}'",
     "tslint": "yarn run tsc --noEmitOnError --pretty",
     "check": "yarn tslint && yarn lint && yarn test",
-    "test": "lerna run test --stream",
     "prunecache": "rm -rf ./.cache/ && yarn cache clean",
-    "bump:version": "lerna version --no-push",
-    "upgrade": "yarn upgrade-interactive",
-    "changelog": "yarn lerna-changelog"
+    "upgrade": "yarn upgrade-interactive"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
@@ -159,8 +156,6 @@
     "husky": "^4.3.0",
     "image-webpack-loader": "^7.0.1",
     "jest": "^26.4.2",
-    "lerna": "^3.22.1",
-    "lerna-changelog": "^1.0.1",
     "lint-staged": "^10.4.0",
     "pnp-webpack-plugin": "^1.6.4",
     "postcss-js": "^3.0.0",

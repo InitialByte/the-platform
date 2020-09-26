@@ -4,6 +4,7 @@ import {Reducer} from 'redux';
 import {useLocation} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Routes, Route, Navigate} from 'react-router-dom';
+import {i18next, loadJsonFile} from '@the_platform/core';
 import {AuthLayout, WithSidebarLayout} from '@the_platform/react-uikit';
 import * as routes from '@the_platform/routes';
 import {
@@ -15,16 +16,22 @@ import {injectReducer} from '../store/configuration';
 import {router} from '../routes/router';
 import {ROUTE_LOGIN} from '../routes/routes';
 
+// eslint-disable
+
 interface IMapStateProps {
   modules: IModuleState;
   isAuth: boolean;
+  availableLanguages: string[];
 }
 
 interface IProps {
   modules: IModuleState;
   isAuth: boolean;
   auth: {
-    isAuth: boolean,
+    isAuth: boolean;
+  };
+  i18n: {
+    available: string[];
   };
   modulesRoute: Platform.IRoute[];
   importModuleDispatch: typeof importModule;
@@ -34,9 +41,11 @@ interface IProps {
 const mapState = ({
   modules,
   auth,
-}: Pick<IProps, 'auth' | 'modules'>): IMapStateProps => ({
+  i18n,
+}: Pick<IProps, 'auth' | 'modules' | 'i18n'>): IMapStateProps => ({
   modules,
   isAuth: auth?.isAuth ?? false,
+  availableLanguages: i18n.available,
 });
 const mapDispatch = {
   importModuleDispatch: importModule,
@@ -61,6 +70,7 @@ export const AppContainer = connect(
     isAuth,
     modulesRoute,
     importModuleDispatch,
+    availableLanguages,
     activateModuleDispatch,
   }: Omit<IProps, 'auth'>): JSX.Element => {
     const {pathname} = useLocation();
@@ -84,6 +94,31 @@ export const AppContainer = connect(
         const reducer = routes[`${shortName}Reducer`] as Reducer;
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         const bootstrap = routes[`${shortName}Bootstrap`] as () => void;
+
+        // Add i18n for module.
+        Promise.allSettled(
+          availableLanguages.map(
+            (lang: string): Promise<any> =>
+              loadJsonFile(`/i18n/${shortName}/${lang}.json`),
+          ),
+        )
+          .then((resources) =>
+            resources.forEach(({status, value}, index: number): void => {
+              if (status === 'fulfilled') {
+                i18next.addResourceBundle(
+                  availableLanguages[index],
+                  shortName,
+                  value,
+                );
+              } else {
+                console.error(
+                  `Can not load ${availableLanguages[index]} language`,
+                );
+              }
+            }),
+          )
+          .catch(console.error)
+          .finally(() => i18next.reloadResources());
 
         if (reducer && typeof reducer === 'function') {
           try {
