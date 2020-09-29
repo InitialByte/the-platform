@@ -1,12 +1,13 @@
 declare namespace Platform {
   interface IRoute {
     path: string;
-    Page: JSX.Element | React.ReactNode;
+    Page: typeof React.Component;
     exact?: boolean;
     isPrivate?: boolean;
     title?: string;
-    Icon?: JSX.Element | React.ReactNode;
+    Icon?: typeof React.Component;
     layout?: 'WithSidebar' | 'Auth';
     shortName: string;
+    children: JSX.Element[] | JSX.Element;
   }
 }

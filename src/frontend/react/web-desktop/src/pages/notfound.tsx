@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {FC} from 'react';
 
-const NotFoundPage: FC = () => <div>NotFound</div>;
+const NotFoundPage: FC = () => <>NotFound</>;
 
 NotFoundPage.displayName = 'NotFoundPage';
 

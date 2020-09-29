@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import {
   sessionStorageInit,
   customRequestInit,
@@ -9,7 +11,19 @@ import {
   initI18n,
   logger,
 } from '@the_platform/core';
-const {config} = require('../../../../../package.json');
+
+interface IConfig {
+  config: {
+    app: {
+      settings: {
+        availableLanguages: string[];
+        defaultLanguage: string;
+      };
+    };
+  };
+}
+
+const {config}: IConfig = require('../../../../../package.json');
 
 window.onload = (): void => {
   setTimeout((): void => {

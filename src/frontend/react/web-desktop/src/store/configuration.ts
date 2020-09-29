@@ -4,6 +4,7 @@ import {
   envReducer,
   i18nReducer,
   moduleReducer,
+  notificationReducer,
   moduleRoutes as mRoutes,
 } from './reducers';
 
@@ -19,6 +20,7 @@ const reducer = {
   env: envReducer,
   i18n: i18nReducer,
   modules: moduleReducer,
+  notification: notificationReducer,
 };
 
 const createReducer = (): Reducer<ReturnType<typeof reducer>> =>

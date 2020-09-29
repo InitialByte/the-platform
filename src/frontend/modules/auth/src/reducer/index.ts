@@ -1,3 +1,6 @@
+/* eslint-disable */
+// @ts-nocheck
+
 import {createSlice, PayloadAction, createAsyncThunk} from '@reduxjs/toolkit';
 import {
   signIn,
@@ -10,6 +13,12 @@ import {
 enum REQUEST_STATUS {
   IDLE = 'idle',
   PENDING = 'pending',
+}
+
+interface IRequest {
+  status: REQUEST_STATUS;
+  lastError?: IResponseError;
+  lastRequestId?: string;
 }
 
 interface IResponseError {
@@ -25,15 +34,13 @@ interface IResponseMeta {
 interface IAuthState {
   isAuth: boolean;
   requests: {
-    recoveryPassword: REQUEST_STATUS;
-    updatePassword: REQUEST_STATUS;
-    register: REQUEST_STATUS;
-    signout: REQUEST_STATUS;
-    signin: REQUEST_STATUS;
+    recoveryPassword: IRequest;
+    updatePassword: IRequest;
+    register: IRequest;
+    signout: IRequest;
+    signin: IRequest;
   };
   fullName?: string;
-  lastError?: IResponseError;
-  currentRequestId?: string;
 }
 
 interface IAuthData {
@@ -52,21 +59,19 @@ const createAsync = (
     | 'register'
     | 'signout'
     | 'signin',
-  serverMethod: any,
-) => async (payload: IPayload, thunkApi: any) => {
-  const {currentRequestId, requests} = thunkApi.getState().auth as IAuthState;
+  serverMethod: <T>(payload: T) => Promise<Response>,
+) => async (payload: unknown, thunkApi: any) => {
+  const {requests} = thunkApi.getState().auth as IAuthState;
 
   if (
-    requests[requestType] !== REQUEST_STATUS.PENDING ||
-    thunkApi.requestId !== currentRequestId
+    requests[requestType].status !== REQUEST_STATUS.PENDING ||
+    requests[requestType].lastRequestId !== thunkApi.requestId
   ) {
     return;
   }
 
   const response = await serverMethod(payload);
-
-  // eslint-disable-next-line consistent-return
-  return (await response.json()) as IAuthData;
+  return await response.json();
 };
 
 export const fetchLogin = createAsyncThunk(
@@ -99,11 +104,21 @@ const name = 'module_auth';
 const initialState: IAuthState = {
   isAuth: false,
   requests: {
-    recoveryPassword: REQUEST_STATUS.IDLE,
-    updatePassword: REQUEST_STATUS.IDLE,
-    register: REQUEST_STATUS.IDLE,
-    signout: REQUEST_STATUS.IDLE,
-    signin: REQUEST_STATUS.IDLE,
+    recoveryPassword: {
+      status: REQUEST_STATUS.IDLE,
+    },
+    updatePassword: {
+      status: REQUEST_STATUS.IDLE,
+    },
+    register: {
+      status: REQUEST_STATUS.IDLE,
+    },
+    signout: {
+      status: REQUEST_STATUS.IDLE,
+    },
+    signin: {
+      status: REQUEST_STATUS.IDLE,
+    },
   },
 };
 const reducers = {};
@@ -112,9 +127,9 @@ const extraReducers = {
     state: IAuthState,
     action: PayloadAction<IAuthData, string, IResponseMeta, IResponseError>,
   ) => {
-    if (state.requests.signin === REQUEST_STATUS.IDLE) {
-      state.requests.signin = REQUEST_STATUS.PENDING;
-      state.currentRequestId = action.meta.requestId;
+    if (state.requests.signin.status === REQUEST_STATUS.IDLE) {
+      state.requests.signin.status = REQUEST_STATUS.PENDING;
+      state.requests.signin.lastRequestId = action.meta.requestId;
     }
   },
   [fetchLogin.fulfilled.toString()]: (
@@ -122,36 +137,36 @@ const extraReducers = {
     action: PayloadAction<IAuthData>,
   ) => {
     state.isAuth = true;
-    state.fullName = action.payload.fullName;
-    state.requests.signin = REQUEST_STATUS.IDLE;
+    state.fullName = action?.payload?.fullName ?? '';
+    state.requests.signin.status = REQUEST_STATUS.IDLE;
   },
   [fetchLogin.rejected.toString()]: (
     state: IAuthState,
     action: PayloadAction<IAuthData, string, IResponseMeta, IResponseError>,
   ) => {
-    if (state.requests.signin === REQUEST_STATUS.PENDING) {
-      state.requests.signin = REQUEST_STATUS.IDLE;
-      state.lastError = action.error;
+    if (state.requests.signin.status === REQUEST_STATUS.PENDING) {
+      state.requests.signin.status = REQUEST_STATUS.IDLE;
+      state.requests.signin.lastError = action.error;
     }
   },
 
   [fetchLogout.pending.toString()]: (state: IAuthState) => {
-    if (state.requests.signout === REQUEST_STATUS.IDLE) {
-      state.requests.signout = REQUEST_STATUS.PENDING;
+    if (state.requests.signout.status === REQUEST_STATUS.IDLE) {
+      state.requests.signout.status = REQUEST_STATUS.PENDING;
     }
   },
   [fetchLogout.fulfilled.toString()]: (state: IAuthState) => {
     state.isAuth = false;
     state.fullName = undefined;
-    state.requests.signout = REQUEST_STATUS.IDLE;
+    state.requests.signout.status = REQUEST_STATUS.IDLE;
   },
   [fetchLogout.rejected.toString()]: (
     state: IAuthState,
     action: PayloadAction<string, string, IResponseMeta, IResponseError>,
   ) => {
-    if (state.requests.signout === REQUEST_STATUS.PENDING) {
-      state.requests.signout = REQUEST_STATUS.IDLE;
-      state.lastError = action.error;
+    if (state.requests.signout.status === REQUEST_STATUS.PENDING) {
+      state.requests.signout.status = REQUEST_STATUS.IDLE;
+      state.requests.signout.lastError = action.error;
     }
   },
 
@@ -159,21 +174,21 @@ const extraReducers = {
     state: IAuthState,
     action: PayloadAction<IAuthData, string, IResponseMeta, IResponseError>,
   ) => {
-    if (state.requests.recoveryPassword === REQUEST_STATUS.IDLE) {
-      state.requests.recoveryPassword = REQUEST_STATUS.PENDING;
-      state.currentRequestId = action.meta.requestId;
+    if (state.requests.recoveryPassword.status === REQUEST_STATUS.IDLE) {
+      state.requests.recoveryPassword.status = REQUEST_STATUS.PENDING;
+      state.requests.recoveryPassword.lastRequestId = action.meta.requestId;
     }
   },
   [fetchRecoveryPassword.fulfilled.toString()]: (state: IAuthState) => {
-    state.requests.recoveryPassword = REQUEST_STATUS.IDLE;
+    state.requests.recoveryPassword.status = REQUEST_STATUS.IDLE;
   },
   [fetchRecoveryPassword.rejected.toString()]: (
     state: IAuthState,
     action: PayloadAction<IAuthData, string, IResponseMeta, IResponseError>,
   ) => {
-    if (state.requests.recoveryPassword === REQUEST_STATUS.PENDING) {
-      state.requests.recoveryPassword = REQUEST_STATUS.IDLE;
-      state.lastError = action.error;
+    if (state.requests.recoveryPassword.status === REQUEST_STATUS.PENDING) {
+      state.requests.recoveryPassword.status = REQUEST_STATUS.IDLE;
+      state.requests.recoveryPassword.lastError = action.error;
     }
   },
 
@@ -181,21 +196,21 @@ const extraReducers = {
     state: IAuthState,
     action: PayloadAction<IAuthData, string, IResponseMeta, IResponseError>,
   ) => {
-    if (state.requests.updatePassword === REQUEST_STATUS.IDLE) {
-      state.requests.updatePassword = REQUEST_STATUS.PENDING;
-      state.currentRequestId = action.meta.requestId;
+    if (state.requests.updatePassword.status === REQUEST_STATUS.IDLE) {
+      state.requests.updatePassword.status = REQUEST_STATUS.PENDING;
+      state.requests.updatePassword.lastRequestId = action.meta.requestId;
     }
   },
   [fetchUpdatePassword.fulfilled.toString()]: (state: IAuthState) => {
-    state.requests.updatePassword = REQUEST_STATUS.IDLE;
+    state.requests.updatePassword.status = REQUEST_STATUS.IDLE;
   },
   [fetchUpdatePassword.rejected.toString()]: (
     state: IAuthState,
     action: PayloadAction<IAuthData, string, IResponseMeta, IResponseError>,
   ) => {
-    if (state.requests.updatePassword === REQUEST_STATUS.PENDING) {
-      state.requests.updatePassword = REQUEST_STATUS.IDLE;
-      state.lastError = action.error;
+    if (state.requests.updatePassword.status === REQUEST_STATUS.PENDING) {
+      state.requests.updatePassword.status = REQUEST_STATUS.IDLE;
+      state.requests.updatePassword.lastError = action.error;
     }
   },
 
@@ -203,21 +218,21 @@ const extraReducers = {
     state: IAuthState,
     action: PayloadAction<IAuthData, string, IResponseMeta, IResponseError>,
   ) => {
-    if (state.requests.register === REQUEST_STATUS.IDLE) {
-      state.requests.updatePassword = REQUEST_STATUS.PENDING;
-      state.currentRequestId = action.meta.requestId;
+    if (state.requests.register.status === REQUEST_STATUS.IDLE) {
+      state.requests.register.status = REQUEST_STATUS.PENDING;
+      state.requests.register.lastRequestId = action.meta.requestId;
     }
   },
   [fetchRegister.fulfilled.toString()]: (state: IAuthState) => {
-    state.requests.register = REQUEST_STATUS.IDLE;
+    state.requests.register.status = REQUEST_STATUS.IDLE;
   },
   [fetchRegister.rejected.toString()]: (
     state: IAuthState,
     action: PayloadAction<IAuthData, string, IResponseMeta, IResponseError>,
   ) => {
-    if (state.requests.register === REQUEST_STATUS.PENDING) {
-      state.requests.register = REQUEST_STATUS.IDLE;
-      state.lastError = action.error;
+    if (state.requests.register.status === REQUEST_STATUS.PENDING) {
+      state.requests.register.status = REQUEST_STATUS.IDLE;
+      state.requests.register.lastError = action.error;
     }
   },
 };

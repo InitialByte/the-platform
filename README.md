@@ -295,4 +295,5 @@ Keep it fast. How to check:
 - Add mount point for modules without routing.
 - Add Protocol Buffers to communicate betweet micro services.
 - Add message bus to communicate between fronend modules.
-- Add SAGA pattern to microservices
+- Add SAGA pattern to microservices.
+- Add type check i18n dictionaries with TypeScript [SO](https://stackoverflow.com/questions/58277973/how-to-type-check-i18n-dictionaries-with-typescript).

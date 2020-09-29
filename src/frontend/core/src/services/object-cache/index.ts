@@ -24,7 +24,7 @@ const globals = new Map();
 export const hasObjectCache = (key: string): boolean => globals.has(key);
 // eslint-disable-next-line no-confusing-arrow
 export const setObjectCache = <T>(key: string, value: T): boolean =>
-  globals.has(key) ? Boolean(globals.set(key, deepFreeze(value))) : false;
+  !globals.has(key) ? Boolean(globals.set(key, deepFreeze(value))) : false;
 export const getObjectCache = <T>(key: string): T | undefined =>
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   globals.get(key);

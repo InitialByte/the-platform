@@ -1,10 +1,17 @@
+/* eslint-disable */
+
 import * as React from 'react';
 import {useEffect, useState, FC} from 'react';
 import {Reducer} from 'redux';
 import {useLocation} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Routes, Route, Navigate} from 'react-router-dom';
-import {logger, i18next, loadJsonFile} from '@the_platform/core';
+import {
+  logger,
+  i18next,
+  loadJsonFile,
+  ResponsePromise,
+} from '@the_platform/core';
 import {AuthLayout, WithSidebarLayout} from '@the_platform/react-uikit';
 import * as routes from '@the_platform/routes';
 import {
@@ -15,8 +22,6 @@ import {
 import {injectReducer} from '../store/configuration';
 import {router} from '../routes/router';
 import {ROUTE_LOGIN} from '../routes/routes';
-
-// eslint-disable
 
 interface IMapStateProps {
   modules: IModuleState;
@@ -79,7 +84,10 @@ export const AppContainer = connect(
     const [refreshIndex, setRefreshIndex] = useState(0);
     const {imported, active, paths} = modules;
 
-    const RenderLayout: FC = ({layout, title, Icon, children}) => {
+    const RenderLayout: FC<Pick<
+      Platform.IRoute,
+      'layout' | 'title' | 'Icon' | 'children'
+    >> = ({layout, title, Icon = null, children}) => {
       if (layout === 'Auth') {
         return (
           <AuthLayout Icon={Icon} title={title}>
@@ -102,10 +110,10 @@ export const AppContainer = connect(
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         const bootstrap = routes[`${shortName}Bootstrap`] as () => void;
 
-        // Add i18n for module.
+        // Add i18n for loaded module.
         Promise.allSettled(
           availableLanguages.map(
-            (lang: string): Promise<any> =>
+            (lang: string): Promise<ResponsePromise> =>
               loadJsonFile(`/i18n/${shortName}/${lang}.json`),
           ),
         )
@@ -153,7 +161,7 @@ export const AppContainer = connect(
             path,
             Page,
             isPrivate = false,
-            Icon = <span />,
+            Icon,
             title = 'Empty title',
             layout = 'WithSidebar',
           }: Platform.IRoute) => (

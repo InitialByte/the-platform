@@ -1,4 +1,5 @@
 import ky from 'ky';
+import {ResponsePromise} from 'ky';
 import {Hooks} from 'ky';
 import {proxyErrorHandler} from '../../utils';
 
@@ -18,4 +19,5 @@ export const customRequestInit = (hooks: Hooks): TKy => {
 
 export {ResponsePromise} from 'ky';
 
-export const loadJsonFile = (filePath: string): any => ky(filePath).json();
+export const loadJsonFile = (filePath: string): ResponsePromise =>
+  ky(filePath).json();

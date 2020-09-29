@@ -38,6 +38,7 @@ const {
 
 const flashEnabled = (): boolean => {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     return Boolean(new ActiveXObject('ShockwaveFlash.ShockwaveFlash'));
   } catch {
     return false;

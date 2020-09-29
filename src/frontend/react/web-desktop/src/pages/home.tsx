@@ -1,13 +1,15 @@
 import * as React from 'react';
 import {FC} from 'react';
 import {Link} from 'react-router-dom';
-import {Link as UILink} from '@the_platform/react-uikit';
 
 const HomePage: FC = () => (
   <div>
     Home.
-    <Link component={UILink} to="auth/logout" variant="body2">
+    <Link to="auth/logout" variant="body2">
       Logout
+    </Link>
+    <Link to="auth/update-password" variant="body2">
+      Update Password
     </Link>
   </div>
 );

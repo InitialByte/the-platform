@@ -9,7 +9,7 @@ enum E_TYPE {
   WARNING = 'WARNING',
   NOTICE = 'NOTICE',
   USER = 'USER',
-  UNKNOWN = 'UNKNOWN',
+  UNKNOWN = 'UNKNOWN'
 }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -17,7 +17,7 @@ enum E_CODE {
   E_1 = 1,
   E_100 = 100,
   E_101 = 101,
-  E_102 = 102,
+  E_102 = 102
 }
 
 window.E_TYPE = E_TYPE;
@@ -29,17 +29,18 @@ declare global {
     E_CODE: typeof E_CODE;
     E_TYPE: typeof E_TYPE;
     __INITIAL_STATE__: {
-      modules: IModuleState;
-      i18n: Ii18nState;
-      env: IEnvState;
+      modules: IModuleState,
+      i18n: Ii18nState,
+      env: IEnvState,
     };
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare interface PromiseConstructor {
   allSettled(
     promises: Array<Promise<any>>,
   ): Promise<
-    Array<{status: 'fulfilled' | 'rejected'; value?: any; reason?: any}>
+    Array<{status: 'fulfilled' | 'rejected', value?: any, reason?: any, }>
   >;
 }

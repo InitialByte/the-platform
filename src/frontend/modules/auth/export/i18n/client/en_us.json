@@ -39,7 +39,8 @@
     },
     "buttons": {
       "submit": "Register",
-      "signin": "Sign In"
+      "signin": "Sign In",
+      "forgot": "Forgot password?"
     },
     "errors": {
       "required": "Required",
