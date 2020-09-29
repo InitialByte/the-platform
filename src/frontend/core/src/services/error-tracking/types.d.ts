@@ -1,5 +1,5 @@
 declare namespace Platform {
-  type TMessage = string | string[] | Record<string, unknown>;
+  type TMessage = string | string[] | Record<string, unknown> | Error;
 
   interface IErrorTracking {
     error(errorCode: number, message?: TMessage): void;

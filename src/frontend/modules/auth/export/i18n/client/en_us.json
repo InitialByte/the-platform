@@ -7,7 +7,39 @@
     "buttons": {
       "remember": "Remember Me",
       "submit": "Sign In",
-      "forgot": "Forgon password?"
+      "forgot": "Forgot password?",
+      "createAccount": "Create Account"
+    },
+    "errors": {
+      "required": "Required",
+      "invalidEmail": "Invalid Email"
+    }
+  },
+
+  "recovery": {
+    "fields": {
+      "email": "Email"
+    },
+    "buttons": {
+      "submit": "Recovery Password",
+      "signin": "Sign In",
+      "createAccount": "Register"
+    },
+    "errors": {
+      "required": "Required",
+      "invalidEmail": "Invalid Email"
+    }
+  },
+
+  "register": {
+    "fields": {
+      "fullName": "Full Name",
+      "password": "Password",
+      "email": "Email"
+    },
+    "buttons": {
+      "submit": "Register",
+      "signin": "Sign In"
     },
     "errors": {
       "required": "Required",

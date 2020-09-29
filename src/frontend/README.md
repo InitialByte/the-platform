@@ -7,7 +7,6 @@ It allows you to setup multiple packages in such a way that you only need to run
 ## Available Modules
 
 1. Auth
-2. Register
 
 ## Workspaces
 

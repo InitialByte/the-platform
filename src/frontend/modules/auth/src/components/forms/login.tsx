@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import * as React from 'react';
 import {useNavigate, Link} from 'react-router-dom';
 import {connect, useDispatch} from 'react-redux';
@@ -9,18 +11,21 @@ import {
   Checkbox,
   FormControlLabel,
   makeStyles,
-  Link as UILink,
 } from '@the_platform/react-uikit';
-import {validation, useTranslation} from '@the_platform/core';
-import {fetchLogin} from '../reducer';
-import {ROUTE_AUTH_RECOVERY_PASSWORD} from '../constants/routes';
-
-/* eslint-disable */
-// @ts-nocheck
+import {logger, validation, useTranslation} from '@the_platform/core';
+import {fetchLogin} from '../../reducer';
+import {
+  ROUTE_AUTH_RECOVERY_PASSWORD,
+  ROUTE_AUTH_CREATE_ACCOUNT,
+} from '../../constants/routes';
 
 interface ILoginFormValues {
   email: string;
   password: string;
+}
+
+interface ISubmitting {
+  setSubmitting: (value: boolean) => void;
 }
 
 const initialValues: ILoginFormValues = {
@@ -36,21 +41,16 @@ const onSubmit = (
   navigateAfterSignin: string = '/',
 ): void => (
   values: ILoginFormValues,
-  {
-    setSubmitting,
-  }: {
-    setSubmitting: (value: boolean) => void;
-  },
-): void => {
+  {setSubmitting}: ISubmitting,
+): Promise<any> =>
   dispatch(fetchLogin(values))
     .then(() => {
       navigate(navigateAfterSignin);
     })
-    .catch(console.error)
+    .catch((e: Error) => logger.error(E_CODE.E_1, e))
     .finally(() => {
       setSubmitting(false);
     });
-};
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -137,11 +137,14 @@ export const LoginForm = connect()(
 
         <Grid container>
           <Grid item xs>
-            <Link
-              component={UILink}
-              to={ROUTE_AUTH_RECOVERY_PASSWORD}
-              variant="body2">
+            <Link to={ROUTE_AUTH_RECOVERY_PASSWORD} variant="body2">
               {t('signin.buttons.forgot')}
+            </Link>
+          </Grid>
+
+          <Grid item xs>
+            <Link to={ROUTE_AUTH_CREATE_ACCOUNT} variant="body2">
+              {t('signin.buttons.createAccount')}
             </Link>
           </Grid>
         </Grid>

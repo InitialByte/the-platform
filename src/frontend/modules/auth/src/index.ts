@@ -1,5 +1,6 @@
 import {lazy} from 'react';
 import {logger} from '@the_platform/core';
+import {Icon} from '@the_platform/react-uikit';
 import * as routes from './constants/routes';
 import {shortName} from '../package.json';
 
@@ -9,6 +10,11 @@ const LoginPage = lazy(
 
 const LogoutPage = lazy(
   () => import(/* webpackChunkName: "pages/auth_logout" */ './pages/logout'),
+);
+
+const RegisterPage = lazy(
+  () =>
+    import(/* webpackChunkName: "pages/auth_register" */ './pages/register'),
 );
 
 const RecoveryPasswordPage = lazy(
@@ -30,6 +36,8 @@ export const router: Platform.IRoute[] = [
     path: routes.ROUTE_AUTH_LOGIN,
     Page: LoginPage,
     layout: 'Auth',
+    title: 'Sign In',
+    Icon: Icon.LockOutlined,
     shortName,
   },
   {
@@ -39,9 +47,19 @@ export const router: Platform.IRoute[] = [
     shortName,
   },
   {
+    path: routes.ROUTE_AUTH_CREATE_ACCOUNT,
+    Page: RegisterPage,
+    layout: 'Auth',
+    title: 'Create Account',
+    Icon: Icon.AssignmentInd,
+    shortName,
+  },
+  {
     path: routes.ROUTE_AUTH_RECOVERY_PASSWORD,
     Page: RecoveryPasswordPage,
     layout: 'Auth',
+    title: 'Recovery Password',
+    Icon: Icon.ThreeSixty,
     shortName,
   },
   {
@@ -49,6 +67,8 @@ export const router: Platform.IRoute[] = [
     Page: UpdatePasswordPage,
     isPrivate: true,
     layout: 'Auth',
+    title: 'Update Password',
+    Icon: Icon.Update,
     shortName,
   },
 ];

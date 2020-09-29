@@ -29,8 +29,7 @@ const defaults = {
   caches: ['localStorage', 'cookie'],
   // languages to not persist (cookie, localStorage)
   excludeCacheFor: ['cimode'],
-  fallbackLng: 'en_us',
-  debug: true,
+  debug: false,
 };
 
 export {I18nextProvider, useTranslation} from 'react-i18next';

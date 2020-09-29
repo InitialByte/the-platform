@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {FC} from 'react';
+import {RecoveryForm} from '../components/forms/recovery-password';
 
-const RecoveryPasswordPage: FC = () => <div>RecoveryPasswordPage</div>;
+const RecoveryPasswordPage: FC = () => <RecoveryForm />;
 
 RecoveryPasswordPage.displayName = 'RecoveryPasswordPage';
 

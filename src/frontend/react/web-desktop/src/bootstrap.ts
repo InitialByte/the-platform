@@ -7,8 +7,9 @@ import {
   browserMeasure,
   paintMeasure,
   initI18n,
-  i18next,
+  logger,
 } from '@the_platform/core';
+const {config} = require('../../../../../package.json');
 
 window.onload = (): void => {
   setTimeout((): void => {
@@ -20,8 +21,17 @@ window.onload = (): void => {
 
 export const bootstrapApp = async (): Promise<void> => {
   const storagePrefix = 'PLT_';
+  const {availableLanguages = [], defaultLanguage = 'en_us'} =
+    config?.app?.settings ?? {};
 
-  initI18n().then(() => i18next.changeLanguage('en_us'));
+  initI18n({
+    fallbackLng: {
+      'en-US': 'en_us',
+      'ru-RU': 'ru_ru',
+    },
+    supportedLngs: availableLanguages ?? [defaultLanguage],
+    lowerCaseLng: true,
+  }).catch((e: Error) => logger.error(E_CODE.E_1, e));
 
   // Can be accessed across the whole application.
   sessionStorageInit(storagePrefix);
@@ -38,7 +48,7 @@ export const bootstrapApp = async (): Promise<void> => {
           ],
         }),
     )
-    .catch(console.error);
+    .catch((e: Error) => logger.error(E_CODE.E_1, e));
 
   return Promise.resolve();
 };

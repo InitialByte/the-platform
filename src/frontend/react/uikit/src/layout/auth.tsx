@@ -1,7 +1,13 @@
 import * as React from 'react';
-import {FC} from 'react';
-import {makeStyles, Container, Box, Typography, Avatar, Icon} from '../atom';
+import {ReactNode} from 'react';
+import {makeStyles, Container, Box, Typography, Avatar} from '../atom';
 import {Copyright} from '../molecule';
+
+interface IProps {
+  title: string;
+  Icon: ReactNode;
+  children: any;
+}
 
 const spacing = 8;
 const useStyles = makeStyles((theme) => ({
@@ -17,18 +23,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const AuthLayout: FC = ({children}) => {
+export const AuthLayout = ({children, Icon, title}: IProps): JSX.Element => {
   const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs">
-      <Box mt={8}>Change language</Box>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <Icon.LockOutlined />
+          <Icon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          {title}
         </Typography>
         {children}
       </div>

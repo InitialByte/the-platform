@@ -194,7 +194,6 @@ RUN apk add yarn git && \
 ## Install dependencies and cache it.
 COPY package.json .
 COPY src/frontend/react/web-desktop/package.json src/frontend/react/web-desktop/package.json
-COPY src/frontend/modules/register/package.json src/frontend/modules/register/package.json
 COPY src/frontend/modules/auth/package.json src/frontend/modules/auth/package.json
 COPY src/frontend/react/uikit/package.json src/frontend/react/uikit/package.json
 COPY src/frontend/core/package.json src/frontend/core/package.json

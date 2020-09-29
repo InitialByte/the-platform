@@ -38,3 +38,22 @@ auth.get('/signout', isAuthenticated, (_: Request, res: Response): void => {
   clearJwtCookie(res.clearCookie.bind(res));
   res.status(SUCCESS_STATUS).send();
 });
+
+// /api/v1/auth/update-password
+auth.post(
+  '/update-password',
+  isAuthenticated,
+  (_: Request, res: Response): void => {
+    res.status(SUCCESS_STATUS).send();
+  },
+);
+
+// /api/v1/auth/recovery-password
+auth.post('/recovery-password', (_: Request, res: Response): void => {
+  res.status(SUCCESS_STATUS).send();
+});
+
+// /api/v1/auth/register
+auth.post('/register', (_: Request, res: Response): void => {
+  res.status(SUCCESS_STATUS).send();
+});

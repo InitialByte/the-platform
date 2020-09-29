@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {useEffect, FC} from 'react';
+import {useEffect, useState, FC} from 'react';
 import {Reducer} from 'redux';
 import {useLocation} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Routes, Route, Navigate} from 'react-router-dom';
-import {i18next, loadJsonFile} from '@the_platform/core';
+import {logger, i18next, loadJsonFile} from '@the_platform/core';
 import {AuthLayout, WithSidebarLayout} from '@the_platform/react-uikit';
 import * as routes from '@the_platform/routes';
 import {
@@ -36,6 +36,7 @@ interface IProps {
   modulesRoute: Platform.IRoute[];
   importModuleDispatch: typeof importModule;
   activateModuleDispatch: typeof activateModule;
+  availableLanguages: string[];
 }
 
 const mapState = ({
@@ -56,7 +57,7 @@ const tryCatchFnRun = (fn: unknown): void => {
     try {
       fn();
     } catch (e) {
-      console.error(e);
+      logger.error(E_CODE.E_1, e);
     }
   }
 };
@@ -72,13 +73,19 @@ export const AppContainer = connect(
     importModuleDispatch,
     availableLanguages,
     activateModuleDispatch,
-  }: Omit<IProps, 'auth'>): JSX.Element => {
+  }: Omit<IProps, 'auth' | 'i18n'>): JSX.Element => {
     const {pathname} = useLocation();
+    // This is neccessary to reload a page when new language file loaded and added.
+    const [refreshIndex, setRefreshIndex] = useState(0);
     const {imported, active, paths} = modules;
 
-    const RenderLayout: FC = ({layout, children}) => {
+    const RenderLayout: FC = ({layout, title, Icon, children}) => {
       if (layout === 'Auth') {
-        return <AuthLayout>{children}</AuthLayout>;
+        return (
+          <AuthLayout Icon={Icon} title={title}>
+            {children}
+          </AuthLayout>
+        );
       }
 
       return <WithSidebarLayout>{children}</WithSidebarLayout>;
@@ -111,20 +118,21 @@ export const AppContainer = connect(
                   value,
                 );
               } else {
-                console.error(
+                logger.error(
+                  E_CODE.E_1,
                   `Can not load ${availableLanguages[index]} language`,
                 );
               }
             }),
           )
-          .catch(console.error)
-          .finally(() => i18next.reloadResources());
+          .catch((e: Error) => logger.error(E_CODE.E_1, e))
+          .finally(() => setRefreshIndex(refreshIndex + 1));
 
         if (reducer && typeof reducer === 'function') {
           try {
             injectReducer(shortName, reducer);
           } catch (e) {
-            console.error(e);
+            logger.error(E_CODE.E_1, e);
           }
         }
 
@@ -145,6 +153,8 @@ export const AppContainer = connect(
             path,
             Page,
             isPrivate = false,
+            Icon = <span />,
+            title = 'Empty title',
             layout = 'WithSidebar',
           }: Platform.IRoute) => (
             <Route
@@ -152,7 +162,7 @@ export const AppContainer = connect(
                 isPrivate && !isAuth ? (
                   <Navigate to={ROUTE_LOGIN} replace />
                 ) : (
-                  <RenderLayout layout={layout}>
+                  <RenderLayout Icon={Icon} title={title} layout={layout}>
                     <Page />
                   </RenderLayout>
                 )

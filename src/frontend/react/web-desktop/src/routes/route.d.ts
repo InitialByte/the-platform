@@ -4,6 +4,8 @@ declare namespace Platform {
     Page: JSX.Element | React.ReactNode;
     exact?: boolean;
     isPrivate?: boolean;
+    title?: string;
+    Icon?: JSX.Element | React.ReactNode;
     layout?: 'WithSidebar' | 'Auth';
     shortName: string;
   }

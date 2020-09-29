@@ -12,9 +12,17 @@
     "baseUrl": "./",
     "noEmit": true,
     "strict": true,
+    "lib": [
+      "ES2015",
+      "ES2016",
+      "ES2017",
+      "ES2018",
+      "ES2019",
+      "ES2020",
+      "ESNext"
+    ],
     "paths": {
       "@the_platform/react-web-desktop": ["src/frontend/react/web-desktop/src/index"],
-      "@the_platform/module-register": ["src/frontend/modules/register/src/index"],
       "@the_platform/nodejs-core": ["src/backend/nodejs/rest/core/src/index"],
       "@the_platform/module-auth": ["src/frontend/modules/auth/src/index"],
       "@the_platform/react-uikit": ["src/frontend/react/uikit/src/index"],

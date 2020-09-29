@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {FC} from 'react';
+import {RegisterForm} from '../components/forms/register';
 
-const RegisterPage: FC = () => <div>Register</div>;
+const RegisterPage: FC = () => <RegisterForm />;
 
 RegisterPage.displayName = 'RegisterPage';
 

@@ -29,9 +29,17 @@ declare global {
     E_CODE: typeof E_CODE;
     E_TYPE: typeof E_TYPE;
     __INITIAL_STATE__: {
-      modules: IModuleState,
-      i18n: Ii18nState,
-      env: IEnvState,
+      modules: IModuleState;
+      i18n: Ii18nState;
+      env: IEnvState;
     };
   }
+}
+
+declare interface PromiseConstructor {
+  allSettled(
+    promises: Array<Promise<any>>,
+  ): Promise<
+    Array<{status: 'fulfilled' | 'rejected'; value?: any; reason?: any}>
+  >;
 }

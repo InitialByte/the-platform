@@ -7,7 +7,39 @@
     "buttons": {
       "remember": "Запомнить меня",
       "submit": "Войти",
-      "forgot": "Забыли пароль?"
+      "forgot": "Забыли пароль?",
+      "createAccount": "Зарегистрироваться"
+    },
+    "errors": {
+      "required": "Обязательно",
+      "invalidEmail": "Некорректный email"
+    }
+  },
+
+  "recovery": {
+    "fields": {
+      "email": "Email"
+    },
+    "buttons": {
+      "submit": "Восстановить пароль",
+      "signin": "Войти",
+      "createAccount": "Зарегистрироваться"
+    },
+    "errors": {
+      "required": "Обязательно",
+      "invalidEmail": "Некорректный email"
+    }
+  },
+
+  "register": {
+    "fields": {
+      "fullName": "ФИО",
+      "password": "Пароль",
+      "email": "Email"
+    },
+    "buttons": {
+      "submit": "Зарегистрироваться",
+      "signin": "Войти"
     },
     "errors": {
       "required": "Обязательно",
