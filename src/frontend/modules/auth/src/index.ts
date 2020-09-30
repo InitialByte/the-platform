@@ -1,8 +1,9 @@
 import {lazy} from 'react';
-import {logger} from '@the_platform/core';
+import {logger, customRequest, CONST_URL} from '@the_platform/core';
 import {Icon} from '@the_platform/react-uikit';
 import * as routes from './constants/routes';
 import {shortName} from '../package.json';
+import {actions} from './reducer';
 
 const LoginPage = lazy(
   () => import(/* webpackChunkName: "pages/auth_login" */ './pages/login'),
@@ -37,6 +38,7 @@ export const router: Platform.IRoute[] = [
     Page: LoginPage,
     layout: 'Auth',
     title: 'Sign In',
+    onlyForNotAuth: true,
     Icon: Icon.LockOutlined,
     shortName,
   },
@@ -49,6 +51,7 @@ export const router: Platform.IRoute[] = [
   {
     path: routes.ROUTE_AUTH_CREATE_ACCOUNT,
     Page: RegisterPage,
+    onlyForNotAuth: true,
     layout: 'Auth',
     title: 'Create Account',
     Icon: Icon.AssignmentInd,
@@ -57,6 +60,7 @@ export const router: Platform.IRoute[] = [
   {
     path: routes.ROUTE_AUTH_RECOVERY_PASSWORD,
     Page: RecoveryPasswordPage,
+    onlyForNotAuth: true,
     layout: 'Auth',
     title: 'Recovery Password',
     Icon: Icon.ThreeSixty,
@@ -66,15 +70,26 @@ export const router: Platform.IRoute[] = [
     path: routes.ROUTE_AUTH_UPDATE_PASSWORD,
     Page: UpdatePasswordPage,
     isPrivate: true,
-    layout: 'Auth',
     title: 'Update Password',
     Icon: Icon.Update,
     shortName,
   },
 ];
 
-export const bootstrap = (): void => {
+export const bootstrap = (store: Record<string, unknown>): void => {
   logger.info('PLT.AUTH: Importing AUTH module.');
+
+  customRequest
+    .get(CONST_URL.URL_TOKEN_CHECK)
+    .then(
+      (result: unknown): Promise<unknown> => {
+        console.log('result', result);
+        // TODO: add fullName from result
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+        return store.dispatch(actions.simpleAuth({fullName: 'test'}));
+      },
+    )
+    .catch(console.error);
 };
 
 export {reducer} from './reducer';

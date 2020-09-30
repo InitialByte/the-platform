@@ -3,7 +3,7 @@ import {Suspense, StrictMode} from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import {ErrorBoundary, Spinner, CSSBaseline} from '@the_platform/react-uikit';
 import {AppContainer} from '../containers/App';
-import {Notification} from '../components/Notification';
+import {Notification} from '../components';
 
 interface IProps {
   modulesRoute: Platform.IRoute[];

@@ -34,7 +34,9 @@ const defaults = {
 
 export {I18nextProvider, useTranslation} from 'react-i18next';
 export const i18next = i18n;
-export const initI18n = (settings: any = {}): ReturnType<typeof i18n> =>
+export const initI18n = (
+  settings: Record<string, unknown> = {},
+): ReturnType<typeof i18n.init> =>
   i18n
     // learn more: https://github.com/i18next/i18next-browser-languageDetector
     .use(LanguageDetector)

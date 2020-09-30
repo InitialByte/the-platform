@@ -1,7 +1,13 @@
 import * as React from 'react';
 import {FC} from 'react';
 
-const NotFoundPage: FC = () => <>NotFound</>;
+const NotFoundPage: FC = () => (
+  <>
+    <div>Page not found :(</div>
+    Maybe the page you are looking for has been removed, or you typed in the
+    wrong URL
+  </>
+);
 
 NotFoundPage.displayName = 'NotFoundPage';
 

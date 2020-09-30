@@ -44,3 +44,5 @@ export const AuthLayout: FC<IProps> = ({children, Icon, title = ''}) => {
     </Container>
   );
 };
+
+AuthLayout.displayName = 'AuthLayout';

@@ -47,11 +47,6 @@ interface IAuthData {
   fullName: string;
 }
 
-interface IPayload {
-  email: string;
-  password: string;
-}
-
 const createAsync = (
   requestType:
     | 'recoveryPassword'
@@ -121,7 +116,16 @@ const initialState: IAuthState = {
     },
   },
 };
-const reducers = {};
+const reducers = {
+  simpleAuth: (
+    state: INotificationState,
+    {payload}: PayloadAction<IAuthData>,
+  ): void => {
+    state.isAuth = true;
+    state.fullName = payload?.fullName ?? '';
+  },
+};
+
 const extraReducers = {
   [fetchLogin.pending.toString()]: (
     state: IAuthState,
@@ -244,4 +248,4 @@ export const authSlice = createSlice({
   extraReducers,
 });
 
-export const {reducer} = authSlice;
+export const {reducer, actions} = authSlice;

@@ -39,8 +39,8 @@ declare global {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare interface PromiseConstructor {
   allSettled(
-    promises: Array<Promise<any>>,
+    promises: Array<Promise<unknown>>,
   ): Promise<
-    Array<{status: 'fulfilled' | 'rejected', value?: any, reason?: any, }>
+    Array<{status: 'fulfilled' | 'rejected', value?: unknown, reason?: unknown, }>
   >;
 }

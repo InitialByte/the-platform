@@ -1,17 +1,10 @@
-/* eslint-disable */
-
 import * as React from 'react';
 import {useEffect, useState, FC} from 'react';
 import {Reducer} from 'redux';
 import {useLocation} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Routes, Route, Navigate} from 'react-router-dom';
-import {
-  logger,
-  i18next,
-  loadJsonFile,
-  ResponsePromise,
-} from '@the_platform/core';
+import {logger, i18next, loadJsonFile} from '@the_platform/core';
 import {AuthLayout, WithSidebarLayout} from '@the_platform/react-uikit';
 import * as routes from '@the_platform/routes';
 import {
@@ -19,9 +12,10 @@ import {
   activateModule,
   IModuleState,
 } from '../store/reducers/modules';
-import {injectReducer} from '../store/configuration';
+import {MainMenu} from '../components';
+import {injectReducer, store} from '../store/configuration';
 import {router} from '../routes/router';
-import {ROUTE_LOGIN} from '../routes/routes';
+import {ROUTE_LOGIN, ROUTE_HOME} from '../routes/routes';
 
 interface IMapStateProps {
   modules: IModuleState;
@@ -33,10 +27,10 @@ interface IProps {
   modules: IModuleState;
   isAuth: boolean;
   auth: {
-    isAuth: boolean;
+    isAuth: boolean,
   };
   i18n: {
-    available: string[];
+    available: string[],
   };
   modulesRoute: Platform.IRoute[];
   importModuleDispatch: typeof importModule;
@@ -60,7 +54,7 @@ const mapDispatch = {
 const tryCatchFnRun = (fn: unknown): void => {
   if (fn && typeof fn === 'function') {
     try {
-      fn();
+      fn(store);
     } catch (e) {
       logger.error(E_CODE.E_1, e);
     }
@@ -96,9 +90,10 @@ export const AppContainer = connect(
         );
       }
 
-      return <WithSidebarLayout>{children}</WithSidebarLayout>;
+      return <WithSidebarLayout Menu={MainMenu}>{children}</WithSidebarLayout>;
     };
 
+    // eslint-disable-next-line sonarjs/cognitive-complexity
     useEffect((): void => {
       const found = paths.find(({path}) => path === pathname);
       const shortName = found ? found.shortName : '';
@@ -111,9 +106,10 @@ export const AppContainer = connect(
         const bootstrap = routes[`${shortName}Bootstrap`] as () => void;
 
         // Add i18n for loaded module.
+        // eslint-disable-next-line promise/catch-or-return
         Promise.allSettled(
           availableLanguages.map(
-            (lang: string): Promise<ResponsePromise> =>
+            (lang: string): ReturnType<typeof loadJsonFile> =>
               loadJsonFile(`/i18n/${shortName}/${lang}.json`),
           ),
         )
@@ -161,14 +157,18 @@ export const AppContainer = connect(
             path,
             Page,
             isPrivate = false,
+            onlyForNotAuth,
             Icon,
             title = 'Empty title',
             layout = 'WithSidebar',
           }: Platform.IRoute) => (
             <Route
               element={
+                // eslint-disable-next-line no-nested-ternary
                 isPrivate && !isAuth ? (
                   <Navigate to={ROUTE_LOGIN} replace />
+                ) : isAuth && onlyForNotAuth ? (
+                  <Navigate to={ROUTE_HOME} replace />
                 ) : (
                   <RenderLayout Icon={Icon} title={title} layout={layout}>
                     <Page />

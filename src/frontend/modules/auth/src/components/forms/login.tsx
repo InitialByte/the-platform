@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import * as React from 'react';
 import {useNavigate, Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
@@ -37,11 +34,14 @@ const initialValues: ILoginFormValues = {
 
 const MIN_NUMBER_CHARS_IN_PASSWORD = 5;
 const notificationActions = getObjectCache('notificationActions') as {
-  createToast: () => void;
+  createToast: (message: {
+    message: string,
+    type: 'error' | 'warning' | 'info' | 'success',
+  }) => void,
 };
 
 const onSubmit = (
-  navigate: typeof useNavigate,
+  navigate: ReturnType<typeof useNavigate>,
   dispatch: () => Promise<unknown>,
   navigateAfterSignin: string = '/',
 ) => (
@@ -49,27 +49,32 @@ const onSubmit = (
   {setSubmitting}: Form.FormikHelpers<ILoginFormValues>,
 ): Promise<unknown> =>
   dispatch(fetchLogin(values))
-    .then((result: Record<string, any>): void => {
-      if (result.error) {
-        throw result.error;
-      }
-      dispatch(
-        notificationActions.createToast({
-          message: 'Success signin',
-          type: 'success',
-        }),
-      );
-      return navigate(navigateAfterSignin);
-    })
-    .catch((e: Error): void => {
-      logger.error(E_CODE.E_1, e);
-      dispatch(
-        notificationActions.createToast({
-          message: e.message,
-          type: 'error',
-        }),
-      );
-    })
+    .then(
+      (result: Record<string, unknown>): ReturnType<typeof dispatch> => {
+        if (result.error) {
+          throw result.error;
+        }
+
+        return dispatch(
+          notificationActions.createToast({
+            message: 'Success signin',
+            type: 'success',
+          }),
+        );
+      },
+    )
+    .then((): ReturnType<typeof navigate> => navigate(navigateAfterSignin))
+    .catch(
+      (e: Error): ReturnType<typeof dispatch> => {
+        logger.error(E_CODE.E_1, e);
+        return dispatch(
+          notificationActions.createToast({
+            message: e.message,
+            type: 'error',
+          }),
+        );
+      },
+    )
     .finally((): void => {
       setSubmitting(false);
     });

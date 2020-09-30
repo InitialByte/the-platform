@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import * as React from 'react';
 import {useDispatch} from 'react-redux';
 import {Button, TextField, Form, makeStyles} from '@the_platform/react-uikit';
@@ -17,44 +14,49 @@ interface IUpdatePwdValues {
   passwordConfirm: string;
 }
 
-interface ISubmitting {
-  setSubmitting: (value: boolean) => void;
-}
-
 const initialValues: IUpdatePwdValues = {
   password: '',
   passwordConfirm: '',
 };
 const notificationActions = getObjectCache('notificationActions') as {
-  createToast: () => void;
+  createToast: (message: {
+    message: string,
+    type: 'error' | 'warning' | 'info' | 'success',
+  }) => void,
 };
 const MIN_NUMBER_CHARS_IN_PASSWORD = 5;
 
-const onSubmit = (dispatch: any) => (
+const onSubmit = (dispatch: () => Promise<unknown>) => (
   values: IUpdatePwdValues,
   {setSubmitting}: Form.FormikHelpers<IUpdatePwdValues>,
-): Promise<unkown> =>
+): Promise<unknown> =>
   dispatch(fetchUpdatePassword(values))
-    .then((result: any): void => {
-      if (result.error) {
-        throw result.error;
-      }
-      dispatch(
-        notificationActions.createToast({
-          message: 'Success update password',
-          type: 'success',
-        }),
-      );
-    })
-    .catch((e: Error): void => {
-      logger.error(E_CODE.E_1, e);
-      dispatch(
-        notificationActions.createToast({
-          message: e.message,
-          type: 'error',
-        }),
-      );
-    })
+    .then(
+      (result: Record<string, unknown>): ReturnType<typeof dispatch> => {
+        if (result.error) {
+          throw result.error;
+        }
+
+        return dispatch(
+          notificationActions.createToast({
+            message: 'Success update password',
+            type: 'success',
+          }),
+        );
+      },
+    )
+    .catch(
+      (e: Error): ReturnType<typeof dispatch> => {
+        logger.error(E_CODE.E_1, e);
+
+        return dispatch(
+          notificationActions.createToast({
+            message: e.message,
+            type: 'error',
+          }),
+        );
+      },
+    )
     .finally((): void => {
       setSubmitting(false);
     });
@@ -87,7 +89,7 @@ export const UpdatePasswordForm = (): JSX.Element => {
     passwordConfirm: validation
       .string()
       .oneOf(
-        [validation.ref('password'), null],
+        [validation.ref('password')],
         t('updatePwd.errors.passwordConfirm'),
       )
       .min(

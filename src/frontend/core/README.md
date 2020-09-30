@@ -2,19 +2,20 @@
 
 ## Services
 
-1. Cookies
-2. ErrorTracking
-3. EventEmitter
-4. FileSaving
-5. Fingerprint
-6. HttpRequest [Documentation KY](https://github.com/sindresorhus/ky)
-7. I18N
-8. JsonP
-9. ObjectCache
-10. RealUserMonitoring
-11. ServiceWorker
-12. StorageManager
-13. Validation [Documentation Yup](https://github.com/jquense/yup)
+1. Clsx [Documentation](https://github.com/lukeed/clsx)
+2. Cookies
+3. ErrorTracking
+4. EventEmitter
+5. FileSaving
+6. Fingerprint
+7. HttpRequest [Documentation KY](https://github.com/sindresorhus/ky)
+8. I18N
+9. JsonP
+10. ObjectCache
+11. RealUserMonitoring
+12. ServiceWorker
+13. StorageManager
+14. Validation [Documentation Yup](https://github.com/jquense/yup)
 
 ## Utils
 

@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import * as React from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
@@ -26,43 +23,53 @@ import {
 interface IRegisterFormValues {
   email: string;
   password: string;
+  fullName: string;
 }
 
 const initialValues: IRegisterFormValues = {
   email: '',
   password: '',
+  fullName: '',
 };
 
 const MIN_NUMBER_CHARS_IN_PASSWORD = 5;
 const notificationActions = getObjectCache('notificationActions') as {
-  createToast: () => void;
+  createToast: (message: {
+    message: string,
+    type: 'error' | 'warning' | 'info' | 'success',
+  }) => void,
 };
 
-const onSubmit = (dispatch: any) => (
+const onSubmit = (dispatch: () => Promise<unknown>) => (
   values: IRegisterFormValues,
   {setSubmitting}: Form.FormikHelpers<IRegisterFormValues>,
-): Promise<any> =>
+): Promise<unknown> =>
   dispatch(fetchRegister(values))
-    .then((result: any): void => {
-      if (result.error) {
-        throw result.error;
-      }
-      dispatch(
-        notificationActions.createToast({
-          message: 'Success Register',
-          type: 'success',
-        }),
-      );
-    })
-    .catch((e: Error): void => {
-      logger.error(E_CODE.E_1, e);
-      dispatch(
-        notificationActions.createToast({
-          message: e.message,
-          type: 'error',
-        }),
-      );
-    })
+    .then(
+      (result: Record<string, unknown>): ReturnType<typeof dispatch> => {
+        if (result.error) {
+          throw result.error;
+        }
+
+        return dispatch(
+          notificationActions.createToast({
+            message: 'Success Register',
+            type: 'success',
+          }),
+        );
+      },
+    )
+    .catch(
+      (e: Error): ReturnType<typeof dispatch> => {
+        logger.error(E_CODE.E_1, e);
+        return dispatch(
+          notificationActions.createToast({
+            message: e.message,
+            type: 'error',
+          }),
+        );
+      },
+    )
     .finally((): void => {
       setSubmitting(false);
     });
@@ -83,6 +90,7 @@ export const RegisterForm = (): JSX.Element => {
   const dispatch = useDispatch();
   const {t} = useTranslation('auth');
   const classes = useStyles();
+  const required = t('register.errors.required');
 
   const validationSchema = validation.object({
     password: validation
@@ -91,12 +99,12 @@ export const RegisterForm = (): JSX.Element => {
         MIN_NUMBER_CHARS_IN_PASSWORD,
         t('register.errors.min', {min: MIN_NUMBER_CHARS_IN_PASSWORD}),
       )
-      .required(t('register.errors.required')),
+      .required(required),
     email: validation
       .string()
       .email(t('register.errors.invalidEmail'))
-      .required(t('register.errors.required')),
-    fullName: validation.string().required(t('register.errors.required')),
+      .required(required),
+    fullName: validation.string().required(required),
   });
   const form = Form.useFormik({
     initialValues,

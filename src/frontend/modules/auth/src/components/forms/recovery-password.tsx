@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import * as React from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
@@ -31,7 +28,10 @@ const initialValues: IRecoveryPwdFormValues = {
   email: '',
 };
 const notificationActions = getObjectCache('notificationActions') as {
-  createToast: () => void;
+  createToast: (message: {
+    message: string,
+    type: 'error' | 'warning' | 'info' | 'success',
+  }) => void,
 };
 
 const onSubmit = (dispatch: () => Promise<unknown>) => (
@@ -39,26 +39,31 @@ const onSubmit = (dispatch: () => Promise<unknown>) => (
   {setSubmitting}: Form.FormikHelpers<IRecoveryPwdFormValues>,
 ): Promise<unknown> =>
   dispatch(fetchRecoveryPassword(values))
-    .then((result: Record<string, any>): void => {
-      if (result.error) {
-        throw result.error;
-      }
-      dispatch(
-        notificationActions.createToast({
-          message: 'Success recovery password',
-          type: 'success',
-        }),
-      );
-    })
-    .catch((e: Error): void => {
-      logger.error(E_CODE.E_1, e);
-      dispatch(
-        notificationActions.createToast({
-          message: e.message,
-          type: 'error',
-        }),
-      );
-    })
+    .then(
+      (result: Record<string, unknown>): ReturnType<typeof dispatch> => {
+        if (result.error) {
+          throw result.error;
+        }
+
+        return dispatch(
+          notificationActions.createToast({
+            message: 'Success recovery password',
+            type: 'success',
+          }),
+        );
+      },
+    )
+    .catch(
+      (e: Error): ReturnType<typeof dispatch> => {
+        logger.error(E_CODE.E_1, e);
+        return dispatch(
+          notificationActions.createToast({
+            message: e.message,
+            type: 'error',
+          }),
+        );
+      },
+    )
     .finally((): void => {
       setSubmitting(false);
     });

@@ -4,6 +4,7 @@ declare namespace Platform {
     Page: typeof React.Component;
     exact?: boolean;
     isPrivate?: boolean;
+    onlyForNotAuth?: boolean;
     title?: string;
     Icon?: typeof React.Component;
     layout?: 'WithSidebar' | 'Auth';

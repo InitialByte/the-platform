@@ -1,3 +1,3 @@
 // @link https://github.com/lukeed/clsx
 
-export * from 'clsx';
+export {default as clsx} from 'clsx';
