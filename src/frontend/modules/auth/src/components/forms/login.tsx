@@ -30,28 +30,26 @@ interface ILoginFormValues {
   password: string;
 }
 
-interface ISubmitting {
-  setSubmitting: (value: boolean) => void;
-}
-
 const initialValues: ILoginFormValues = {
   email: '',
   password: '',
 };
 
 const MIN_NUMBER_CHARS_IN_PASSWORD = 5;
-const notificationActions = getObjectCache('notificationActions');
+const notificationActions = getObjectCache('notificationActions') as {
+  createToast: () => void;
+};
 
 const onSubmit = (
   navigate: typeof useNavigate,
-  dispatch: any,
+  dispatch: () => Promise<unknown>,
   navigateAfterSignin: string = '/',
-): void => (
+) => (
   values: ILoginFormValues,
-  {setSubmitting}: ISubmitting,
-): Promise<any> =>
+  {setSubmitting}: Form.FormikHelpers<ILoginFormValues>,
+): Promise<unknown> =>
   dispatch(fetchLogin(values))
-    .then((result: any): void => {
+    .then((result: Record<string, any>): void => {
       if (result.error) {
         throw result.error;
       }
@@ -60,7 +58,8 @@ const onSubmit = (
           message: 'Success signin',
           type: 'success',
         }),
-      ).finally(() => navigate(navigateAfterSignin));
+      );
+      return navigate(navigateAfterSignin);
     })
     .catch((e: Error): void => {
       logger.error(E_CODE.E_1, e);
@@ -75,13 +74,15 @@ const onSubmit = (
       setSubmitting(false);
     });
 
+const SPACING_TOP = 3;
+const SPACING_BOTTOM = 2;
 const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%',
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(SPACING_TOP, 0, SPACING_BOTTOM),
   },
 }));
 
@@ -96,7 +97,7 @@ export const LoginForm = (): JSX.Element => {
       .string()
       .min(
         MIN_NUMBER_CHARS_IN_PASSWORD,
-        `Must be ${MIN_NUMBER_CHARS_IN_PASSWORD} characters or more`,
+        t('signin.errors.min', {min: MIN_NUMBER_CHARS_IN_PASSWORD}),
       )
       .required(t('signin.errors.required')),
     email: validation

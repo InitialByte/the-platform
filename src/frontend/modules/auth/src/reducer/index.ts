@@ -71,7 +71,7 @@ const createAsync = (
   }
 
   const response = await serverMethod(payload);
-  return await response.json();
+  return response;
 };
 
 export const fetchLogin = createAsyncThunk(

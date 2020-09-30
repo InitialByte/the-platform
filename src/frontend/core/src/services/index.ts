@@ -3,6 +3,7 @@ export * from './storage-manager';
 export * from './error-tracking';
 export * from './service-worker';
 export * from './event-emitter';
+export * as cslx from './clsx';
 export * from './http-request';
 export * from './object-cache';
 export * from './fingerprint';

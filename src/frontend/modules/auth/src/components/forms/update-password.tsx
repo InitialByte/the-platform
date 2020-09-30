@@ -14,7 +14,7 @@ import {fetchUpdatePassword} from '../../reducer';
 
 interface IUpdatePwdValues {
   password: string;
-  passwordRepeat: string;
+  passwordConfirm: string;
 }
 
 interface ISubmitting {
@@ -23,14 +23,17 @@ interface ISubmitting {
 
 const initialValues: IUpdatePwdValues = {
   password: '',
-  passwordRepeat: '',
+  passwordConfirm: '',
 };
-const notificationActions = getObjectCache('notificationActions');
+const notificationActions = getObjectCache('notificationActions') as {
+  createToast: () => void;
+};
+const MIN_NUMBER_CHARS_IN_PASSWORD = 5;
 
-const onSubmit = (dispatch: any): void => (
+const onSubmit = (dispatch: any) => (
   values: IUpdatePwdValues,
-  {setSubmitting}: ISubmitting,
-): Promise<any> =>
+  {setSubmitting}: Form.FormikHelpers<IUpdatePwdValues>,
+): Promise<unkown> =>
   dispatch(fetchUpdatePassword(values))
     .then((result: any): void => {
       if (result.error) {
@@ -56,13 +59,15 @@ const onSubmit = (dispatch: any): void => (
       setSubmitting(false);
     });
 
+const SPACING_TOP = 3;
+const SPACING_BOTTOM = 2;
 const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%',
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(SPACING_TOP, 0, SPACING_BOTTOM),
   },
 }));
 
@@ -76,16 +81,20 @@ export const UpdatePasswordForm = (): JSX.Element => {
       .string()
       .min(
         MIN_NUMBER_CHARS_IN_PASSWORD,
-        `Must be ${MIN_NUMBER_CHARS_IN_PASSWORD} characters or more`,
+        t('updatePwd.errors.min', {min: MIN_NUMBER_CHARS_IN_PASSWORD}),
       )
-      .required(t('signin.errors.required')),
-    passwordRepeat: validation
+      .required(t('updatePwd.errors.required')),
+    passwordConfirm: validation
       .string()
+      .oneOf(
+        [validation.ref('password'), null],
+        t('updatePwd.errors.passwordConfirm'),
+      )
       .min(
         MIN_NUMBER_CHARS_IN_PASSWORD,
-        `Must be ${MIN_NUMBER_CHARS_IN_PASSWORD} characters or more`,
+        t('updatePwd.errors.min', {min: MIN_NUMBER_CHARS_IN_PASSWORD}),
       )
-      .required(t('signin.errors.required')),
+      .required(t('updatePwd.errors.required')),
   });
   const form = Form.useFormik({
     initialValues,
@@ -99,7 +108,7 @@ export const UpdatePasswordForm = (): JSX.Element => {
         name="password"
         helperText={form.touched.password ? form.errors.password : ''}
         error={form.touched.password && Boolean(form.errors.password)}
-        label={t('updatepwd.fields.password')}
+        label={t('updatePwd.fields.password')}
         type="password"
         onChange={form.handleChange}
         onBlur={form.handleBlur}
@@ -110,18 +119,18 @@ export const UpdatePasswordForm = (): JSX.Element => {
       />
 
       <TextField
-        name="password-repeat"
+        name="passwordConfirm"
         helperText={
-          form.touched.passwordRepeat ? form.errors.passwordRepeat : ''
+          form.touched.passwordConfirm ? form.errors.passwordConfirm : ''
         }
         error={
-          form.touched.passwordRepeat && Boolean(form.errors.passwordRepeat)
+          form.touched.passwordConfirm && Boolean(form.errors.passwordConfirm)
         }
-        label={t('updatepwd.fields.password_repeat')}
-        type="passwordRepeat"
+        label={t('updatePwd.fields.passwordConfirm')}
+        type="passwordConfirm"
         onChange={form.handleChange}
         onBlur={form.handleBlur}
-        value={form.values.passwordRepeat}
+        value={form.values.passwordConfirm}
         variant="outlined"
         margin="normal"
         fullWidth
@@ -135,7 +144,7 @@ export const UpdatePasswordForm = (): JSX.Element => {
         className={classes.submit}
         disabled={form.isSubmitting || form.isValidating}
         onClick={form.handleSubmit}>
-        {t('updatepwd.buttons.submit')}
+        {t('updatePwd.buttons.submit')}
       </Button>
     </form>
   );

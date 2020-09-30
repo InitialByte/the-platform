@@ -12,7 +12,8 @@
     },
     "errors": {
       "required": "Required",
-      "invalidEmail": "Invalid Email"
+      "invalidEmail": "Invalid Email",
+      "min": "Must be {{min}} characters or more"
     }
   },
 
@@ -31,6 +32,21 @@
     }
   },
 
+  "updatePwd": {
+    "fields": {
+      "password": "Password",
+      "passwordConfirm": "Confirm Password"
+    },
+    "buttons": {
+      "submit": "Update Password"
+    },
+    "errors": {
+      "required": "Required",
+      "passwordConfirm": "Passwords must match",
+      "min": "Must be {{min}} characters or more"
+    }
+  },
+
   "register": {
     "fields": {
       "fullName": "Full Name",
@@ -44,7 +60,8 @@
     },
     "errors": {
       "required": "Required",
-      "invalidEmail": "Invalid Email"
+      "invalidEmail": "Invalid Email",
+      "min": "Must be {{min}} characters or more"
     }
   }
 }

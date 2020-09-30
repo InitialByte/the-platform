@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "main": "./src/index.ts",
   "dependencies": {
+    "clsx": "^1.1.1",
     "core-js": "^3.6.5",
     "i18next": "^19.7.0",
     "i18next-browser-languagedetector": "^6.0.1",

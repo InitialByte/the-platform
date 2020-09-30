@@ -31,6 +31,20 @@
     }
   },
 
+  "updatePwd": {
+    "fields": {
+      "password": "Пароль",
+      "passwordConfirm": "Повторите Пароль"
+    },
+    "buttons": {
+      "submit": "Обновить пароль"
+    },
+    "errors": {
+      "required": "Обязательно",
+      "passwordConfirm": "Пароли не соответствуют"
+    }
+  },
+
   "register": {
     "fields": {
       "fullName": "ФИО",

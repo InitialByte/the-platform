@@ -27,21 +27,19 @@ interface IRecoveryPwdFormValues {
   email: string;
 }
 
-interface ISubmitting {
-  setSubmitting: (value: boolean) => void;
-}
-
 const initialValues: IRecoveryPwdFormValues = {
   email: '',
 };
-const notificationActions = getObjectCache('notificationActions');
+const notificationActions = getObjectCache('notificationActions') as {
+  createToast: () => void;
+};
 
-const onSubmit = (dispatch: any): void => (
+const onSubmit = (dispatch: () => Promise<unknown>) => (
   values: IRecoveryPwdFormValues,
-  {setSubmitting}: ISubmitting,
-): Promise<any> =>
+  {setSubmitting}: Form.FormikHelpers<IRecoveryPwdFormValues>,
+): Promise<unknown> =>
   dispatch(fetchRecoveryPassword(values))
-    .then((result: any): void => {
+    .then((result: Record<string, any>): void => {
       if (result.error) {
         throw result.error;
       }
@@ -50,7 +48,7 @@ const onSubmit = (dispatch: any): void => (
           message: 'Success recovery password',
           type: 'success',
         }),
-      ).finally(() => navigate(navigateAfterSignin));
+      );
     })
     .catch((e: Error): void => {
       logger.error(E_CODE.E_1, e);
@@ -65,13 +63,15 @@ const onSubmit = (dispatch: any): void => (
       setSubmitting(false);
     });
 
+const SPACING_TOP = 3;
+const SPACING_BOTTOM = 2;
 const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%',
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(SPACING_TOP, 0, SPACING_BOTTOM),
   },
 }));
 
@@ -83,8 +83,8 @@ export const RecoveryForm = (): JSX.Element => {
   const validationSchema = validation.object({
     email: validation
       .string()
-      .email(t('signin.errors.invalidEmail'))
-      .required(t('signin.errors.required')),
+      .email(t('recovery.errors.invalidEmail'))
+      .required(t('recovery.errors.required')),
   });
   const form = Form.useFormik({
     initialValues,
@@ -98,7 +98,7 @@ export const RecoveryForm = (): JSX.Element => {
         name="email"
         helperText={form.touched.email ? form.errors.email : ''}
         error={form.touched.email && Boolean(form.errors.email)}
-        label={t('signin.fields.email')}
+        label={t('recovery.fields.email')}
         autoFocus
         type="email"
         onChange={form.handleChange}

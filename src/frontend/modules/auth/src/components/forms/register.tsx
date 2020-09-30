@@ -28,21 +28,19 @@ interface IRegisterFormValues {
   password: string;
 }
 
-interface ISubmitting {
-  setSubmitting: (value: boolean) => void;
-}
-
 const initialValues: IRegisterFormValues = {
   email: '',
   password: '',
 };
 
 const MIN_NUMBER_CHARS_IN_PASSWORD = 5;
-const notificationActions = getObjectCache('notificationActions');
+const notificationActions = getObjectCache('notificationActions') as {
+  createToast: () => void;
+};
 
-const onSubmit = (dispatch: any): void => (
+const onSubmit = (dispatch: any) => (
   values: IRegisterFormValues,
-  {setSubmitting}: ISubmitting,
+  {setSubmitting}: Form.FormikHelpers<IRegisterFormValues>,
 ): Promise<any> =>
   dispatch(fetchRegister(values))
     .then((result: any): void => {
@@ -54,7 +52,7 @@ const onSubmit = (dispatch: any): void => (
           message: 'Success Register',
           type: 'success',
         }),
-      ).finally(() => navigate(navigateAfterSignin));
+      );
     })
     .catch((e: Error): void => {
       logger.error(E_CODE.E_1, e);
@@ -69,13 +67,15 @@ const onSubmit = (dispatch: any): void => (
       setSubmitting(false);
     });
 
+const SPACING_TOP = 3;
+const SPACING_BOTTOM = 2;
 const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%',
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(SPACING_TOP, 0, SPACING_BOTTOM),
   },
 }));
 
@@ -89,7 +89,7 @@ export const RegisterForm = (): JSX.Element => {
       .string()
       .min(
         MIN_NUMBER_CHARS_IN_PASSWORD,
-        `Must be ${MIN_NUMBER_CHARS_IN_PASSWORD} characters or more`,
+        t('register.errors.min', {min: MIN_NUMBER_CHARS_IN_PASSWORD}),
       )
       .required(t('register.errors.required')),
     email: validation

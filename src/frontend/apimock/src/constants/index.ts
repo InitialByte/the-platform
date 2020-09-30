@@ -32,6 +32,5 @@ export const DEFAULT_FULLNAME = 'John Doe';
 export const COOKIE_EXPIRES_IN = 800000000;
 export const COOKIE_OPTS = {
   maxAge: COOKIE_EXPIRES_IN,
-  path: '/api',
   httpOnly: true,
 };
