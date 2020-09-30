@@ -1,14 +1,16 @@
 declare namespace Platform {
   interface IRoute {
     path: string;
-    Page: typeof React.Component;
+    Page: React.LazyExoticComponent<React.FC<Record<string, unknown>>>;
     exact?: boolean;
     isPrivate?: boolean;
     onlyForNotAuth?: boolean;
     title?: string;
-    Icon?: typeof React.Component;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Icon?: any;
     layout?: 'WithSidebar' | 'Auth';
     shortName: string;
-    children: JSX.Element[] | JSX.Element;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    children?: any;
   }
 }

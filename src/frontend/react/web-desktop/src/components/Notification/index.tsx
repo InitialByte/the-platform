@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState, FC, Component} from 'react';
+import {useState, FC} from 'react';
 import {useSelector} from 'react-redux';
 import {Snackbar, Alert} from '@the_platform/react-uikit';
 import {TRootState} from '../../store';
@@ -25,13 +25,16 @@ export const Notification: FC = () => {
   const indexKey = 2;
 
   return toasts.map(
-    ({lifeTime, type, message, position}: IToast, index: number): Component => (
+    (
+      {lifeTime, type, message, position}: IToast,
+      index: number,
+    ): ReturnType<typeof Snackbar> => (
       <Snackbar
         key={`${type}_${index * indexKey}`}
         anchorOrigin={position}
         open={!toastsToHide.includes(index)}
         autoHideDuration={lifeTime}
-        onClose={handleClose}>
+        onClose={() => handleClose(index)}>
         <Alert onClose={() => handleClose(index)} severity={type}>
           {message}
         </Alert>

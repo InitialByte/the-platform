@@ -23,6 +23,8 @@ const reducer = {
   notification: notificationReducer,
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 const createReducer = (): Reducer<ReturnType<typeof reducer>> =>
   combineReducers({
     ...reducer,

@@ -37,7 +37,7 @@
     "src/frontend/**/*.tsx"
   ],
   "exclude": [
-    "**/node_modules/*",
+    "node_modules",
     "**/__snapshots__/*",
     "**/__tests__/*",
     "**/dist/*",
@@ -47,6 +47,7 @@
     "src/frontend/swagger",
     "src/frontend/storybook",
     "src/backend",
+    ".yarn",
     "*test*",
     "yarn/*"
   ]

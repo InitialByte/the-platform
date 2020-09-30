@@ -294,6 +294,6 @@ Keep it fast. How to check:
 - Add [Content editor](https://github.com/wix-incubator/rich-content).
 - Add mount point for modules without routing.
 - Add Protocol Buffers to communicate betweet micro services.
-- Add message bus to communicate between fronend modules.
+- Add message bus to communicate between frontend modules.
 - Add SAGA pattern to microservices.
 - Add type check i18n dictionaries with TypeScript [SO](https://stackoverflow.com/questions/58277973/how-to-type-check-i18n-dictionaries-with-typescript).

@@ -3,6 +3,7 @@ declare namespace Platform {
 
   interface IErrorTracking {
     error(errorCode: number, message?: TMessage): void;
+    error(errorCode: number, message?: TMessage, message2?: TMessage): void;
     table(message: TMessage): void;
     info(message: TMessage): void;
   }

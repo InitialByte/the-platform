@@ -1,16 +1,14 @@
 import * as React from 'react';
-import {ReactNode} from 'react';
+import {ReactNode, FC} from 'react';
 
 interface IProps {
-  preloader: ReactNode;
+  preloader?: ReactNode;
 }
 
-export function Spinner({preloader = '🌀'}: IProps): JSX.Element {
-  return (
-    <div aria-busy="true">
-      <span aria-hidden="true">{preloader}</span>
-    </div>
-  );
-}
+export const Spinner: FC<IProps> = ({preloader = '🌀'}) => (
+  <div aria-busy="true">
+    <span aria-hidden="true">{preloader}</span>
+  </div>
+);
 
 Spinner.displayName = 'Spinner';

@@ -84,6 +84,7 @@ export const AppContainer = connect(
     >> = ({layout, title, Icon = null, children}) => {
       if (layout === 'Auth') {
         return (
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           <AuthLayout Icon={Icon} title={title}>
             {children}
           </AuthLayout>
@@ -170,6 +171,7 @@ export const AppContainer = connect(
                 ) : isAuth && onlyForNotAuth ? (
                   <Navigate to={ROUTE_HOME} replace />
                 ) : (
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                   <RenderLayout Icon={Icon} title={title} layout={layout}>
                     <Page />
                   </RenderLayout>

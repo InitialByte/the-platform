@@ -86,7 +86,9 @@ export const bootstrap = (store: Record<string, unknown>): void => {
         console.log('result', result);
         // TODO: add fullName from result
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        return store.dispatch(actions.simpleAuth({fullName: 'test'}));
+        return store && store.dispatch && typeof store.dispatch === 'function'
+          ? store.dispatch(actions.simpleAuth({fullName: 'test'}))
+          : Promise.resolve();
       },
     )
     .catch(console.error);

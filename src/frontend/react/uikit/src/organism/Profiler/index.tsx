@@ -24,6 +24,6 @@ export const withProfiler = (
   onRender: TRenderCallback,
 ): ReactElement => (
   <Profiler id={id} onRender={onRender}>
-    <WrappedComponent {...(this?.props ?? {})} />
+    <WrappedComponent />
   </Profiler>
 );

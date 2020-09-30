@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
 
 interface IProps {
   children: JSX.Element[] | JSX.Element;
-  Menu: JSX.Element[] | JSX.Element;
+  Menu: FC<Record<string, unknown>>;
 }
 
 export const WithSidebarLayout: FC<IProps> = ({children, Menu}) => {
