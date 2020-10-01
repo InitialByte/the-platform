@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {FC, useState} from 'react';
 import {clsx} from '@the_platform/core';
-import {Copyright} from '../molecule';
+import {Copyright, LanguageSelector, IProps as ILangProps} from '../molecule';
 import {
   IconButton,
   Typography,
@@ -108,12 +108,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 /* eslint-enable @typescript-eslint/no-magic-numbers */
 
-interface IProps {
+interface IProps extends ILangProps {
   children: JSX.Element[] | JSX.Element;
   Menu: FC<Record<string, unknown>>;
 }
 
-export const WithSidebarLayout: FC<IProps> = ({children, Menu}) => {
+export const WithSidebarLayout: FC<IProps> = ({
+  children,
+  Menu,
+  onChangeLanguage,
+  currentLanguage,
+  availableLanguages,
+}) => {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const handleDrawerOpen = (): ReturnType<typeof setOpen> => setOpen(true);
@@ -151,6 +157,11 @@ export const WithSidebarLayout: FC<IProps> = ({children, Menu}) => {
 
           <IconButton color="inherit">
             <Icon.Translate />
+            <LanguageSelector
+              onChangeLanguage={onChangeLanguage}
+              availableLanguages={availableLanguages}
+              currentLanguage={currentLanguage}
+            />
           </IconButton>
 
           <IconButton color="inherit">

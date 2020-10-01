@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {Component, FC} from 'react';
 import {makeStyles, Container, Box, Typography, Avatar} from '../atom';
-import {Copyright} from '../molecule';
+import {Copyright, LanguageSelector, IProps as ILangProps} from '../molecule';
 
-interface IProps {
+interface IProps extends ILangProps {
   title?: string;
   Icon: typeof Component;
   children: JSX.Element[] | JSX.Element;
@@ -23,25 +23,42 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const AuthLayout: FC<IProps> = ({children, Icon, title = ''}) => {
+export const AuthLayout: FC<IProps> = ({
+  children,
+  onChangeLanguage,
+  Icon,
+  title = '',
+  currentLanguage,
+  availableLanguages,
+}) => {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <Icon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          {title}
-        </Typography>
-        {children}
-      </div>
+    <>
+      <LanguageSelector
+        onChangeLanguage={onChangeLanguage}
+        availableLanguages={availableLanguages}
+        currentLanguage={currentLanguage}
+      />
+      <Container component="main" maxWidth="xs">
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <Icon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            {title}
+          </Typography>
+          {children}
+        </div>
 
-      <Box mt={8}>
-        <Copyright webAddress="http://www.zlobin.dev" siteName="THE PLATFORM" />
-      </Box>
-    </Container>
+        <Box mt={8}>
+          <Copyright
+            webAddress="http://www.zlobin.dev"
+            siteName="THE PLATFORM"
+          />
+        </Box>
+      </Container>
+    </>
   );
 };
 

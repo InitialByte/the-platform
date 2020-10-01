@@ -1,3 +1,4 @@
+export * from './LanguageSelector';
 export * from './FormControlLabel';
 export * from './Copyright';
 export * from './TextField';

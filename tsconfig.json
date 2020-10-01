@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
+    "allowUnreachableCode": false,
+    "tsBuildInfoFile": ".cache/ts",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "strictNullChecks": true,
-    "importHelpers": true,
+    "importHelpers": false,
     "declaration": true,
+    "incremental": true,
     "target": "esnext",
     "module": "esnext",
+    // "listFiles": true,
     "jsx": "preserve",
     "outDir": "dist",
     "baseUrl": "./",
@@ -47,8 +51,8 @@
     "src/frontend/swagger",
     "src/frontend/storybook",
     "src/backend",
-    ".yarn",
+    ".yarn/**/*",
     "*test*",
-    "yarn/*"
+    "*yarn/*"
   ]
 }

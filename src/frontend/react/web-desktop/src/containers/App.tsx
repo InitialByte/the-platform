@@ -16,11 +16,13 @@ import {MainMenu} from '../components';
 import {injectReducer, store} from '../store/configuration';
 import {router} from '../routes/router';
 import {ROUTE_LOGIN, ROUTE_HOME} from '../routes/routes';
+import {TLang, Ii18nState, changeLocale} from '../store/reducers/i18n';
 
 interface IMapStateProps {
   modules: IModuleState;
   isAuth: boolean;
-  availableLanguages: string[];
+  availableLanguages: TLang[];
+  currentLanguage: TLang;
 }
 
 interface IProps {
@@ -29,13 +31,13 @@ interface IProps {
   auth: {
     isAuth: boolean,
   };
-  i18n: {
-    available: string[],
-  };
+  i18n: Ii18nState;
   modulesRoute: Platform.IRoute[];
   importModuleDispatch: typeof importModule;
   activateModuleDispatch: typeof activateModule;
-  availableLanguages: string[];
+  changeLocaleDispatch: typeof changeLocale;
+  availableLanguages: TLang[];
+  currentLanguage: TLang;
 }
 
 const mapState = ({
@@ -46,10 +48,12 @@ const mapState = ({
   modules,
   isAuth: auth?.isAuth ?? false,
   availableLanguages: i18n.available,
+  currentLanguage: i18n.active,
 });
 const mapDispatch = {
   importModuleDispatch: importModule,
   activateModuleDispatch: activateModule,
+  changeLocaleDispatch: changeLocale,
 };
 const tryCatchFnRun = (fn: unknown): void => {
   if (fn && typeof fn === 'function') {
@@ -72,11 +76,21 @@ export const AppContainer = connect(
     importModuleDispatch,
     availableLanguages,
     activateModuleDispatch,
+    currentLanguage,
+    changeLocaleDispatch,
   }: Omit<IProps, 'auth' | 'i18n'>): JSX.Element => {
     const {pathname} = useLocation();
     // This is neccessary to reload a page when new language file loaded and added.
     const [refreshIndex, setRefreshIndex] = useState(0);
     const {imported, active, paths} = modules;
+    const languages = availableLanguages.map((name) => ({
+      title: name.split('_')[0].toUpperCase(),
+      name,
+    }));
+    const handleChangeLanguage = (
+      language: TLang,
+    ): ReturnType<typeof changeLocaleDispatch> =>
+      changeLocaleDispatch(language);
 
     const RenderLayout: FC<Pick<
       Platform.IRoute,
@@ -84,14 +98,27 @@ export const AppContainer = connect(
     >> = ({layout, title, Icon = null, children}) => {
       if (layout === 'Auth') {
         return (
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-          <AuthLayout Icon={Icon} title={title}>
+          <AuthLayout
+            availableLanguages={languages}
+            onChangeLanguage={handleChangeLanguage}
+            currentLanguage={currentLanguage}
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            Icon={Icon}
+            title={title}>
             {children}
           </AuthLayout>
         );
       }
 
-      return <WithSidebarLayout Menu={MainMenu}>{children}</WithSidebarLayout>;
+      return (
+        <WithSidebarLayout
+          availableLanguages={languages}
+          onChangeLanguage={handleChangeLanguage}
+          currentLanguage={currentLanguage}
+          Menu={MainMenu}>
+          {children}
+        </WithSidebarLayout>
+      );
     };
 
     // eslint-disable-next-line sonarjs/cognitive-complexity

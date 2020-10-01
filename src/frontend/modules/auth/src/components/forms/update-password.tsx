@@ -129,7 +129,7 @@ export const UpdatePasswordForm = (): JSX.Element => {
           form.touched.passwordConfirm && Boolean(form.errors.passwordConfirm)
         }
         label={t('updatePwd.fields.passwordConfirm')}
-        type="passwordConfirm"
+        type="password"
         onChange={form.handleChange}
         onBlur={form.handleBlur}
         value={form.values.passwordConfirm}

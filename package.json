@@ -1,6 +1,6 @@
 {
   "name": "the_platform",
-  "description": "The Platform. Scalable fullstack framework for configuring complex medium and large size SPA projects.",
+  "description": "The Platform. Scalable fullstack framework for configuring complex medium and large SPA projects.",
   "author": "Eugene Zlobin <creastar@gmail.com>",
   "version": "1.0.0",
   "license": "MIT",
@@ -105,7 +105,7 @@
     "build": "cross-env MODE=production TZ=Asia/Novosibirsk webpack --progress --config ./configs/webpack/prod.js",
     "lint": "yarn eslint \"./src/frontend/@(core|modules|react)/**/*.@(ts|tsx)\" --ignore-pattern \"*.test.*\" --cache --cache-location ./.cache",
     "prettier": "prettier --write '**/*.{ts,tsx,scss}'",
-    "tslint": "yarn run tsc --noEmitOnError --pretty",
+    "tslint": "yarn run tsc --noEmitOnError",
     "check": "yarn tslint && yarn lint && yarn test",
     "prunecache": "rm -rf ./.cache/ && yarn cache clean",
     "upgrade": "yarn upgrade-interactive"
@@ -125,7 +125,9 @@
     "@babel/runtime": "^7.11.2",
     "@babel/runtime-corejs3": "^7.11.2",
     "@types/circular-dependency-plugin": "^5.0.1",
+    "@types/i18next": "^13.0.0",
     "@types/jest": "^26.0.14",
+    "@types/redux": "^3.6.0",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
     "@yarnpkg/pnpify": "^2.2.1",
@@ -157,6 +159,7 @@
     "jest": "^26.4.2",
     "lint-staged": "^10.4.0",
     "pnp-webpack-plugin": "^1.6.4",
+    "postcss": "^8.1.1",
     "postcss-js": "^3.0.1",
     "postcss-loader": "^4.0.2",
     "prettier": "^2.1.2",
@@ -173,6 +176,12 @@
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.1.4"
   },
+  "resolutions": {
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.9",
+    "@types/react-router-dom": "^5.1.5"
+  },
   "dependenciesMeta": {
     "@storybook/core": {
       "unplugged": true
@@ -180,8 +189,5 @@
     "opn": {
       "unplugged": true
     }
-  },
-  "dependencies": {
-    "postcss": "^8.1.1"
   }
 }

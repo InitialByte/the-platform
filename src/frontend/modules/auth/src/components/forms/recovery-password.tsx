@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {FC} from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {
@@ -80,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const RecoveryForm = (): JSX.Element => {
+export const RecoveryForm: FC = () => {
   const dispatch = useDispatch();
   const {t} = useTranslation('auth');
   const classes = useStyles();

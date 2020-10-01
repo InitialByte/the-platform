@@ -4,6 +4,7 @@
 *.webmanifest
 .prettierrc
 Dockerfile
+.gitignore
 .eslintrc
 *.html
 *.json
