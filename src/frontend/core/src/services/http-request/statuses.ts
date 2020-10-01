@@ -132,8 +132,8 @@ type TCodeKeys = keyof typeof statusCodes;
 
 export const getHttpStatusText = (
   statusCode: TCodeKeys,
-): TValueOf<statusCodes> | undefined => statusCodes[statusCode];
+): TValueOf<typeof statusCodes> | undefined => statusCodes[statusCode];
 
 export const getHttpStatusCode = (
   reasonPhrase: keyof typeof httpCodes,
-): TValueOf<httpCodes> | undefined => httpCodes[reasonPhrase];
+): TValueOf<typeof httpCodes> | undefined => httpCodes[reasonPhrase];

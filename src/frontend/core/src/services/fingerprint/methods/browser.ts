@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 // import {browserName} from '../../../utils/browser-name';
 
 interface IBrowser {

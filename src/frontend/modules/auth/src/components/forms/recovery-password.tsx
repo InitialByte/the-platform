@@ -21,6 +21,8 @@ import {
   ROUTE_AUTH_CREATE_ACCOUNT,
 } from '../../constants/routes';
 
+type TDispatch = (arg: any) => Promise<Record<string, string>>;
+
 interface IRecoveryPwdFormValues {
   email: string;
 }
@@ -35,13 +37,13 @@ const notificationActions = getObjectCache('notificationActions') as {
   }) => void,
 };
 
-const onSubmit = (dispatch: () => Promise<unknown>) => (
+const onSubmit = (dispatch: TDispatch) => (
   values: IRecoveryPwdFormValues,
   {setSubmitting}: Form.FormikHelpers<IRecoveryPwdFormValues>,
 ): Promise<unknown> =>
   dispatch(fetchRecoveryPassword(values))
     .then(
-      (result: Record<string, unknown>): ReturnType<typeof dispatch> => {
+      (result: Record<string, unknown>): Promise<unknown> => {
         if (result.error) {
           throw result.error;
         }

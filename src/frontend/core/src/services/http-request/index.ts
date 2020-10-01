@@ -20,4 +20,6 @@ export const customRequestInit = (hooks: Hooks): TKy => {
 export {ResponsePromise} from 'ky';
 
 export const loadJsonFile = (filePath: string): ResponsePromise['json'] =>
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   ky(filePath).json();

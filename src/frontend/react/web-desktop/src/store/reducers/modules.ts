@@ -60,6 +60,8 @@ const reducers = {
 
 const moduleSlice = createSlice({
   initialState,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   reducers,
   name,
 });

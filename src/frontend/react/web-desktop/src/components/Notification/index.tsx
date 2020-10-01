@@ -14,9 +14,11 @@ interface IToast {
   lifeTime: number;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export const Notification: FC = () => {
   const {toasts} = useSelector((state: TRootState) => state.notification);
-  const [toastsToHide, setToastHide] = useState<[]>([]);
+  const [toastsToHide, setToastHide] = useState<number[]>([]);
   const handleClose = (index: number): void => {
     if (!toastsToHide.includes(index)) {
       setToastHide((oldToastsToHide) => [...oldToastsToHide, index]);

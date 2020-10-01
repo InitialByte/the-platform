@@ -20,6 +20,8 @@ import {
   ROUTE_AUTH_RECOVERY_PASSWORD,
 } from '../../constants/routes';
 
+type TDispatch = (arg: any) => Promise<Record<string, string>>;
+
 interface IRegisterFormValues {
   email: string;
   password: string;
@@ -40,13 +42,13 @@ const notificationActions = getObjectCache('notificationActions') as {
   }) => void,
 };
 
-const onSubmit = (dispatch: () => Promise<unknown>) => (
+const onSubmit = (dispatch: TDispatch) => (
   values: IRegisterFormValues,
   {setSubmitting}: Form.FormikHelpers<IRegisterFormValues>,
 ): Promise<unknown> =>
   dispatch(fetchRegister(values))
     .then(
-      (result: Record<string, unknown>): ReturnType<typeof dispatch> => {
+      (result: Record<string, unknown>): Promise<unknown> => {
         if (result.error) {
           throw result.error;
         }

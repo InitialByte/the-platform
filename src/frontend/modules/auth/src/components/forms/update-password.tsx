@@ -9,6 +9,8 @@ import {
 } from '@the_platform/core';
 import {fetchUpdatePassword} from '../../reducer';
 
+type TDispatch = (arg: any) => Promise<Record<string, string>>;
+
 interface IUpdatePwdValues {
   password: string;
   passwordConfirm: string;
@@ -26,13 +28,13 @@ const notificationActions = getObjectCache('notificationActions') as {
 };
 const MIN_NUMBER_CHARS_IN_PASSWORD = 5;
 
-const onSubmit = (dispatch: () => Promise<unknown>) => (
+const onSubmit = (dispatch: TDispatch) => (
   values: IUpdatePwdValues,
   {setSubmitting}: Form.FormikHelpers<IUpdatePwdValues>,
 ): Promise<unknown> =>
   dispatch(fetchUpdatePassword(values))
     .then(
-      (result: Record<string, unknown>): ReturnType<typeof dispatch> => {
+      (result: Record<string, unknown>): Promise<unknown> => {
         if (result.error) {
           throw result.error;
         }

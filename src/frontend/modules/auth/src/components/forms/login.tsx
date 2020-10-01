@@ -22,6 +22,8 @@ import {
   ROUTE_AUTH_CREATE_ACCOUNT,
 } from '../../constants/routes';
 
+type TDispatch = (arg: any) => Promise<Record<string, string>>;
+
 interface ILoginFormValues {
   email: string;
   password: string;
@@ -42,7 +44,7 @@ const notificationActions = getObjectCache('notificationActions') as {
 
 const onSubmit = (
   navigate: ReturnType<typeof useNavigate>,
-  dispatch: () => Promise<unknown>,
+  dispatch: TDispatch,
   navigateAfterSignin: string = '/',
 ) => (
   values: ILoginFormValues,
@@ -50,7 +52,7 @@ const onSubmit = (
 ): Promise<unknown> =>
   dispatch(fetchLogin(values))
     .then(
-      (result: Record<string, unknown>): ReturnType<typeof dispatch> => {
+      (result: Record<string, unknown>): Promise<unknown> => {
         if (result.error) {
           throw result.error;
         }

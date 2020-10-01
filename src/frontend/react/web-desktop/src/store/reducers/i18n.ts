@@ -35,6 +35,8 @@ const reducers = {
 
 const i18nSlice = createSlice({
   initialState,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   reducers,
   name,
 });
