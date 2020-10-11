@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const assert = require('assert');
+const {expect} = require('chai');
 const {config} = require('../../../../package.json');
 
 const {devServer = {}} = config;
@@ -13,6 +14,7 @@ const debug = false;
 describe('Main web-site, smoke test.', () => {
   before(async () => {
     browser = await puppeteer.launch({
+      ignoreHTTPSErrors: true,
       headless: !debug,
       devtools: debug,
     });
@@ -24,9 +26,7 @@ describe('Main web-site, smoke test.', () => {
       waitUntil: 'networkidle0',
     });
 
-    const result = await page.$('#app > ul');
-
-    console.log('results', result.length);
+    expect(await page.title()).to.contain('the_platform');
   });
 
   after(async () => {
