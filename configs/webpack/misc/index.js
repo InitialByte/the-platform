@@ -116,10 +116,16 @@ const collectSwaggerApi = (rootPath) => {
 };
 
 const killByPort = (port) => {
-  // TODO check in MacOS, Windows.
-  execSync(
-    `lsof -n -i:${port} | grep LISTEN | awk '{ print $2 }' | uniq | xargs -r kill -9`,
-  );
+  const opsys = process.platform;
+  let command = `lsof -n -i:${port} | grep LISTEN | awk '{ print $2 }' | uniq | xargs -r kill -9`;
+
+  if (/^win/i.test(opsys)) {
+    command = '';
+  } else if (opsys === 'darwin') {
+    command = `lsof -i:${port} | grep LISTEN | awk '{print $2}' | uniq | xargs kill -9`;
+  }
+
+  execSync(command);
 };
 
 module.exports = {

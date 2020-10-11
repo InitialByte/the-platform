@@ -102,10 +102,11 @@ module.exports = merge(webpackConfig, {
     before: async () => {
       // Kill if something is listen to the same port.
       killByPort(port);
+
       if (apiProxyServer.type === 'local') {
         killByPort(apiMockServerPort);
         // Run local apimock server if external proxy does not enabled.
-        // const {stdout, stderr} = await exec('yarn apimock');
+        const {stdout, stderr} = await exec('yarn apimock');
       }
     },
   },
