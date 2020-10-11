@@ -2,7 +2,7 @@ import * as React from 'react';
 import {FC} from 'react';
 import {UpdatePasswordForm} from '../components/forms/update-password';
 
-const UpdatePasswordPage: FC = () => <UpdatePasswordForm />;
+const UpdatePasswordPage: FC = (props) => <UpdatePasswordForm {...props} />;
 
 UpdatePasswordPage.displayName = 'UpdatePasswordPage';
 

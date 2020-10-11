@@ -1,9 +1,15 @@
 import * as React from 'react';
 import {useEffect, useState, FC} from 'react';
 import {Reducer} from 'redux';
-import {useLocation} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {Routes, Route, Navigate} from 'react-router-dom';
+import {
+  useLocation,
+  useNavigate,
+  Routes,
+  Route,
+  Link,
+  Navigate,
+} from 'react-router-dom';
 import {logger, i18next, loadJsonFile} from '@the_platform/core';
 import {AuthLayout, WithSidebarLayout} from '@the_platform/react-uikit';
 import * as routes from '@the_platform/routes';
@@ -200,7 +206,7 @@ export const AppContainer = connect(
                 ) : (
                   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                   <RenderLayout Icon={Icon} title={title} layout={layout}>
-                    <Page />
+                    <Page Link={Link} useNavigate={useNavigate} />
                   </RenderLayout>
                 )
               }

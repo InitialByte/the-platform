@@ -12,6 +12,7 @@ const LoaderPZF_ZIP = require('./loaders/pdf-zip');
 const LoaderTS = require('./loaders/typescript');
 const LoaderCSS = require('./loaders/css');
 const LoaderSVG = require('./loaders/svg');
+const LoaderMJS = require('./loaders/mjs');
 const {
   buildInfo,
   collectModuleRoutes,
@@ -67,6 +68,7 @@ const webpackConfig = {
 
   module: {
     rules: [
+      // LoaderMJS, // TODO only webpack 5
       LoaderIMAGE_COMPRESS,
       LoaderIMAGE_FONTS,
       LoaderPZF_ZIP,

@@ -142,6 +142,7 @@ Installing Yarn 2.x globally is discouraged. Yarn team advise to keep Yarn 1.x a
 
 ```bash
 cd <PROJECT_PATH>
+yarn set version berry
 yarn policies set-version latest
 ```
 
@@ -172,15 +173,16 @@ and run
 
 `yarn dlx @yarnpkg/pnpify --sdk vscode`
 
-[more info](https://yarnpkg.com/advanced/editor-sdks#tools-currently-supported)
+[more info](https://yarnpkg.com/advanced/editor-sdks#tools-currently-supported), 
+[configuring vscode with pnp](https://yarnpkg.com/getting-started/editor-sdks)
 
 ### Config for VSCode
 
 ```json
 {
-  "eslint.nodePath": ".yarn/sdks",
-  "eslint.options": {
-    "configFile": ".eslintrc"
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
   },
   "eslint.validate": [
     "javascript",
@@ -188,6 +190,7 @@ and run
     "typescriptreact",
     "typescript"
   ],
+  "eslint.nodePath": ".yarn/sdks",
   "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true

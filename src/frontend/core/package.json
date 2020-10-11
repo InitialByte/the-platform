@@ -6,10 +6,10 @@
   "dependencies": {
     "clsx": "^1.1.1",
     "core-js": "^3.6.5",
-    "i18next": "^19.7.0",
+    "i18next": "^19.8.2",
     "i18next-browser-languagedetector": "^6.0.1",
     "ky": "^0.24.0",
-    "react": "^17.0.0-rc.2",
+    "react": "^17.0.0-rc.3",
     "react-i18next": "^11.7.3",
     "yup": "^0.29.3"
   },
@@ -17,7 +17,7 @@
     "@babel/runtime": "^7.11.2",
     "@babel/runtime-corejs3": "^7.11.2",
     "@types/jest": "^26.0.14",
-    "@types/yup": "^0.29.7",
+    "@types/yup": "^0.29.8",
     "regenerator-runtime": "^0.13.7"
   }
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {FC} from 'react';
 import {LoginForm} from '../components/forms/login';
 
-const LoginPage: FC = () => <LoginForm />;
+const LoginPage: FC = (props) => <LoginForm {...props} />;
 
 LoginPage.displayName = 'LoginPage';
 

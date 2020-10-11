@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {useNavigate, Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {
   Button,
@@ -24,6 +23,11 @@ import {
 
 type TDispatch = (arg: any) => Promise<Record<string, string>>;
 
+interface IProps {
+  useNavigate: (path?: string) => void;
+  Link: any;
+}
+
 interface ILoginFormValues {
   email: string;
   password: string;
@@ -43,7 +47,7 @@ const notificationActions = getObjectCache('notificationActions') as {
 };
 
 const onSubmit = (
-  navigate: ReturnType<typeof useNavigate>,
+  navigate: () => void,
   dispatch: TDispatch,
   navigateAfterSignin: string = '/',
 ) => (
@@ -65,7 +69,7 @@ const onSubmit = (
         );
       },
     )
-    .then((): ReturnType<typeof navigate> => navigate(navigateAfterSignin))
+    .then(() => navigate(navigateAfterSignin))
     .catch(
       (e: Error): ReturnType<typeof dispatch> => {
         logger.error(E_CODE.E_1, e);
@@ -93,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const LoginForm = (): JSX.Element => {
+export const LoginForm = ({useNavigate, Link}: IProps): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {t} = useTranslation('auth');

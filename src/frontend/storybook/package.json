@@ -3,15 +3,15 @@
   "description": "Storybook for app's react components",
   "version": "1.0.0",
   "dependencies": {
-    "@storybook/addon-a11y": "^6.0.22",
-    "@storybook/addon-actions": "^6.0.22",
-    "@storybook/addon-backgrounds": "^6.0.22",
-    "@storybook/addon-knobs": "^6.0.22",
-    "@storybook/addon-viewport": "^6.0.22",
-    "@storybook/react": "^6.0.22",
+    "@storybook/addon-a11y": "^6.0.26",
+    "@storybook/addon-actions": "^6.0.26",
+    "@storybook/addon-backgrounds": "^6.0.26",
+    "@storybook/addon-knobs": "^6.0.26",
+    "@storybook/addon-viewport": "^6.0.26",
+    "@storybook/react": "^6.0.26",
     "core-js": "^3.6.5",
-    "react": "^17.0.0-rc.2",
-    "react-dom": "^17.0.0-rc.2"
+    "react": "^17.0.0-rc.3",
+    "react-dom": "^17.0.0-rc.3"
   },
   "scripts": {
     "build": "yarn build-storybook -o dist",
@@ -28,7 +28,7 @@
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
     "@babel/runtime": "^7.11.2",
-    "@types/react": "^16.9.49",
+    "@types/react": "^16.9.52",
     "@types/react-dom": "^16.9.8",
     "babel-loader": "^8.1.0",
     "cache-loader": "^4.1.0",

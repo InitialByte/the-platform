@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {
   Button,
@@ -88,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const RegisterForm = (): JSX.Element => {
+export const RegisterForm = ({Link}): JSX.Element => {
   const dispatch = useDispatch();
   const {t} = useTranslation('auth');
   const classes = useStyles();
