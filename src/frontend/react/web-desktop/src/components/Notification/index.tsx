@@ -27,10 +27,7 @@ export const Notification: FC = () => {
   const indexKey = 2;
 
   return toasts.map(
-    (
-      {lifeTime, type, message, position}: IToast,
-      index: number,
-    ): ReturnType<typeof Snackbar> => (
+    ({lifeTime, type, message, position}: IToast, index: number) => (
       <Snackbar
         key={`${type}_${index * indexKey}`}
         anchorOrigin={position}

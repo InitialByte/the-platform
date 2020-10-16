@@ -24,12 +24,13 @@ import {router} from '../routes/router';
 import {ROUTE_LOGIN, ROUTE_HOME} from '../routes/routes';
 import {TLang, Ii18nState, changeLocale} from '../store/reducers/i18n';
 
+/*
 interface IMapStateProps {
   modules: IModuleState;
   isAuth: boolean;
   availableLanguages: TLang[];
   currentLanguage: TLang;
-}
+} */
 
 interface IProps {
   modules: IModuleState;
@@ -46,11 +47,12 @@ interface IProps {
   currentLanguage: TLang;
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const mapState = ({
   modules,
   auth,
   i18n,
-}: Pick<IProps, 'auth' | 'modules' | 'i18n'>): IMapStateProps => ({
+}: Pick<IProps, 'auth' | 'modules' | 'i18n'>) => ({
   modules,
   isAuth: auth?.isAuth ?? false,
   availableLanguages: i18n.available,
@@ -84,7 +86,7 @@ export const AppContainer = connect(
     activateModuleDispatch,
     currentLanguage,
     changeLocaleDispatch,
-  }: Omit<IProps, 'auth' | 'i18n'>): JSX.Element => {
+  }: Omit<IProps, 'auth' | 'i18n'>) => {
     const {pathname} = useLocation();
     // This is neccessary to reload a page when new language file loaded and added.
     const [refreshIndex, setRefreshIndex] = useState(0);
@@ -148,7 +150,7 @@ export const AppContainer = connect(
           ),
         )
           .then((resources) =>
-            resources.forEach(({status, value}, index: number): void => {
+            resources.forEach(({status, value}, index) => {
               if (status === 'fulfilled') {
                 i18next.addResourceBundle(
                   availableLanguages[index],

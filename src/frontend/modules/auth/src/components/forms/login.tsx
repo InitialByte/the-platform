@@ -97,7 +97,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const LoginForm = ({useNavigate, Link}: IProps): JSX.Element => {
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export const LoginForm = ({useNavigate, Link}: IProps) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {t} = useTranslation('auth');
