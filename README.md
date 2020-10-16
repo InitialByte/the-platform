@@ -288,7 +288,6 @@ Keep it fast. How to check:
 
 - Add http3 into web-app nginx.
 - Add SSR.
-- Add Webpack 5.
 - Add [web-worker](https://developers.google.com/web/tools/workbox).
 - Add [Istanbul](https://istanbul.js.org/).
 - Add ability disallow commit if tests not in green zone.

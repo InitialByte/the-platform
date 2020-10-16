@@ -59,14 +59,8 @@ module.exports = merge(webpackConfig, {
 
   devServer: {
     contentBase: join(rootPath, 'dist'),
-    historyApiFallback: true,
     disableHostCheck: true,
-    stats: 'errors-only',
-    transportMode: 'ws',
-    compress: true,
-    hot: !TO_SMOKE,
     https: true,
-    http2: true,
     host,
     port,
 

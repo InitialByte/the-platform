@@ -19,8 +19,8 @@ module.exports = merge(webpackConfig, {
   },
 
   performance: {
-    maxEntrypointSize: 5120000, // 5 MB
-    maxAssetSize: 5120000, // 5 MB
+    maxEntrypointSize: 1024000, // 1 MB
+    maxAssetSize: 1024000, // 1 MB
     hints: 'error',
   },
 
@@ -29,9 +29,7 @@ module.exports = merge(webpackConfig, {
 
     minimizer: [
       new TerserPlugin({
-        cache: join(rootPath, '.cache'),
         exclude: /\/node_modules/,
-        sourceMap: true,
         parallel: true,
       }),
     ],

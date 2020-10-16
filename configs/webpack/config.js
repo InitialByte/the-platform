@@ -1,14 +1,13 @@
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const {join} = require('path');
 const {writeFileSync} = require('fs');
 
 const LoaderIMAGE_COMPRESS = require('./loaders/compress-images');
 const LoaderIMAGE_FONTS = require('./loaders/image-fonts');
-const LoaderPZF_ZIP = require('./loaders/pdf-zip');
+const LoaderPDF_ZIP = require('./loaders/pdf-zip');
 const LoaderTS = require('./loaders/typescript');
 const LoaderCSS = require('./loaders/css');
 const LoaderSVG = require('./loaders/svg');
@@ -57,10 +56,6 @@ const webpackConfig = {
 
   entry: [join(rootPath, `src/frontend/${APP}/src/index.tsx`)],
 
-  resolveLoader: {
-    plugins: [PnpWebpackPlugin.moduleLoader(module)],
-  },
-
   output: {
     path: join(rootPath, 'dist'),
     publicPath: '/',
@@ -68,12 +63,12 @@ const webpackConfig = {
 
   module: {
     rules: [
-      // LoaderMJS, // TODO only webpack 5
       LoaderIMAGE_COMPRESS,
       LoaderIMAGE_FONTS,
-      LoaderPZF_ZIP,
+      LoaderPDF_ZIP,
       LoaderCSS,
       LoaderSVG,
+      LoaderMJS, // only webpack 5
       LoaderTS,
     ],
   },
@@ -93,8 +88,6 @@ const webpackConfig = {
     extensions: ['.ts', '.tsx', '.js'],
     cacheWithContext: false,
     symlinks: false,
-
-    plugins: [PnpWebpackPlugin],
     alias: {
       '@the_platform/routes': pathToSaveRoutes,
     },
