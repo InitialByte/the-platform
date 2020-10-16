@@ -57,8 +57,6 @@ module.exports = merge(webpackConfig, {
       'configs/**',
     ],
     aggregateTimeout: 1000,
-    // TODO temp fix
-    // poll: 1000,
   },
 
   optimization: {
@@ -72,6 +70,7 @@ module.exports = merge(webpackConfig, {
 
   devServer: {
     contentBase: join(rootPath, 'dist'),
+    historyApiFallback: true,
     disableHostCheck: true,
     https: true,
     host,
