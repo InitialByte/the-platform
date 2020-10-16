@@ -49,11 +49,9 @@ module.exports = {
 
   resolve: {
     cacheWithContext: false,
+    fallback: {path: false},
     extensions: ['.js'],
     symlinks: false,
-    fallback: {
-      path: false,
-    },
     plugins: [PnpWebpackPlugin],
   },
 

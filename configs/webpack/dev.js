@@ -73,6 +73,7 @@ module.exports = merge(webpackConfig, {
     historyApiFallback: true,
     disableHostCheck: true,
     https: true,
+    open: true,
     host,
     port,
 
