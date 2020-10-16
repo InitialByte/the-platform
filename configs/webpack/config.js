@@ -95,6 +95,7 @@ const webpackConfig = {
 
   plugins: [
     new CircularDependencyPlugin({
+      exclude: /node_modules/,
       onStart() {
         numCyclesDetected = 0;
       },
@@ -113,7 +114,9 @@ const webpackConfig = {
       },
     }),
 
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      cleanStaleWebpackAssets: false,
+    }),
 
     new HtmlWebpackPlugin({
       favicon: join(rootPath, 'public/favicon.ico'),

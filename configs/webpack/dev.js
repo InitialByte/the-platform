@@ -43,9 +43,22 @@ module.exports = merge(webpackConfig, {
   },
 
   watchOptions: {
-    ignored: ['node_modules/**'],
-    aggregateTimeout: 200,
-    poll: 2000,
+    ignored: [
+      '**/*.js',
+      '**/*.json',
+      'node_modules/**',
+      '.yarn/**',
+      '.cache/**',
+      'apimock/**',
+      'swagger/**',
+      'storybook/**',
+      'smoke/**',
+      'dist/**',
+      'configs/**',
+    ],
+    aggregateTimeout: 1000,
+    // TODO temp fix
+    // poll: 1000,
   },
 
   optimization: {

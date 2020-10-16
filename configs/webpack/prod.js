@@ -29,7 +29,7 @@ module.exports = merge(webpackConfig, {
 
     minimizer: [
       new TerserPlugin({
-        exclude: /\/node_modules/,
+        exclude: /node_modules/,
         parallel: true,
       }),
     ],
@@ -40,7 +40,7 @@ module.exports = merge(webpackConfig, {
       maxInitialRequests: 10,
       cacheGroups: {
         vendor: {
-          test: /\/node_modules/,
+          test: /node_modules/,
           name: 'vendor',
           chunks: 'all',
         },
