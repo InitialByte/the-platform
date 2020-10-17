@@ -2,9 +2,10 @@ import {lazy} from 'react';
 import {logger, customRequest, CONST_URL} from '@the_platform/core';
 import {Icon} from '@the_platform/react-uikit';
 import * as routes from './constants/routes';
-import {shortName} from '../package.json';
 import {actions} from './reducer';
+import * as packageImport from '../package.json';
 
+const {shortName} = packageImport;
 const LoginPage = lazy(
   () => import(/* webpackChunkName: "pages/auth_login" */ './pages/login'),
 );

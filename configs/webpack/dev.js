@@ -4,10 +4,10 @@ const {join} = require('path');
 
 const {webpackConfig} = require('./config');
 const {killByPort} = require('./misc');
-const {config} = require('../../package.json');
-const {
-  port: apiMockServerPort,
-} = require('../../src/frontend/apimock/package.json');
+const package = require('../../package.json');
+const {config} = package;
+const packageApiMock = require('../../src/frontend/apimock/package.json');
+const {port: apiMockServerPort} = packageApiMock;
 
 const rootPath = process.cwd();
 const {devServer, apiProxyServer} = config;

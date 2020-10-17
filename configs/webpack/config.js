@@ -19,7 +19,8 @@ const {
   collectI18n,
 } = require('./misc');
 
-const {name, version, config} = require('../../package.json');
+const package = require('../../package.json');
+const {name, version, config} = package;
 
 const {
   APP = 'react/web-desktop',

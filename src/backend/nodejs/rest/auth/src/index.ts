@@ -7,8 +7,9 @@ import {
   registerService,
 } from '@the_platform/nodejs-core';
 import {router} from './routes';
-import {name} from '../package.json';
+import * as packageImport from '../package.json';
 
+const {name} = packageImport;
 const {APP_HOST = '127.0.0.1', APP_PORT = '8080'} = process.env;
 const checkURL = `http://${APP_HOST}:${APP_PORT}/auth/health`;
 

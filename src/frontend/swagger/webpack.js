@@ -4,10 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const {join} = require('path');
-
 const {buildInfo, collectSwaggerApi} = require('../../../configs/webpack/misc');
-const {version, port} = require('./package.json');
+const package = require('./package.json');
 
+const {version, port} = package;
 const rootPath = process.cwd();
 const baseRoot = join(rootPath, '/../../../');
 const modules = collectSwaggerApi(baseRoot).filter(

@@ -1,5 +1,5 @@
 import ky from 'ky';
-import {ResponsePromise} from 'ky';
+import {ResponsePromise as RP} from 'ky';
 import {Hooks} from 'ky';
 import {proxyErrorHandler} from '../../utils';
 
@@ -17,7 +17,8 @@ export const customRequestInit = (hooks: Hooks): TKy => {
   return customRequest;
 };
 
-export {ResponsePromise} from 'ky';
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ResponsePromise extends RP {}
 
 export const loadJsonFile = (filePath: string): ResponsePromise['json'] =>
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

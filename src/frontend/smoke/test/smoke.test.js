@@ -1,8 +1,9 @@
 const puppeteer = require('puppeteer');
 const assert = require('assert');
 const {expect} = require('chai');
-const {config} = require('../../../../package.json');
+const package = require('../../../../package.json');
 
+const {config} = package;
 const {devServer = {}} = config;
 const {host, port} = devServer;
 

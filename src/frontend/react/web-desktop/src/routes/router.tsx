@@ -1,7 +1,8 @@
 import {lazy} from 'react';
 import * as routes from './routes';
-import {shortName} from '../../package.json';
+import * as packageImport from '../../package.json';
 
+const {shortName} = packageImport;
 const HomePage = lazy(
   () => import(/* webpackChunkName: "pages/webapp_home" */ '../pages/home'),
 );

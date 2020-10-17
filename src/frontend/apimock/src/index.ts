@@ -3,11 +3,12 @@ import * as cookieParser from 'cookie-parser';
 import {json, urlencoded} from 'express';
 import {readFileSync} from 'fs';
 import {createServer} from 'https';
-import {port} from '../package.json';
 import {bootstrapRBAC} from './core/service';
 import {apiRouter} from './rest/index';
 import {webSocketServer} from './ws/index';
+import * as packageImport from '../package.json';
 
+const {port} = packageImport;
 declare global {
   namespace NodeJS {
     interface Global {

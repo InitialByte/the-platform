@@ -22,7 +22,8 @@ interface IConfig {
 }
 
 /* eslint-disable */
-const {config}: IConfig = require('../../../../../package.json');
+const packageImport = require('../../../../../package.json');
+const {config}: IConfig = packageImport;
 /* eslint-enable */
 
 window.onload = (): void => {
