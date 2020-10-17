@@ -1,0 +1,7 @@
+src / frontend / storybook;
+src / frontend / apimock;
+src / frontend / swagger;
+src / frontend / smoke;
+node_modules;
+src / backend;
+scripts.vscode.cache.yarn;
