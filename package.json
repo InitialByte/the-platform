@@ -71,12 +71,6 @@
       "pre-commit": "pretty-quick --staged && yarn lint-staged"
     }
   },
-  "changelog": {
-    "labels": {
-      "feature": "New Feature",
-      "bug": "Bug Fix"
-    }
-  },
   "lint-staged": {
     "*.{ts,tsx}": [
       "yarn lint --fix"

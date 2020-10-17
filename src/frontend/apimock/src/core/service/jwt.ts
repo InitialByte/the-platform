@@ -33,6 +33,6 @@ export const addJwtCookie = (cookie: any): void => {
 
 export const clearJwtCookie = (clearCookie: any): any => {
   clearCookie(JWT_COOKIE_NAME, {
-    path: '/api',
+    path: '/',
   });
 };

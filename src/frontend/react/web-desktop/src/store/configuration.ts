@@ -12,7 +12,7 @@ const asyncReducers: Record<string, Reducer> = {};
 
 const middleware = getDefaultMiddleware({
   immutableCheck: true,
-  serializableCheck: true,
+  serializableCheck: false,
   thunk: true,
 });
 

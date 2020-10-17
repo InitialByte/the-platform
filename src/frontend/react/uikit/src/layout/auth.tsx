@@ -1,10 +1,9 @@
 import * as React from 'react';
 import {Component, FC} from 'react';
-import {makeStyles, Container, Box, Typography, Avatar} from '../atom';
+import {makeStyles, Container, Box, Avatar} from '../atom';
 import {Copyright, LanguageSelector, IProps as ILangProps} from '../molecule';
 
 interface IProps extends ILangProps {
-  title?: string;
   Icon: typeof Component;
   children: JSX.Element[] | JSX.Element;
 }
@@ -27,7 +26,6 @@ export const AuthLayout: FC<IProps> = ({
   children,
   onChangeLanguage,
   Icon,
-  title = '',
   currentLanguage,
   availableLanguages,
 }) => {
@@ -45,7 +43,6 @@ export const AuthLayout: FC<IProps> = ({
           <Avatar className={classes.avatar}>
             <Icon />
           </Avatar>
-          <Typography variant="h5">{title}</Typography>
           {children}
         </div>
 

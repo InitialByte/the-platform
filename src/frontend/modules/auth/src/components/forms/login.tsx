@@ -47,11 +47,7 @@ const notificationActions = getObjectCache('notificationActions') as {
   }) => void,
 };
 
-const onSubmit = (
-  navigate: () => void,
-  dispatch: TDispatch,
-  navigateAfterSignin: string = '/',
-) => (
+const onSubmit = (dispatch: TDispatch) => (
   values: ILoginFormValues,
   {setSubmitting}: Form.FormikHelpers<ILoginFormValues>,
 ): Promise<unknown> =>
@@ -70,7 +66,6 @@ const onSubmit = (
         );
       },
     )
-    .then(() => navigate(navigateAfterSignin))
     .catch(
       (e: Error): ReturnType<typeof dispatch> => {
         logger.error(E_CODE.E_1, e);
@@ -99,8 +94,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const LoginForm: FC<IProps> = ({useNavigate, Link}) => {
-  const navigate = useNavigate();
+export const LoginForm: FC<IProps> = ({Link}) => {
   const dispatch = useDispatch();
   const {t} = useTranslation('auth');
   const classes = useStyles();
@@ -121,7 +115,7 @@ export const LoginForm: FC<IProps> = ({useNavigate, Link}) => {
   const form = Form.useFormik({
     initialValues,
     validationSchema,
-    onSubmit: onSubmit(navigate, dispatch),
+    onSubmit: onSubmit(dispatch),
   });
 
   return (
@@ -163,7 +157,6 @@ export const LoginForm: FC<IProps> = ({useNavigate, Link}) => {
         type="submit"
         fullWidth
         variant="contained"
-        color="primary"
         className={classes.submit}
         disabled={form.isSubmitting || form.isValidating}
         onClick={form.handleSubmit}>

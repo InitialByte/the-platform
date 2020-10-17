@@ -24,14 +24,6 @@ import {router} from '../routes/router';
 import {ROUTE_LOGIN, ROUTE_HOME} from '../routes/routes';
 import {TLang, Ii18nState, changeLocale} from '../store/reducers/i18n';
 
-/*
-interface IMapStateProps {
-  modules: IModuleState;
-  isAuth: boolean;
-  availableLanguages: TLang[];
-  currentLanguage: TLang;
-} */
-
 interface IProps {
   modules: IModuleState;
   isAuth: boolean;
@@ -128,6 +120,37 @@ export const AppContainer = connect(
         </WithSidebarLayout>
       );
     };
+
+    // Load root translation.
+    useEffect((): void => {
+      // eslint-disable-next-line promise/catch-or-return
+      Promise.allSettled(
+        availableLanguages.map(
+          (lang: string): ReturnType<typeof loadJsonFile> =>
+            loadJsonFile(`/i18n/root/${lang}.json`),
+        ),
+      )
+        .then((resources) =>
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          resources.forEach(({status, value}, index) => {
+            if (status === 'fulfilled') {
+              i18next.addResourceBundle(
+                availableLanguages[index],
+                'root',
+                value,
+              );
+            } else {
+              logger.error(
+                E_CODE.E_1,
+                `Can not load ${availableLanguages[index]} language`,
+              );
+            }
+          }),
+        )
+        .catch((e: Error) => logger.error(E_CODE.E_1, e))
+        .finally(() => setRefreshIndex(refreshIndex + 1));
+    }, []);
 
     // eslint-disable-next-line sonarjs/cognitive-complexity
     useEffect((): void => {

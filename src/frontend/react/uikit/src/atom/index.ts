@@ -6,6 +6,7 @@ export * from './ListItemIcon';
 export * from './CSSBaseline';
 export * from './Typography';
 export * from './IconButton';
+export * from './AlertTitle';
 export * from './Container';
 export * from './ListItem';
 export * from './MenuItem';

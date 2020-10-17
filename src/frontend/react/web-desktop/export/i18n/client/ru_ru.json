@@ -1,5 +1,20 @@
 {
-    "translation": {
-      "Welcome to React": "Welcome to React and react-i18next"
+  "notfound": {
+    "title": "Страница не найдена :(",
+    "description": "Возможно страница была удалена или вы ввели неверный адрес"
+  },
+  "loading": {
+    "title": "Загрузка..."
+  },
+  "mainMenu": {
+    "dashboard": "Панель управления",
+    "customers": "Клиенты",
+    "updatePassword": "Обновить пароль",
+    "logout": "Выйти"
+  },
+  "layout": {
+    "withSidebar": {
+      "dashboard": "Панель управления"
     }
+  }
 }

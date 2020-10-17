@@ -1,5 +1,20 @@
 {
-  "translation": {
-    "Welcome to React": "Welcome to React and react-i18next"
+  "notfound": {
+    "title": "Page not found :(",
+    "description": "Maybe the page you are looking for has been removed, or you typed in the wrong URL"
+  },
+  "loading": {
+    "title": "Loading..."
+  },
+  "mainMenu": {
+    "dashboard": "Dashboard",
+    "customers": "Customers",
+    "updatePassword": "Update Password",
+    "logout": "Logout"
+  },
+  "layout": {
+    "withSidebar": {
+      "dashboard": "Dashboard"
+    }
   }
 }

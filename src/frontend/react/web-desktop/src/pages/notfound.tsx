@@ -1,13 +1,17 @@
 import * as React from 'react';
 import {FC} from 'react';
+import {useTranslation} from '@the_platform/core';
 
-const NotFoundPage: FC = () => (
-  <>
-    <div>Page not found :(</div>
-    Maybe the page you are looking for has been removed, or you typed in the
-    wrong URL
-  </>
-);
+const NotFoundPage: FC = () => {
+  const {t} = useTranslation('root');
+
+  return (
+    <>
+      <div>{t('notfound.title')}</div>
+      {t('notfound.description')}
+    </>
+  );
+};
 
 NotFoundPage.displayName = 'NotFoundPage';
 

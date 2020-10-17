@@ -166,7 +166,6 @@ export const RegisterForm: FC<IProps> = ({Link}) => {
         type="submit"
         fullWidth
         variant="contained"
-        color="primary"
         className={classes.submit}
         disabled={form.isSubmitting || form.isValidating}
         onClick={form.handleSubmit}>

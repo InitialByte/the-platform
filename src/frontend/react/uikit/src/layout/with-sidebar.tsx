@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {FC, useState} from 'react';
-import {clsx} from '@the_platform/core';
+import {clsx, useTranslation} from '@the_platform/core';
 import {Copyright, LanguageSelector, IProps as ILangProps} from '../molecule';
 import {
   IconButton,
@@ -124,6 +124,7 @@ export const WithSidebarLayout: FC<IProps> = ({
   const [open, setOpen] = useState(true);
   const handleDrawerOpen = (): ReturnType<typeof setOpen> => setOpen(true);
   const handleDrawerClose = (): ReturnType<typeof setOpen> => setOpen(false);
+  const {t} = useTranslation('root');
 
   return (
     <div className={classes.root}>
@@ -151,7 +152,7 @@ export const WithSidebarLayout: FC<IProps> = ({
             color="inherit"
             noWrap
             className={classes.title}>
-            Dashboard
+            {t('layout.withSidebar.dashboard')}
           </Typography>
 
           <IconButton color="inherit">

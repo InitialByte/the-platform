@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useState, FC} from 'react';
 import {useSelector} from 'react-redux';
-import {Snackbar, Alert} from '@the_platform/react-uikit';
+import {Snackbar /* , Alert, AlertTitle */} from '@the_platform/react-uikit';
 import {TRootState} from '../../store';
 
 interface IToast {
@@ -26,6 +26,12 @@ export const Notification: FC = () => {
   };
   const indexKey = 2;
 
+  // TODO add it later to snackbar as children, now it has error
+  /* <Alert onClose={() => handleClose(index)} severity={type}>
+          <AlertTitle>{type}</AlertTitle>
+          {message}
+        </Alert> */
+
   return toasts.map(
     ({lifeTime, type, message, position}: IToast, index: number) => (
       <Snackbar
@@ -33,11 +39,9 @@ export const Notification: FC = () => {
         anchorOrigin={position}
         open={!toastsToHide.includes(index)}
         autoHideDuration={lifeTime}
-        onClose={() => handleClose(index)}>
-        <Alert onClose={() => handleClose(index)} severity={type}>
-          {message}
-        </Alert>
-      </Snackbar>
+        message={message}
+        onClose={() => handleClose(index)}
+      />
     ),
   );
 };

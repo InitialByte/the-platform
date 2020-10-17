@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {default as MUIAlert, AlertProps} from '@material-ui/lab/Alert';
+import {Alert as MUIAlert, AlertProps} from '@material-ui/core';
 
 export const Alert = (props: AlertProps): ReturnType<typeof MUIAlert> => (
   <MUIAlert {...props} />

@@ -55,12 +55,14 @@ const detectWebcam = (callback: (value: boolean) => void): void => {
   mediaDevices
     .enumerateDevices()
     .then((devices: MediaDeviceInfo[]): boolean =>
+      // eslint-disable-next-line promise/no-callback-in-promise
       callback(
         devices.some(
           ({kind}: MediaDeviceInfo): boolean => kind === 'videoinput',
         ),
       ),
     )
+    // eslint-disable-next-line promise/no-callback-in-promise
     .catch(() => callback(false));
 };
 

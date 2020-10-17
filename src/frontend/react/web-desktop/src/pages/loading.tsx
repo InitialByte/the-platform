@@ -1,7 +1,11 @@
-import * as React from 'react';
 import {FC} from 'react';
+import {useTranslation} from '@the_platform/core';
 
-const LoadingPage: FC = () => <>Loading</>;
+const LoadingPage: FC = () => {
+  const {t} = useTranslation('root');
+
+  return t('loading.title');
+};
 
 LoadingPage.displayName = 'LoadingPage';
 

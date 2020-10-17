@@ -7,9 +7,11 @@ import {
   ListItem,
   Icon,
 } from '@the_platform/react-uikit';
+import {useTranslation} from '@the_platform/core';
 
 export const MainMenu: FC = () => {
   const navigate = useNavigate();
+  const {t} = useTranslation('root');
 
   return (
     <>
@@ -17,28 +19,28 @@ export const MainMenu: FC = () => {
         <ListItemIcon>
           <Icon.Dashboard />
         </ListItemIcon>
-        <ListItemText primary="Dashboard" />
+        <ListItemText primary={t('mainMenu.dashboard')} />
       </ListItem>
 
       <ListItem button onClick={() => navigate('/customers')}>
         <ListItemIcon>
           <Icon.People />
         </ListItemIcon>
-        <ListItemText primary="Customers" />
+        <ListItemText primary={t('mainMenu.customers')} />
       </ListItem>
 
       <ListItem button onClick={() => navigate('/auth/update-password')}>
         <ListItemIcon>
           <Icon.VpnKey />
         </ListItemIcon>
-        <ListItemText primary="Update Password" />
+        <ListItemText primary={t('mainMenu.updatePassword')} />
       </ListItem>
 
       <ListItem button onClick={() => navigate('/auth/logout')}>
         <ListItemIcon>
           <Icon.ExitToApp />
         </ListItemIcon>
-        <ListItemText primary="Logout" />
+        <ListItemText primary={t('mainMenu.logout')} />
       </ListItem>
     </>
   );
