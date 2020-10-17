@@ -22,6 +22,10 @@ import {
 
 type TDispatch = (arg: any) => Promise<Record<string, string>>;
 
+interface IProps {
+  Link: any;
+}
+
 interface IRecoveryPwdFormValues {
   email: string;
 }
@@ -82,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const RecoveryForm: FC = ({Link}) => {
+export const RecoveryForm: FC<IProps> = ({Link}) => {
   const dispatch = useDispatch();
   const {t} = useTranslation('auth');
   const classes = useStyles();
@@ -106,7 +110,6 @@ export const RecoveryForm: FC = ({Link}) => {
         helperText={form.touched.email ? form.errors.email : ''}
         error={form.touched.email && Boolean(form.errors.email)}
         label={t('recovery.fields.email')}
-        autoFocus
         type="email"
         onChange={form.handleChange}
         onBlur={form.handleBlur}

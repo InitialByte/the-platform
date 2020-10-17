@@ -147,7 +147,6 @@ export const WithSidebarLayout: FC<IProps> = ({
           </IconButton>
 
           <Typography
-            component="h1"
             variant="h6"
             color="inherit"
             noWrap

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {FC} from 'react';
 import {useDispatch} from 'react-redux';
 import {
   Button,
@@ -20,6 +21,10 @@ import {
 } from '../../constants/routes';
 
 type TDispatch = (arg: any) => Promise<Record<string, string>>;
+
+interface IProps {
+  Link: any;
+}
 
 interface IRegisterFormValues {
   email: string;
@@ -87,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const RegisterForm = ({Link}): JSX.Element => {
+export const RegisterForm: FC<IProps> = ({Link}) => {
   const dispatch = useDispatch();
   const {t} = useTranslation('auth');
   const classes = useStyles();
@@ -120,7 +125,6 @@ export const RegisterForm = ({Link}): JSX.Element => {
         helperText={form.touched.email ? form.errors.email : ''}
         error={form.touched.email && Boolean(form.errors.email)}
         label={t('register.fields.email')}
-        autoFocus
         type="email"
         onChange={form.handleChange}
         onBlur={form.handleBlur}

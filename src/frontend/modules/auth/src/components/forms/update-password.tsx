@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {FC} from 'react';
 import {useDispatch} from 'react-redux';
 import {Button, TextField, Form, makeStyles} from '@the_platform/react-uikit';
 import {
@@ -75,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const UpdatePasswordForm = (): JSX.Element => {
+export const UpdatePasswordForm: FC = () => {
   const dispatch = useDispatch();
   const {t} = useTranslation('auth');
   const classes = useStyles();

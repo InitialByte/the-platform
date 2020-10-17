@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {FC} from 'react';
 import {useDispatch} from 'react-redux';
 import {
   Button,
@@ -98,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const LoginForm = ({useNavigate, Link}: IProps) => {
+export const LoginForm: FC<IProps> = ({useNavigate, Link}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {t} = useTranslation('auth');
@@ -130,7 +131,6 @@ export const LoginForm = ({useNavigate, Link}: IProps) => {
         helperText={form.touched.email ? form.errors.email : ''}
         error={form.touched.email && Boolean(form.errors.email)}
         label={t('signin.fields.email')}
-        autoFocus
         type="email"
         onChange={form.handleChange}
         onBlur={form.handleBlur}

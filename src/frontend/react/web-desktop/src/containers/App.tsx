@@ -150,6 +150,8 @@ export const AppContainer = connect(
           ),
         )
           .then((resources) =>
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             resources.forEach(({status, value}, index) => {
               if (status === 'fulfilled') {
                 i18next.addResourceBundle(

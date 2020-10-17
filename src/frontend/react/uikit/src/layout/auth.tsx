@@ -40,14 +40,12 @@ export const AuthLayout: FC<IProps> = ({
         availableLanguages={availableLanguages}
         currentLanguage={currentLanguage}
       />
-      <Container component="main" maxWidth="xs">
+      <Container maxWidth="xs">
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <Icon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            {title}
-          </Typography>
+          <Typography variant="h5">{title}</Typography>
           {children}
         </div>
 
