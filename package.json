@@ -121,7 +121,6 @@
     "@types/circular-dependency-plugin": "^5.0.1",
     "@types/i18next": "^13.0.0",
     "@types/jest": "^26.0.14",
-    "@types/redux": "^3.6.31",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
     "@typescript-eslint/parser": "^4.4.1",
     "@yarnpkg/pnpify": "^2.3.3",

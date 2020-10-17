@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Component, FC} from 'react';
+import {useTranslation} from '@the_platform/core';
 import {makeStyles, Container, Box, Avatar} from '../atom';
 import {Copyright, LanguageSelector, IProps as ILangProps} from '../molecule';
 
@@ -30,6 +31,7 @@ export const AuthLayout: FC<IProps> = ({
   availableLanguages,
 }) => {
   const classes = useStyles();
+  const {t} = useTranslation('root');
 
   return (
     <>
@@ -49,7 +51,7 @@ export const AuthLayout: FC<IProps> = ({
         <Box mt={8}>
           <Copyright
             webAddress="http://www.zlobin.dev"
-            siteName="THE PLATFORM"
+            siteName={t('sitename')}
           />
         </Box>
       </Container>

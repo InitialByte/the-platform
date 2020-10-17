@@ -147,7 +147,7 @@ export const UpdatePasswordForm: FC = () => {
         variant="contained"
         className={classes.submit}
         disabled={form.isSubmitting || form.isValidating}
-        onClick={form.handleSubmit}>
+        onClick={() => form.handleSubmit()}>
         {t('updatePwd.buttons.submit')}
       </Button>
     </form>

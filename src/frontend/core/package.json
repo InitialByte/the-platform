@@ -6,6 +6,7 @@
   "dependencies": {
     "clsx": "^1.1.1",
     "core-js": "^3.6.5",
+    "csstype": "^3.0.3",
     "i18next": "^19.8.2",
     "i18next-browser-languagedetector": "^6.0.1",
     "ky": "^0.24.0",

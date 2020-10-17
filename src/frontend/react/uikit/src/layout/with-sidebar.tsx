@@ -203,7 +203,7 @@ export const WithSidebarLayout: FC<IProps> = ({
           <Box pt={4}>
             <Copyright
               webAddress="http://www.zlobin.dev"
-              siteName="THE PLATFORM"
+              siteName={t('sitename')}
             />
           </Box>
         </Container>

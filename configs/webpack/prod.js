@@ -63,7 +63,7 @@ module.exports = merge(webpackConfig, {
 
     new CompressionPlugin({
       cache: join(rootPath, '.cache'),
-      test: /\.(js|css|html|svg)$/,
+      test: /\.(js|css|html|svg|json)$/,
       algorithm: 'gzip',
       threshold: 1024,
       minRatio: 1,
@@ -71,7 +71,7 @@ module.exports = merge(webpackConfig, {
 
     new CompressionPlugin({
       cache: join(rootPath, '.cache'),
-      test: /\.(js|css|html|svg)$/,
+      test: /\.(js|css|html|svg|json)$/,
       algorithm: 'brotliCompress',
       filename: '[path][base].br',
       deleteOriginalAssets: false,

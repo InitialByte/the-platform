@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FC, ChangeEvent} from 'react';
+import {FC, ChangeEvent, useState} from 'react';
 import {MenuItem, Select} from '../../atom';
 
 type TLang = 'ru_ru' | 'en_us';
@@ -26,8 +26,8 @@ export const LanguageSelector: FC<IProps> = ({
   className = '',
   availableLanguages,
 }) => {
-  const [lang, setLanguage] = React.useState<TLang>(currentLanguage);
-  const [open, setOpen] = React.useState(false);
+  const [lang, setLanguage] = useState<TLang>(currentLanguage);
+  const [open, setOpen] = useState(false);
 
   const handleChange = ({target}: ChangeEvent<IChangeEvent>): void => {
     const {value} = target;

@@ -94,8 +94,8 @@ export const AppContainer = connect(
 
     const RenderLayout: FC<Pick<
       Platform.IRoute,
-      'layout' | 'title' | 'Icon' | 'children'
-    >> = ({layout, title, Icon = null, children}) => {
+      'layout' | 'Icon' | 'children'
+    >> = ({layout, Icon = null, children}) => {
       if (layout === 'Auth') {
         return (
           <AuthLayout
@@ -103,8 +103,7 @@ export const AppContainer = connect(
             onChangeLanguage={handleChangeLanguage}
             currentLanguage={currentLanguage}
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            Icon={Icon}
-            title={title}>
+            Icon={Icon}>
             {children}
           </AuthLayout>
         );
@@ -220,7 +219,6 @@ export const AppContainer = connect(
             isPrivate = false,
             onlyForNotAuth,
             Icon,
-            title = 'Empty title',
             layout = 'WithSidebar',
           }: Platform.IRoute) => (
             <Route
@@ -232,7 +230,7 @@ export const AppContainer = connect(
                   <Navigate to={ROUTE_HOME} replace />
                 ) : (
                   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                  <RenderLayout Icon={Icon} title={title} layout={layout}>
+                  <RenderLayout Icon={Icon} layout={layout}>
                     <Page Link={Link} useNavigate={useNavigate} />
                   </RenderLayout>
                 )

@@ -159,7 +159,7 @@ export const LoginForm: FC<IProps> = ({Link}) => {
         variant="contained"
         className={classes.submit}
         disabled={form.isSubmitting || form.isValidating}
-        onClick={form.handleSubmit}>
+        onClick={() => form.handleSubmit()}>
         {t('signin.buttons.submit')}
       </Button>
 
