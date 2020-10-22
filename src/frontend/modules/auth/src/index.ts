@@ -36,6 +36,8 @@ const UpdatePasswordPage = lazy(
 export const router: Platform.IRoute[] = [
   {
     path: routes.ROUTE_AUTH_LOGIN,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     Page: LoginPage,
     layout: 'Auth',
     onlyForNotAuth: true,
@@ -50,6 +52,8 @@ export const router: Platform.IRoute[] = [
   },
   {
     path: routes.ROUTE_AUTH_CREATE_ACCOUNT,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     Page: RegisterPage,
     onlyForNotAuth: true,
     layout: 'Auth',
@@ -58,6 +62,8 @@ export const router: Platform.IRoute[] = [
   },
   {
     path: routes.ROUTE_AUTH_RECOVERY_PASSWORD,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     Page: RecoveryPasswordPage,
     onlyForNotAuth: true,
     layout: 'Auth',

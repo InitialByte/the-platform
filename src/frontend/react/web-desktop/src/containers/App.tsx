@@ -148,6 +148,7 @@ export const AppContainer = connect(
         )
         .catch((e: Error) => logger.error(E_CODE.E_1, e))
         .finally(() => setRefreshIndex(refreshIndex + 1));
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // eslint-disable-next-line sonarjs/cognitive-complexity

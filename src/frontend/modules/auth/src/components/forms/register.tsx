@@ -19,7 +19,8 @@ import {
   ROUTE_AUTH_RECOVERY_PASSWORD,
 } from '../../constants/routes';
 
-type TDispatch = (arg: any) => Promise<Record<string, string>>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type TDispatch = (...args: any[]) => Promise<Record<string, string>>;
 
 interface IProps {
   Link: ElementType;

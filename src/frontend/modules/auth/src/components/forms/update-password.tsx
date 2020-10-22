@@ -9,7 +9,8 @@ import {
 } from '@the_platform/core';
 import {fetchUpdatePassword} from '../../reducer';
 
-type TDispatch = (arg: any) => Promise<Record<string, string>>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type TDispatch = (...args: any[]) => Promise<Record<string, string>>;
 
 interface IUpdatePwdValues {
   password: string;

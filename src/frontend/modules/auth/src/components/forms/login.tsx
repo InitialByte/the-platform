@@ -21,7 +21,8 @@ import {
   ROUTE_AUTH_CREATE_ACCOUNT,
 } from '../../constants/routes';
 
-type TDispatch = (arg: any) => Promise<Record<string, string>>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type TDispatch = (...args: any[]) => Promise<Record<string, string>>;
 
 interface IProps {
   useNavigate?: (path?: string) => void;

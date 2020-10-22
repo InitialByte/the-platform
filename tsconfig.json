@@ -18,14 +18,14 @@
     "noEmit": true,
     "strict": true,
     "lib": [
-      "dom",
       "ES2015",
       "ES2016",
       "ES2017",
       "ES2018",
       "ES2019",
       "ES2020",
-      "ESNext"
+      "ESNext",
+      "DOM"
     ],
     "paths": {
       "@the_platform/react-web-desktop": ["src/frontend/react/web-desktop/src/index"],
@@ -39,21 +39,24 @@
     "src/frontend/react/web-desktop/src/global.ts"
   ],
   "include": [
-    "src/frontend/**/*.ts",
-    "src/frontend/**/*.tsx"
+    "src/frontend/**/*.tsx",
+    "src/frontend/**/*.ts"
+  ],
+  "excludeTypeRoots": [
+
   ],
   "exclude": [
-    "node_modules",
+    "src/frontend/__mocks__",
+    "src/frontend/storybook",
+    "src/frontend/swagger",
+    "src/frontend/smoke",
     "**/__snapshots__/*",
     "**/__tests__/*",
-    "**/dist/*",
-    "**/*.snap",
-    "src/frontend/__mocks__",
-    "src/frontend/smoke",
-    "src/frontend/swagger",
-    "src/frontend/storybook",
+    "node_modules",
     "src/backend",
     ".yarn/**/*",
+    "**/dist/*",
+    "**/*.snap",
     "*test*",
     "*yarn/*"
   ]

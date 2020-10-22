@@ -33,6 +33,6 @@
     "babel-loader": "^8.1.0",
     "cache-loader": "^4.1.0",
     "pnp-webpack-plugin": "^1.6.4",
-    "typescript": "beta"
+    "typescript": "4.1.0-beta"
   }
 }
