@@ -1,8 +1,14 @@
 import * as React from 'react';
-import {FC} from 'react';
+import {FC, ElementType} from 'react';
 import {RecoveryForm} from '../components/forms/recovery-password';
 
-const RecoveryPasswordPage: FC = (props) => <RecoveryForm {...props} />;
+interface IProps {
+  Link: ElementType;
+}
+
+const RecoveryPasswordPage: FC<IProps> = ({Link}) => (
+  <RecoveryForm Link={Link} />
+);
 
 RecoveryPasswordPage.displayName = 'RecoveryPasswordPage';
 

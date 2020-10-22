@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FC} from 'react';
+import {FC, ElementType} from 'react';
 import {useDispatch} from 'react-redux';
 import {
   Button,
@@ -23,7 +23,7 @@ import {
 type TDispatch = (arg: any) => Promise<Record<string, string>>;
 
 interface IProps {
-  Link: any;
+  Link: ElementType;
 }
 
 interface IRegisterFormValues {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {FC} from 'react';
+import {FC, ElementType} from 'react';
 import {useDispatch} from 'react-redux';
 import {
   Button,
@@ -25,8 +25,8 @@ import {
 type TDispatch = (arg: any) => Promise<Record<string, string>>;
 
 interface IProps {
-  useNavigate: (path?: string) => void;
-  Link: any;
+  useNavigate?: (path?: string) => void;
+  Link: ElementType;
 }
 
 interface ILoginFormValues {

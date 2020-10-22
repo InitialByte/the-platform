@@ -1,8 +1,12 @@
 import * as React from 'react';
-import {FC} from 'react';
+import {FC, ElementType} from 'react';
 import {LoginForm} from '../components/forms/login';
 
-const LoginPage: FC = (props) => <LoginForm {...props} />;
+interface IProps {
+  Link: ElementType;
+}
+
+const LoginPage: FC<IProps> = ({Link}) => <LoginForm Link={Link} />;
 
 LoginPage.displayName = 'LoginPage';
 

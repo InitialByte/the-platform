@@ -15,11 +15,8 @@ declare module 'clsx' {
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface ClassArray extends Array<ClassValue> {}
-
   type ClassNamesFn = (...classes: ClassValue[]) => string;
-
   type ClassNamesExport = ClassNamesFn & {default: ClassNamesFn, };
-
   const classNames: ClassNamesExport;
 
   export = classNames;

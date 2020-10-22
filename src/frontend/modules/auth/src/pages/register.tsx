@@ -1,8 +1,12 @@
 import * as React from 'react';
-import {FC} from 'react';
+import {FC, ElementType} from 'react';
 import {RegisterForm} from '../components/forms/register';
 
-const RegisterPage: FC = (props) => <RegisterForm {...props} />;
+interface IProps {
+  Link: ElementType;
+}
+
+const RegisterPage: FC<IProps> = ({Link}) => <RegisterForm Link={Link} />;
 
 RegisterPage.displayName = 'RegisterPage';
 

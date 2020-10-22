@@ -39,6 +39,7 @@ async function webpackFinal(config) {
               '@babel/preset-env',
               {
                 useBuiltIns: 'entry',
+                bugfixes: true,
               },
             ],
             '@babel/preset-typescript',
