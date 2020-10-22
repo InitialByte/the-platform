@@ -173,7 +173,7 @@ and run
 
 `yarn dlx @yarnpkg/pnpify --sdk vscode`
 
-[more info](https://yarnpkg.com/advanced/editor-sdks#tools-currently-supported), 
+[more info](https://yarnpkg.com/advanced/editor-sdks#tools-currently-supported),
 [configuring vscode with pnp](https://yarnpkg.com/getting-started/editor-sdks)
 
 ### Config for VSCode

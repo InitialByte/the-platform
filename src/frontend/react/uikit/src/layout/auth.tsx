@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {Component, FC} from 'react';
 import {useTranslation} from '@the_platform/core';
 import {makeStyles, Container, Box, Avatar} from '../atom';

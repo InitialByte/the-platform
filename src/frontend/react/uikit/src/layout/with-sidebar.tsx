@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {FC, useState} from 'react';
 import {clsx, useTranslation} from '@the_platform/core';
 import {Copyright, LanguageSelector, IProps as ILangProps} from '../molecule';

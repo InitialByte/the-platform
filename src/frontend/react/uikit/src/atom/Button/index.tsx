@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {Button as MUIButton, ButtonProps} from '@material-ui/core';
 
 export const Button = (props: ButtonProps): ReturnType<typeof MUIButton> => (

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {FC, ChangeEvent, useState} from 'react';
 import {MenuItem, Select} from '../../atom';
 

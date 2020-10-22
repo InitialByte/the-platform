@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {FC, ElementType} from 'react';
 import {RegisterForm} from '../components/forms/register';
 

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {FC} from 'react';
 import {useDispatch} from 'react-redux';
 import {Button, TextField, Form, makeStyles} from '@the_platform/react-uikit';

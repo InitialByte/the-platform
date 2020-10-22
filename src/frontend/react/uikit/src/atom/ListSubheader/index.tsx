@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   ListSubheader as MUIListSubheader,
   ListSubheaderProps,

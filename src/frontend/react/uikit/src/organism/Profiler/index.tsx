@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {Profiler, ReactElement, Component} from 'react';
 
 type TRenderCallback = (

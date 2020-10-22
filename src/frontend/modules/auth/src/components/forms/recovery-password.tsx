@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {FC, ElementType} from 'react';
 import {useDispatch} from 'react-redux';
 import {

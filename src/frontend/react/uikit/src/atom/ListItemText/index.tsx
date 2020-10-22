@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   ListItemText as MUIListItemText,
   ListItemTextProps,

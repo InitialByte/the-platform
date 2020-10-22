@@ -3,7 +3,7 @@ const rootPath = process.cwd();
 
 module.exports = {
   test: /\.tsx?$/,
-  exclude : [
+  exclude: [
     /@babel\/runtime-corejs3/,
     /\bwebpack\/buildin\b/,
     /\/node_modules/,
@@ -24,24 +24,28 @@ module.exports = {
         cacheDirectory: join(rootPath, '.cache/babel-loader'),
         presets: [
           [
-            '@babel/preset-env', {
+            '@babel/preset-env',
+            {
               useBuiltIns: 'usage',
+              bugfixes: true,
               modules: false,
               loose: true,
               corejs: {
                 version: 3,
               },
               targets: [
-                "last 2 Firefox versions",
-                "last 2 Chrome versions",
-                "last 2 Safari versions",
-                "last 2 Edge versions",
+                'last 2 Firefox versions',
+                'last 2 Chrome versions',
+                'last 2 Safari versions',
+                'last 2 Edge versions',
               ],
             },
           ],
           '@babel/preset-typescript',
           [
-            '@babel/preset-react', {
+            '@babel/preset-react',
+            {
+              runtime: 'automatic',
               useBuiltIns: true,
             },
           ],
@@ -52,7 +56,7 @@ module.exports = {
             '@babel/proposal-class-properties',
             {
               loose: true,
-            }
+            },
           ],
           '@babel/plugin-proposal-nullish-coalescing-operator',
           '@babel/plugin-proposal-optional-chaining',

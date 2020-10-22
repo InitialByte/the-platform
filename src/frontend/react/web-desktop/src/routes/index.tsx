@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {Suspense, StrictMode} from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import {ErrorBoundary, Spinner, CSSBaseline} from '@the_platform/react-uikit';

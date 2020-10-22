@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {ListItem as MUIListItem, ListItemProps} from '@material-ui/core';
 
 interface IFixProps extends ListItemProps {

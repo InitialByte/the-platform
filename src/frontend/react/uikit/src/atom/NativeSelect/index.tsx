@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   NativeSelect as MUINativeSelect,
   NativeSelectProps,

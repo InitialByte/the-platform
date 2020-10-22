@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {useEffect, useState, FC} from 'react';
 import {Reducer} from 'redux';
 import {connect} from 'react-redux';

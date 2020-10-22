@@ -7,12 +7,12 @@
     "@types/consul": "0.23.34",
     "@types/express": "^4.17.8",
     "@types/jsonwebtoken": "8.5.0",
-    "@types/node": "^14.11.10",
+    "@types/node": "^14.14.2",
     "@types/redis": "2.8.28"
   },
   "dependencies": {
     "@types/validator": "^13.1.0",
-    "consul": "^0.38.0",
+    "consul": "^0.39.0",
     "express": "^5.0.0-alpha.8",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.4.1",
