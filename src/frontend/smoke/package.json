@@ -6,7 +6,7 @@
   "dependencies": {
     "chai": "^4.2.0",
     "mocha": "^8.2.0",
-    "puppeteer": "^5.3.1"
+    "puppeteer": "^5.4.0"
   },
   "scripts": {
     "start": "mocha --no-timeout"
