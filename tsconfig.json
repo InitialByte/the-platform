@@ -36,14 +36,11 @@
     }
   },
   "files": [
-    "src/frontend/react/web-desktop/src/global.ts"
+    "src/frontend/core/src/services/error-tracking/global.ts"
   ],
   "include": [
     "src/frontend/**/*.tsx",
     "src/frontend/**/*.ts"
-  ],
-  "excludeTypeRoots": [
-
   ],
   "exclude": [
     "src/frontend/__mocks__",

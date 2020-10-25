@@ -49,7 +49,7 @@ export const AuthLayout: FC<IProps> = ({
 
         <Box mt={8}>
           <Copyright
-            webAddress="http://www.zlobin.dev"
+            webAddress="https://www.zlobin.dev"
             siteName={t('sitename')}
           />
         </Box>

@@ -1,3 +1,5 @@
+import './global';
+
 export const appErrors: Platform.IError[] = [
   {
     code: E_CODE.E_1,
