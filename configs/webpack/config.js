@@ -26,7 +26,7 @@ const {
   APP = 'react/web-desktop',
   WORKSPACE = 'client',
   LANG = 'en-US',
-  MODE = 'development',
+  NODE_ENV = 'development',
 } = process.env;
 const rootPath = process.cwd();
 const cachePath = join(rootPath, '.cache');
@@ -52,7 +52,7 @@ writeFileSync(pathToSaveRoutes, (moduleRoutes || []).join('\n'));
 const webpackConfig = {
   context: join(rootPath, 'src'),
   target: 'web',
-  // bail: true,
+  bail: true,
   name,
 
   entry: [join(rootPath, `src/frontend/${APP}/src/index.tsx`)],
@@ -142,7 +142,7 @@ const webpackConfig = {
       initialState: JSON.stringify({
         env: {
           workspace: WORKSPACE,
-          mode: MODE,
+          mode: NODE_ENV,
         },
         i18n: {
           default: config.app.settings.defaultLanguage,
