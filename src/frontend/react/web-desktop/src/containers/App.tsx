@@ -190,7 +190,7 @@ export const AppContainer = connect(
             }),
           )
           .catch((e: Error) => logger.error(E_CODE.E_1, e))
-          .finally(() => setRefreshIndex(refreshIndex + 1));
+          .finally(() => setRefreshIndex(refreshIndex + 1000));
 
         if (reducer && typeof reducer === 'function') {
           try {
