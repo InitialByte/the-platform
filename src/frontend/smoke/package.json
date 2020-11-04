@@ -5,8 +5,8 @@
   "port": "9001",
   "dependencies": {
     "chai": "^4.2.0",
-    "mocha": "^8.2.0",
-    "puppeteer": "^5.4.0"
+    "mocha": "^8.2.1",
+    "puppeteer": "^5.4.1"
   },
   "scripts": {
     "start": "mocha --no-timeout"

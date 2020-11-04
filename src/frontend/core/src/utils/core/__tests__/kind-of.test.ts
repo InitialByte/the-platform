@@ -53,7 +53,7 @@ describe('1. Kind Of.', () => {
       expect(kindOf(Object.create(null))).toBe('object');
       expect(kindOf(Object.create({}))).toBe('object');
       expect(kindOf(new (class {})())).toBe('object');
-      expect(kindOf(console)).toBe('object');
+      expect(kindOf(console)).toBe('console');
     });
 
     it('1.3.5: should correct verify window object.', () => {
