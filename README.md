@@ -70,6 +70,8 @@ Modular architecture allows multiple teams to work independently from each other
 - Allow to fit the best the technology to each need.
 - Webpack 5 fastest speed and smallest bundle size.
 - React Router 6.
+- Ability to proxy google-analytics and yandex metrics via own server.
+- Ability make A/B testing.
 
 ## What is used
 
