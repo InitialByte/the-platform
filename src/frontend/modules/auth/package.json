@@ -5,10 +5,10 @@
   "description": "Module for authentication",
   "main": "./src/index.tsx",
   "dependencies": {
-    "@reduxjs/toolkit": "^1.4.0",
+    "@reduxjs/toolkit": "^1.5.0",
     "@the_platform/core": "workspace:*",
     "@the_platform/react-uikit": "workspace:*",
-    "core-js": "^3.6.5",
+    "core-js": "^3.8.0",
     "history": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -18,8 +18,8 @@
   "devDependencies": {
     "@babel/runtime": "^7.12.5",
     "@babel/runtime-corejs3": "^7.12.5",
-    "@types/react": "^16.9.55",
-    "@types/react-dom": "^16.9.9",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
     "@types/react-redux": "^7.1.11"
   }
 }

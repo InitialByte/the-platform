@@ -13,10 +13,10 @@ const LoaderCSS = require('./loaders/css');
 const LoaderSVG = require('./loaders/svg');
 const LoaderMJS = require('./loaders/mjs');
 const {
-  buildInfo,
   collectModuleRoutes,
   createCacheDir,
   collectI18n,
+  buildInfo,
 } = require('./misc');
 
 const package = require('../../package.json');
@@ -58,6 +58,7 @@ const webpackConfig = {
   entry: [join(rootPath, `src/frontend/${APP}/src/index.tsx`)],
 
   output: {
+    library: 'PLT',
     path: join(rootPath, 'dist'),
     publicPath: '/',
   },
@@ -69,7 +70,7 @@ const webpackConfig = {
       LoaderPDF_ZIP,
       LoaderCSS,
       LoaderSVG,
-      LoaderMJS, // only webpack 5
+      LoaderMJS,
       LoaderTS,
     ],
   },

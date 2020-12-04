@@ -1,20 +1,16 @@
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const CompressionPlugin = require('compression-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const {SourceMapDevToolPlugin} = require('webpack');
 const {merge} = require('webpack-merge');
-const {join} = require('path');
-
 const {webpackConfig} = require('./config');
-
-const rootPath = process.cwd();
 
 module.exports = merge(webpackConfig, {
   mode: 'production',
   devtool: false,
+  cache: false,
 
   output: {
-    filename: '[name].[hash:5].js',
+    filename: '[id].[contenthash:5].js',
     pathinfo: false,
   },
 
@@ -55,14 +51,7 @@ module.exports = merge(webpackConfig, {
       exclude: /vendors*/,
     }),
 
-    new BundleAnalyzerPlugin({
-      reportFilename: join(rootPath, 'report/bundle.analyze.html'),
-      analyzerMode: 'static',
-      openAnalyzer: false,
-    }),
-
     new CompressionPlugin({
-      cache: join(rootPath, '.cache'),
       test: /\.(js|css|html|svg|json)$/,
       algorithm: 'gzip',
       threshold: 1024,
@@ -70,7 +59,6 @@ module.exports = merge(webpackConfig, {
     }),
 
     new CompressionPlugin({
-      cache: join(rootPath, '.cache'),
       test: /\.(js|css|html|svg|json)$/,
       algorithm: 'brotliCompress',
       filename: '[path][base].br',

@@ -35,8 +35,12 @@ class ExtraWatchlugin {
 
 module.exports = merge(webpackConfig, {
   mode: 'development',
-  devtool: 'eval',
+  devtool: 'eval-source-map',
   watch: !TO_SMOKE,
+
+  cache: {
+    type: 'memory',
+  },
 
   output: {
     filename: '[name].bundle.js',

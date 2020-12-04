@@ -282,7 +282,6 @@ Keep it fast. How to check:
 
 1. Use [lighthouse](https://developers.google.com/web/tools/lighthouse/) in Chrome dev tools.
 2. React profiler from browser's [extension](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en).
-3. Webpack bundle analyzer report in ./report/bundle.analyze.html after running `yarn build`.
 
 ## Todo
 

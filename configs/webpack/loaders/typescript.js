@@ -11,12 +11,6 @@ module.exports = {
   ],
   use: [
     {
-      loader: require.resolve('cache-loader'),
-      options: {
-        cacheDirectory: join(rootPath, '.cache/cache-loader'),
-      },
-    },
-    {
       loader: require.resolve('babel-loader'),
       options: {
         babelrc: false,
