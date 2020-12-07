@@ -42,9 +42,9 @@ const initialValues: ILoginFormValues = {
 const MIN_NUMBER_CHARS_IN_PASSWORD = 5;
 const notificationActions = getObjectCache('notificationActions') as {
   createToast: (message: {
-    message: string,
-    type: 'error' | 'warning' | 'info' | 'success',
-  }) => void,
+    message: string;
+    type: 'error' | 'warning' | 'info' | 'success';
+  }) => void;
 };
 
 const onSubmit = (dispatch: TDispatch) => (
@@ -125,6 +125,11 @@ export const LoginForm: FC<IProps> = ({Link}) => {
         helperText={form.touched.email ? form.errors.email : ''}
         error={form.touched.email && Boolean(form.errors.email)}
         label={t('signin.fields.email')}
+        id="email"
+        InputLabelProps={{
+          shrink: true,
+          htmlFor: 'email',
+        }}
         type="email"
         onChange={form.handleChange}
         onBlur={form.handleBlur}
@@ -139,6 +144,11 @@ export const LoginForm: FC<IProps> = ({Link}) => {
         helperText={form.touched.password ? form.errors.password : ''}
         error={form.touched.password && Boolean(form.errors.password)}
         label={t('signin.fields.password')}
+        id="password"
+        InputLabelProps={{
+          shrink: true,
+          htmlFor: 'password',
+        }}
         type="password"
         onChange={form.handleChange}
         onBlur={form.handleBlur}
@@ -159,7 +169,10 @@ export const LoginForm: FC<IProps> = ({Link}) => {
         variant="contained"
         className={classes.submit}
         disabled={form.isSubmitting || form.isValidating}
-        onClick={() => form.handleSubmit()}>
+        onClick={(e) => {
+          e.preventDefault();
+          form.handleSubmit();
+        }}>
         {t('signin.buttons.submit')}
       </Button>
 

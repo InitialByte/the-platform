@@ -1,1 +1,6 @@
-export {makeStyles, createStyles} from '@material-ui/core/styles';
+export {
+  createGenerateClassName,
+  StylesProvider,
+  createStyles,
+  makeStyles,
+} from '@material-ui/core/styles';

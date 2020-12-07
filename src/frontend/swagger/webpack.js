@@ -19,18 +19,16 @@ module.exports = {
     app: join(rootPath, 'src/index.js'),
   },
 
+  cache: {
+    type: 'memory',
+  },
+
   module: {
     rules: [
       {
         test: /\.js?$/,
         exclude: /node_modules/,
         use: [
-          {
-            loader: require.resolve('cache-loader'),
-            options: {
-              cacheDirectory: join(baseRoot, '.cache/cache-loader'),
-            },
-          },
           {
             loader: require.resolve('babel-loader'),
             options: {
@@ -52,11 +50,6 @@ module.exports = {
     fallback: {path: false},
     extensions: ['.js'],
     symlinks: false,
-    plugins: [PnpWebpackPlugin],
-  },
-
-  resolveLoader: {
-    plugins: [PnpWebpackPlugin.moduleLoader(module)],
   },
 
   stats: 'errors-only',

@@ -1,17 +1,19 @@
 {
   "short_name": "THE_PLATFORM",
   "name": "The Platform",
-  "description": "The Platform. New era of web-applications",
+  "description": "The Platform. Scalable fullstack framework for configuring complex medium and large SPA projects.",
   "icons": [
     {
       "src": "/i/192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "/i/512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
   "start_url": "/?pwa",

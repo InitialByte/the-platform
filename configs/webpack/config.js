@@ -6,9 +6,10 @@ const {join} = require('path');
 const {writeFileSync} = require('fs');
 
 const LoaderIMAGE_COMPRESS = require('./loaders/compress-images');
-const LoaderIMAGE_FONTS = require('./loaders/image-fonts');
-const LoaderPDF_ZIP = require('./loaders/pdf-zip');
+const LoaderIMAGES = require('./loaders/images');
+const LoaderSOURCE = require('./loaders/source');
 const LoaderTS = require('./loaders/typescript');
+const LoaderFONTS = require('./loaders/fonts');
 const LoaderCSS = require('./loaders/css');
 const LoaderSVG = require('./loaders/svg');
 const LoaderMJS = require('./loaders/mjs');
@@ -20,7 +21,7 @@ const {
 } = require('./misc');
 
 const package = require('../../package.json');
-const {name, version, config} = package;
+const {name, version, config, description} = package;
 
 const {
   APP = 'react/web-desktop',
@@ -61,13 +62,15 @@ const webpackConfig = {
     library: 'PLT',
     path: join(rootPath, 'dist'),
     publicPath: '/',
+    assetModuleFilename: 'dist/[contenthash:5][ext][query]',
   },
 
   module: {
     rules: [
       LoaderIMAGE_COMPRESS,
-      LoaderIMAGE_FONTS,
-      LoaderPDF_ZIP,
+      LoaderIMAGES,
+      LoaderSOURCE,
+      LoaderFONTS,
       LoaderCSS,
       LoaderSVG,
       LoaderMJS,
@@ -131,6 +134,7 @@ const webpackConfig = {
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
       },
       title: name,
+      description,
       minify: {
         removeStyleLinkTypeAttributes: true,
         removeScriptTypeAttributes: true,

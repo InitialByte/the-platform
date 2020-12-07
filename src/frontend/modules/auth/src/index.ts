@@ -83,18 +83,31 @@ export const bootstrap = (store: Record<string, unknown>): void => {
   logger.info('PLT.AUTH: Importing AUTH module.');
 
   customRequest
-    .get(CONST_URL.URL_TOKEN_CHECK)
+    .get(CONST_URL.URL_TOKEN_CHECK, {
+      throwHttpErrors: false,
+    })
     .then(
-      (result: unknown): Promise<unknown> => {
-        console.log('result', result);
-        // TODO: add fullName from result
+      async (result: unknown): Promise<unknown> => {
+        const SUCCESS_STATUS_200 = 200;
+        let data = {};
+
+        try {
+          const response = await result.json();
+          data = response.data;
+        } catch (e) {
+          logger.error(E_CODE.E_104, e);
+        }
+
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        return store && store.dispatch && typeof store.dispatch === 'function'
-          ? store.dispatch(actions.simpleAuth({fullName: 'test'}))
+        return store &&
+          store.dispatch &&
+          typeof store.dispatch === 'function' &&
+          result?.status === SUCCESS_STATUS_200
+          ? store.dispatch(actions.simpleAuth({fullName: data.fullName}))
           : Promise.resolve();
       },
     )
-    .catch(console.error);
+    .catch((error: string) => logger.error(E_CODE.E_104, error));
 };
 
 export {reducer} from './reducer';

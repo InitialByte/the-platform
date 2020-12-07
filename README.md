@@ -69,9 +69,11 @@ Modular architecture allows multiple teams to work independently from each other
 - Easier upgrade of the underlying technologies for each workspace.
 - Allow to fit the best the technology to each need.
 - Webpack 5 fastest speed and smallest bundle size.
-- React Router 6.
-- Ability to proxy google-analytics and yandex metrics via own server.
-- Ability make A/B testing.
+- React Router 6  - decrease size of bundle.
+- Ability to proxy google-analytics and yandex metrics via own server  avoid inadvertent blocking by ad blockers.
+- Ability make A/B testing for front parts of application.
+- Single-symbols classnames in production - lead to decrease size of styles and more security.
+- Caching resources via ServiceWorkers.
 
 ## What is used
 
@@ -205,14 +207,25 @@ It may be suitable for dev purposes, e.g. test ssl connection in nginx via local
 
 See [mkcert](https://github.com/FiloSottile/mkcert) github repository.
 
+MacOS
+
+```bash
+brew install mkcert nss
+```
+
+Linux
+
 ```bash
 cd ~/tmp
 wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.1/mkcert-v1.4.1-linux-amd64
 mv mkcert-v1.4.1-linux-amd64 mkcert
 chmod +x mkcert
 sudo cp mkcert /usr/local/bin/
-mkcert localhost 127.0.0.1 ::1
+```
+
+```bash
 mkcert -install
+mkcert -key-file <YOUR_PATH>/configs/docker/nginx/certs/wildcard.localhost.key.pem -cert-file <YOUR_PATH>/configs/docker/nginx/certs/wildcard.localhost.cert.pem localhost ::1 127.0.0.1
 ```
 
 ## Main Commands
@@ -289,7 +302,7 @@ Keep it fast. How to check:
 
 - Add http3 into web-app nginx.
 - Add SSR.
-- Add [web-worker](https://developers.google.com/web/tools/workbox).
+- Add PWA application.
 - Add [Istanbul](https://istanbul.js.org/).
 - Add ability disallow commit if tests not in green zone.
 - Add ability disallow commit if cover zone of tests is happened less then before.

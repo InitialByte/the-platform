@@ -4,6 +4,7 @@ import {
   SUCCESS_STATUS,
   UNAUTHORIZED_STATUS,
   JWT_COOKIE_NAME,
+  DEFAULT_FULLNAME,
 } from '../../constants';
 
 export const token = Router();
@@ -19,7 +20,11 @@ token.get('/check', (req: Request, res: Response): void => {
   } catch {}
 
   if (isValid) {
-    res.status(SUCCESS_STATUS).send();
+    res.status(SUCCESS_STATUS).json({
+      data: {
+        fullName: DEFAULT_FULLNAME,
+      },
+    });
   } else {
     res.status(UNAUTHORIZED_STATUS).json({
       error: {

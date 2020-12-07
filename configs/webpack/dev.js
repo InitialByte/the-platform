@@ -66,7 +66,7 @@ module.exports = merge(webpackConfig, {
   optimization: {
     removeAvailableModules: false,
     removeEmptyChunks: false,
-    runtimeChunk: 'single',
+    runtimeChunk: 'multiple',
     splitChunks: false,
   },
 

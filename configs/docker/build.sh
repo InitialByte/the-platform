@@ -45,6 +45,11 @@ envsubst '${DEV_CERTIFICATES}' \
   > /tmp/buffer && \
 mv /tmp/buffer /etc/nginx/settings/server.conf
 
+envsubst '${DOMAIN}' \
+  < /etc/nginx/settings/ab.conf \
+  > /tmp/buffer && \
+mv /tmp/buffer /etc/nginx/settings/ab.conf
+
 rm -rf /usr/src/app/configs
 
 echo "The Platform. Ready to go."

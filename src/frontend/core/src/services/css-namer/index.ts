@@ -1,4 +1,4 @@
-module.exports.CSSNamer = class CSSNamer {
+export class CSSNamer {
   constructor() {
     this._counter = 0;
     this._cache = {};
@@ -105,4 +105,4 @@ module.exports.CSSNamer = class CSSNamer {
 
     return this._cache[key];
   }
-};
+}

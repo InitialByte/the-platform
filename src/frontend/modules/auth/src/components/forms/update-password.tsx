@@ -23,9 +23,9 @@ const initialValues: IUpdatePwdValues = {
 };
 const notificationActions = getObjectCache('notificationActions') as {
   createToast: (message: {
-    message: string,
-    type: 'error' | 'warning' | 'info' | 'success',
-  }) => void,
+    message: string;
+    type: 'error' | 'warning' | 'info' | 'success';
+  }) => void;
 };
 const MIN_NUMBER_CHARS_IN_PASSWORD = 5;
 
@@ -114,6 +114,11 @@ export const UpdatePasswordForm: FC = () => {
         helperText={form.touched.password ? form.errors.password : ''}
         error={form.touched.password && Boolean(form.errors.password)}
         label={t('updatePwd.fields.password')}
+        id="password"
+        InputLabelProps={{
+          shrink: true,
+          htmlFor: 'email',
+        }}
         type="password"
         onChange={form.handleChange}
         onBlur={form.handleBlur}
@@ -132,6 +137,11 @@ export const UpdatePasswordForm: FC = () => {
           form.touched.passwordConfirm && Boolean(form.errors.passwordConfirm)
         }
         label={t('updatePwd.fields.passwordConfirm')}
+        id="password-confirm"
+        InputLabelProps={{
+          shrink: true,
+          htmlFor: 'password-confirm',
+        }}
         type="password"
         onChange={form.handleChange}
         onBlur={form.handleBlur}
@@ -147,7 +157,10 @@ export const UpdatePasswordForm: FC = () => {
         variant="contained"
         className={classes.submit}
         disabled={form.isSubmitting || form.isValidating}
-        onClick={() => form.handleSubmit()}>
+        onClick={(e) => {
+          e.preventDefault();
+          form.handleSubmit();
+        }}>
         {t('updatePwd.buttons.submit')}
       </Button>
     </form>

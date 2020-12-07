@@ -23,7 +23,7 @@
     "typescript": "4.1.2"
   },
   "dependencies": {
-    "@the_platform/nodejs-core": "workspace:*",
+    "@the_platform/nodejs-core": "1.0.0",
     "express": "^5.0.0-alpha.8",
     "express-paginate": "^1.0.2"
   },

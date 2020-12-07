@@ -3,7 +3,7 @@ services:
   ###----- Infrastructure -----###
 
 #  elk:
-#    image: sebp/elk:780
+#    image: sebp/elk:latest
 #    container_name: ${ELK_NAME}
 #    hostname: ${ELK_NAME}
 #    network_mode: platform
@@ -55,7 +55,7 @@ services:
 #      - POSTGRES_DB=${POSTGRES_DB}
 
 #  postgres-migration:
-#    image: flyway/flyway:6-alpine
+#    image: flyway/flyway:7-alpine
 #    container_name: ${MIGRATION_NAME}
 #    hostname: ${MIGRATION_NAME}
 #    network_mode: platform
@@ -72,7 +72,7 @@ services:
 #      - postgres
 
 #  consul_server_master_node:
-#    image: consul:1.8
+#    image: consul:1.9
 #    container_name: ${SERVICE_DISCOVERY_NAME}
 #    hostname: ${SERVICE_DISCOVERY_NAME}
 #    ## ONLY LOCAL DEV PUPRPOSES
@@ -109,7 +109,7 @@ services:
 #      - redis
 
 #  api-gateway:
-#    image: tykio/tyk-gateway:v3.0.0
+#    image: tykio/tyk-gateway:v3.1.1
 #    container_name: ${API_GATEWAY_NAME}
 #    hostname: ${API_GATEWAY_NAME}
 #    network_mode: platform

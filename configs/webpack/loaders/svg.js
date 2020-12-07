@@ -1,5 +1,5 @@
 module.exports = {
   test: /\.svg$/,
   exclude: /node_modules/,
-  type: 'asset/resource',
+  type: 'asset/inline',
 };

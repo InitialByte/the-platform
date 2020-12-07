@@ -25,6 +25,7 @@ scripts
 .vscode
 .pnp.js
 .yarnrc
+.husky
 .cache
 report
 .yarn

@@ -21,4 +21,14 @@ export const appErrors: Platform.IError[] = [
     type: E_TYPE.CRITICAL,
     title: 'Duplicate routes.',
   },
+  {
+    code: E_CODE.E_103,
+    type: E_TYPE.CRITICAL,
+    title: 'Service Worker Error.',
+  },
+  {
+    code: E_CODE.E_104,
+    type: E_TYPE.CRITICAL,
+    title: 'Auth check token.',
+  },
 ];

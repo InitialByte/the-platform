@@ -1,6 +1,6 @@
 const autoprefixer = require('autoprefixer');
 const postcssJs = require('postcss-js');
-const {CSSNamer} = require('../utils/css-namer');
+const {CSSNamer} = require('../misc');
 
 const names = [];
 const cssNamer = new CSSNamer();

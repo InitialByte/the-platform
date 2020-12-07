@@ -199,7 +199,7 @@ export const WithSidebarLayout: FC<IProps> = ({
             {children}
           </Grid>
 
-          <Box pt={4}>
+          <Box sx={{pt: 4}}>
             <Copyright
               webAddress="https://www.zlobin.dev"
               siteName={t('sitename')}

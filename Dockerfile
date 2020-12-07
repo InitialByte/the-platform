@@ -1,4 +1,4 @@
-FROM alpine:3
+FROM mhart/alpine-node:14
 
 LABEL name="The Platform. Docker image." \
   maintainer="Zlobin Eugene <creastar@gmail.com>"
@@ -58,10 +58,6 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   --with-stream \
   --with-mail \
   " \
-  # ^^^
-  # --with-http_v3_module \
-  # --with-openssl=/usr/src/quiche/deps/boringssl \
-  # --with-quiche=/usr/src/quiche \
   && addgroup -S nginx \
   && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
   && apk add --no-cache --virtual .build-deps \
@@ -115,7 +111,6 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   \
   && git clone --depth=1 --recursive https://github.com/openresty/headers-more-nginx-module /usr/src/ngx_headers_more \
   && git clone --depth=1 --recursive --shallow-submodule https://github.com/google/ngx_brotli /usr/src/ngx_brotli \
-  # && git clone --depth=1 --recursive https://github.com/cloudflare/quiche /usr/src/quiche \
   && hg clone http://hg.nginx.org/njs /usr/src/ngx_http_js \
   && (git clone --depth=1 https://boringssl.googlesource.com/boringssl /usr/src/boringssl \
   && sed -i 's@out \([>=]\) TLS1_2_VERSION@out \1 TLS1_3_VERSION@' /usr/src/boringssl/ssl/ssl_lib.cc \
@@ -134,9 +129,8 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   && tar -zxC /usr/src -f nginx.tar.gz \
   && rm nginx.tar.gz \
   && cd /usr/src/nginx-$NGINX_VERSION \
-  # && patch --verbose --dry-run -p01 < /usr/src/quiche/extras/nginx/nginx-1.16.patch \
-  && curl -fSL https://raw.githubusercontent.com/nginx-modules/ngx_http_tls_dyn_size/0.5/nginx__dynamic_tls_records_1.17.7%2B.patch -o dynamic_tls_records.patch \
-  && patch -p1 < dynamic_tls_records.patch \
+#  && curl -fSL https://raw.githubusercontent.com/nginx-modules/ngx_http_tls_dyn_size/0.5/nginx__dynamic_tls_records_1.17.7%2B.patch -o dynamic_tls_records.patch \
+#  && patch -p1 < dynamic_tls_records.patch \
   && ./configure $CONFIG --with-debug \
   && make -j$(getconf _NPROCESSORS_ONLN) \
   && mv objs/nginx objs/nginx-debug \
@@ -187,9 +181,9 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 WORKDIR /usr/src/app
 
 ## Install yarn v2.
-RUN apk add yarn git && \
-  yarn policies set-version berry \
-  yarn set version berry
+RUN apk add --no-cache --virtual yarn git && \
+  yarn set version berry && \
+  yarn policies set-version latest
 
 ## Install dependencies and cache it.
 COPY package.json .
@@ -197,11 +191,10 @@ COPY src/frontend/react/web-desktop/package.json src/frontend/react/web-desktop/
 COPY src/frontend/modules/auth/package.json src/frontend/modules/auth/package.json
 COPY src/frontend/react/uikit/package.json src/frontend/react/uikit/package.json
 COPY src/frontend/core/package.json src/frontend/core/package.json
-
-RUN yarn
-
 COPY configs/docker/nginx/ /etc/nginx/
 COPY . .
+
+RUN yarn
 
 ## Build application and remove sources.
 RUN yarn build && \

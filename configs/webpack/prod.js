@@ -1,6 +1,6 @@
 const CompressionPlugin = require('compression-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const {SourceMapDevToolPlugin} = require('webpack');
+// const {SourceMapDevToolPlugin} = require('webpack');
 const {merge} = require('webpack-merge');
 const {webpackConfig} = require('./config');
 
@@ -46,10 +46,10 @@ module.exports = merge(webpackConfig, {
 
   plugins: [
     // Exclude source map for vendors chunk.
-    new SourceMapDevToolPlugin({
-      filename: 'sourcemaps/[file].map',
-      exclude: /vendors*/,
-    }),
+    // new SourceMapDevToolPlugin({
+    //  filename: 'sourcemaps/[file].map',
+    //  exclude: /vendors*/,
+    // }),
 
     new CompressionPlugin({
       test: /\.(js|css|html|svg|json)$/,

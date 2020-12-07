@@ -14,10 +14,10 @@ interface IConfig {
   config: {
     app: {
       settings: {
-        availableLanguages: string[],
-        defaultLanguage: string,
-      },
-    },
+        availableLanguages: string[];
+        defaultLanguage: string;
+      };
+    };
   };
 }
 
@@ -59,6 +59,7 @@ export const bootstrapApp = async (): Promise<void> =>
       .then(
         (fp: string): ReturnType<typeof customRequestInit> =>
           customRequestInit({
+            throwHttpErrors: false,
             beforeRequest: [
               (req: Request): void => {
                 req.headers.set('X-FP', fp);

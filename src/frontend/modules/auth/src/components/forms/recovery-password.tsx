@@ -35,9 +35,9 @@ const initialValues: IRecoveryPwdFormValues = {
 };
 const notificationActions = getObjectCache('notificationActions') as {
   createToast: (message: {
-    message: string,
-    type: 'error' | 'warning' | 'info' | 'success',
-  }) => void,
+    message: string;
+    type: 'error' | 'warning' | 'info' | 'success';
+  }) => void;
 };
 
 const onSubmit = (dispatch: TDispatch) => (
@@ -110,6 +110,11 @@ export const RecoveryForm: FC<IProps> = ({Link}) => {
         helperText={form.touched.email ? form.errors.email : ''}
         error={form.touched.email && Boolean(form.errors.email)}
         label={t('recovery.fields.email')}
+        id="email"
+        InputLabelProps={{
+          shrink: true,
+          htmlFor: 'email',
+        }}
         type="email"
         onChange={form.handleChange}
         onBlur={form.handleBlur}
@@ -125,7 +130,10 @@ export const RecoveryForm: FC<IProps> = ({Link}) => {
         variant="contained"
         className={classes.submit}
         disabled={form.isSubmitting || form.isValidating}
-        onClick={() => form.handleSubmit()}>
+        onClick={(e) => {
+          e.preventDefault();
+          form.handleSubmit();
+        }}>
         {t('recovery.buttons.submit')}
       </Button>
 

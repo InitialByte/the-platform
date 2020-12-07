@@ -10,6 +10,15 @@ import {moduleRoutes, store} from './store';
 const logger = loggerInit();
 const MOUNT_POINT: HTMLElement | null = document.getElementById('app');
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', (): void => {
+    navigator.serviceWorker
+      .register('/sw.js')
+      .then(() => console.log('ServiceWorker registration successfully.'))
+      .catch((error: string) => logger.error(E_CODE.E_103, error));
+  });
+}
+
 if (!MOUNT_POINT) {
   logger.error(E_CODE.E_101);
 } else {

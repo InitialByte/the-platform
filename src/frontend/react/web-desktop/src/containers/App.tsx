@@ -27,7 +27,7 @@ interface IProps {
   modules: IModuleState;
   isAuth: boolean;
   auth: {
-    isAuth: boolean,
+    isAuth: boolean;
   };
   i18n: Ii18nState;
   modulesRoute: Platform.IRoute[];
@@ -91,10 +91,9 @@ export const AppContainer = connect(
     ): ReturnType<typeof changeLocaleDispatch> =>
       changeLocaleDispatch(language);
 
-    const RenderLayout: FC<Pick<
-      Platform.IRoute,
-      'layout' | 'Icon' | 'children'
-    >> = ({layout, Icon = null, children}) => {
+    const RenderLayout: FC<
+      Pick<Platform.IRoute, 'layout' | 'Icon' | 'children'>
+    > = ({layout, Icon = null, children}) => {
       if (layout === 'Auth') {
         return (
           <AuthLayout

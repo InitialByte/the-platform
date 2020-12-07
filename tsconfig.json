@@ -17,6 +17,10 @@
     "baseUrl": "./",
     "noEmit": true,
     "strict": true,
+    // "types" : [
+    //  "@material-ui-core",
+    //  "@material-ui-styles"
+    // ],
     "lib": [
       "ES2015",
       "ES2016",

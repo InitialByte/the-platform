@@ -39,21 +39,23 @@ export const AuthLayout: FC<IProps> = ({
         availableLanguages={availableLanguages}
         currentLanguage={currentLanguage}
       />
-      <Container maxWidth="xs">
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <Icon />
-          </Avatar>
-          {children}
-        </div>
+      <main>
+        <Container maxWidth="xs">
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <Icon />
+            </Avatar>
+            {children}
+          </div>
 
-        <Box mt={8}>
-          <Copyright
-            webAddress="https://www.zlobin.dev"
-            siteName={t('sitename')}
-          />
-        </Box>
-      </Container>
+          <Box sx={{mt: 8}}>
+            <Copyright
+              webAddress="https://www.zlobin.dev/"
+              siteName={t('sitename')}
+            />
+          </Box>
+        </Container>
+      </main>
     </>
   );
 };
