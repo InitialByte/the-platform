@@ -45,7 +45,7 @@ const i18nToCopy = i18nFolders.map(({moduleName, folder: from}) => {
   };
 });
 
-const MAX_CYCLES = 5;
+const MAX_CYCLES = 10;
 let numCyclesDetected = 0;
 
 writeFileSync(pathToSaveRoutes, (moduleRoutes || []).join('\n'));

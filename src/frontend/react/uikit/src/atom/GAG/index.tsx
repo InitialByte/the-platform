@@ -1,14 +1,20 @@
+/* eslint-disable */
 import {useEffect} from 'react';
 
-export const GAG = ({path, id}): any => {
+interface IProps {
+  path: string;
+  id: string;
+}
+
+export const GAG = ({path, id}: IProps): null => {
   useEffect(() => {
-    window['GoogleAnalyticsObject'] = 'ga';
-    window['ga'] =
-      window['ga'] ||
+    window.GoogleAnalyticsObject = 'ga';
+    window.ga =
+      window.ga ||
       function () {
-        (window['ga'].q = window['ga'].q || []).push(arguments);
+        (window.ga.q = window.ga.q || []).push(arguments);
       };
-    window['ga'].l = +new Date();
+    window.ga.l = +new Date();
 
     const el = document.createElement('script');
     el.type = 'text/javascript';

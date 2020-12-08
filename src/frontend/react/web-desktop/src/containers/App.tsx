@@ -27,7 +27,7 @@ interface IProps {
   modules: IModuleState;
   isAuth: boolean;
   auth: {
-    isAuth: boolean;
+    isAuth: boolean,
   };
   i18n: Ii18nState;
   modulesRoute: Platform.IRoute[];

@@ -14,10 +14,10 @@ interface IConfig {
   config: {
     app: {
       settings: {
-        availableLanguages: string[];
-        defaultLanguage: string;
-      };
-    };
+        availableLanguages: string[],
+        defaultLanguage: string,
+      },
+    },
   };
 }
 

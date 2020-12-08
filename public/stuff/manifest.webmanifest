@@ -16,7 +16,7 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "/?pwa",
+  "start_url": "/",
   "background_color": "#fff",
   "display": "standalone",
   "scope": "/",

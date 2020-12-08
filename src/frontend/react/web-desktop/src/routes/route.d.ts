@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 declare namespace Platform {
   interface IRoute {
     path: string;

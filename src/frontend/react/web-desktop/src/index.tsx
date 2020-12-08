@@ -9,8 +9,10 @@ import {moduleRoutes, store} from './store';
 
 const logger = loggerInit();
 const MOUNT_POINT: HTMLElement | null = document.getElementById('app');
+// eslint-disable-next-line no-underscore-dangle
+const isProduction = window?.__INITIAL_STATE__?.env?.mode === 'production';
 
-if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator && isProduction) {
   window.addEventListener('load', (): void => {
     navigator.serviceWorker
       .register('/sw.js')

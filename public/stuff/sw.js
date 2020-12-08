@@ -79,7 +79,7 @@ self.addEventListener('fetch', (event) => {
             !response ||
             response.status !== 200 ||
             response?.type !== 'basic' ||
-            !['image', /*'script', */ 'style'].includes(
+            !['image', 'script', 'style', 'manifest', 'document', 'font'].includes(
               event.request.destination,
             )
           ) {

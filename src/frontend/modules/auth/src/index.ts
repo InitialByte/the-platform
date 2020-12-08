@@ -91,6 +91,7 @@ export const bootstrap = (store: Record<string, unknown>): void => {
         const SUCCESS_STATUS_200 = 200;
         let data = {};
 
+        /* eslint-disable */
         try {
           const response = await result.json();
           data = response.data;
@@ -105,6 +106,7 @@ export const bootstrap = (store: Record<string, unknown>): void => {
           result?.status === SUCCESS_STATUS_200
           ? store.dispatch(actions.simpleAuth({fullName: data.fullName}))
           : Promise.resolve();
+        /* eslint-enable */
       },
     )
     .catch((error: string) => logger.error(E_CODE.E_104, error));

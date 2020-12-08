@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import {IEnvState, IModuleState, Ii18nState} from './store/reducers';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

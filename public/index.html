@@ -3,19 +3,13 @@
   <head>
     <title><%= htmlWebpackPlugin.options.title %></title>
 
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
+    <link rel="preload" as="style" href="/groboto" />
+    <link rel="preload" as="style" href="/gmui" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/i/192.png" />
 
     <meta name="theme-color" content="#ffffff" />
-    <meta name="Description" content="<%= htmlWebpackPlugin.options.description %>" />
+    <meta name="description" content="<%= htmlWebpackPlugin.options.description %>" />
   </head>
   <body>
     <!--[if lte IE 10]>

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 declare namespace Platform {
   type TMessage = string | string[] | Record<string, unknown> | Error;
 

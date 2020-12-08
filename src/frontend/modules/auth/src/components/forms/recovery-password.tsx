@@ -35,9 +35,9 @@ const initialValues: IRecoveryPwdFormValues = {
 };
 const notificationActions = getObjectCache('notificationActions') as {
   createToast: (message: {
-    message: string;
-    type: 'error' | 'warning' | 'info' | 'success';
-  }) => void;
+    message: string,
+    type: 'error' | 'warning' | 'info' | 'success',
+  }) => void,
 };
 
 const onSubmit = (dispatch: TDispatch) => (

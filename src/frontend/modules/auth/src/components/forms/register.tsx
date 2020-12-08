@@ -41,9 +41,9 @@ const initialValues: IRegisterFormValues = {
 const MIN_NUMBER_CHARS_IN_PASSWORD = 5;
 const notificationActions = getObjectCache('notificationActions') as {
   createToast: (message: {
-    message: string;
-    type: 'error' | 'warning' | 'info' | 'success';
-  }) => void;
+    message: string,
+    type: 'error' | 'warning' | 'info' | 'success',
+  }) => void,
 };
 
 const onSubmit = (dispatch: TDispatch) => (

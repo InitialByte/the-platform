@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+/* eslint-disable */
 // @ts-nocheck
 // DON'T FORGET TO ADD THE SAME VALUES FROM E_TYPE AND E_CODE
 // INTO <root>/src/frontend/@types/global-errors.d.ts
@@ -30,5 +30,7 @@ declare global {
   interface Window {
     E_CODE: typeof E_CODE;
     E_TYPE: typeof E_TYPE;
+    GoogleAnalyticsObject: string;
+    ga: any
   }
 }

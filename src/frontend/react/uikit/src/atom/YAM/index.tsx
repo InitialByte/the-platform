@@ -1,6 +1,22 @@
+/* eslint-disable */
 import {useEffect} from 'react';
 
-export const YAM = ({path, accounts = [], version = 1, options = {}}): any => {
+interface IProps {
+  path: string;
+  accounts: string[];
+  options: {
+    defer?: boolean;
+    webvisor?: boolean;
+  };
+  version: '1' | '2';
+}
+
+export const YAM = ({
+  path,
+  accounts = [],
+  version = '1',
+  options = {},
+}: IProps): null => {
   useEffect(() => {
     const callbackQueue = 'yandex_metrika_callbacks';
     const accountListName = 'yandex_metrika_accounts';
@@ -12,7 +28,7 @@ export const YAM = ({path, accounts = [], version = 1, options = {}}): any => {
         window[`yaCounterVersion${id}`] = version;
 
         try {
-          window[`yaCounter${id}`] = new Ya['Metrika']({
+          window[`yaCounter${id}`] = new Ya.Metrika({
             ...defaultOptions,
             ...options,
           });

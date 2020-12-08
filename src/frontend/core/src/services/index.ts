@@ -6,7 +6,6 @@ export * from './http-request';
 export * from './object-cache';
 export * from './fingerprint';
 export * from './file-save';
-export * from './css-namer';
 export * from './cookies';
 export * from './jsonp';
 export * from './clsx';

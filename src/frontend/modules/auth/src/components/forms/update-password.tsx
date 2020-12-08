@@ -23,9 +23,9 @@ const initialValues: IUpdatePwdValues = {
 };
 const notificationActions = getObjectCache('notificationActions') as {
   createToast: (message: {
-    message: string;
-    type: 'error' | 'warning' | 'info' | 'success';
-  }) => void;
+    message: string,
+    type: 'error' | 'warning' | 'info' | 'success',
+  }) => void,
 };
 const MIN_NUMBER_CHARS_IN_PASSWORD = 5;
 
