@@ -4,8 +4,8 @@ WORKDIR /usr/src/app
 
 ## Install yarn v2.
 RUN apk add yarn && \
-    yarn policies set-version berry \
-    yarn set version berry
+  yarn set version berry && \
+  yarn policies set-version latest
 
 COPY package.json .
 RUN yarn

@@ -78,17 +78,6 @@ const webpackConfig = {
     ],
   },
 
-  stats: {
-    moduleAssets: false,
-    entrypoints: false,
-    logging: 'verbose',
-    children: false,
-    assets: false,
-    colors: true,
-    hash: false,
-    env: true,
-  },
-
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
     cacheWithContext: false,

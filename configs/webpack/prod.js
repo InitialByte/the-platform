@@ -39,6 +39,7 @@ module.exports = merge(webpackConfig, {
           test: /node_modules/,
           name: 'vendor',
           chunks: 'all',
+          filename: 'vendors.js'
         },
       },
     },

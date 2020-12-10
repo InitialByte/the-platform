@@ -8,17 +8,18 @@ const maxAgeSeconds = 30 * 24 * 60 * 600; // ~7.2 hours
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
-  'favicon.ico',
-  'stub.js',
-  'manifest.webmanifest',
   '/i18n/root/en_us.json',
   '/i18n/root/ru_ru.json',
   '/i18n/auth/en_us.json',
   '/i18n/auth/ru_ru.json',
+  'manifest.webmanifest',
+  'favicon.ico',
+  'vendors.js',
   '/i/192.png',
   '/i/512.png',
-  '/',
   'index.html',
+  'stub.js',
+  '/',
 ];
 
 const isValid = (response) => {
@@ -79,9 +80,14 @@ self.addEventListener('fetch', (event) => {
             !response ||
             response.status !== 200 ||
             response?.type !== 'basic' ||
-            !['image', 'script', 'style', 'manifest', 'document', 'font'].includes(
-              event.request.destination,
-            )
+            ![
+              'image',
+              'script',
+              'style',
+              'manifest',
+              'document',
+              'font',
+            ].includes(event.request.destination)
           ) {
             return response;
           }

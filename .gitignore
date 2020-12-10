@@ -124,6 +124,7 @@ yarn-debug.log*
 yarn-error.log*
 npm-debug.log*
 .yarnrc.yml
+stats.json
 yarn.lock
 .yarn/*
 .pnp.js
