@@ -56,7 +56,7 @@ const webpackConfig = {
   bail: true,
   name,
 
-  entry: [join(rootPath, `src/frontend/${APP}/src/index.tsx`)],
+  entry: [join(rootPath, `src/${APP}/src/index.tsx`)],
 
   output: {
     library: 'PLT',

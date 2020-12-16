@@ -4,7 +4,7 @@ LABEL name="The Platform. Docker image." \
   maintainer="Zlobin Eugene <creastar@gmail.com>"
 
 ENV PATH="/opt/gtk/bin:${PATH}"
-ENV NGINX_VERSION=1.19.5
+ENV NGINX_VERSION=1.19.6
 
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
   && CONFIG="\
@@ -187,10 +187,10 @@ RUN apk add --no-cache --virtual yarn git && \
 
 ## Install dependencies and cache it.
 COPY package.json .
-COPY src/frontend/react/web-desktop/package.json src/frontend/react/web-desktop/package.json
-COPY src/frontend/modules/auth/package.json src/frontend/modules/auth/package.json
-COPY src/frontend/react/uikit/package.json src/frontend/react/uikit/package.json
-COPY src/frontend/core/package.json src/frontend/core/package.json
+COPY src/react/web-desktop/package.json src/react/web-desktop/package.json
+COPY src/modules/auth/package.json src/modules/auth/package.json
+COPY src/react/uikit/package.json src/react/uikit/package.json
+COPY src/core/package.json src/core/package.json
 COPY configs/docker/nginx/ /etc/nginx/
 COPY . .
 

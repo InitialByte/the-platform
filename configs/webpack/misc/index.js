@@ -29,7 +29,7 @@ const collectModuleRoutes = (rootPath, workspace, dependencies) => {
   if (!rootPath || !workspace || !dependencies.length) {
     return [];
   }
-  const modulesPath = join(rootPath, 'src/frontend/modules');
+  const modulesPath = join(rootPath, 'src/modules');
   const readRouterFile = (filePath, moduleName) => {
     const data = readFileSync(filePath, 'utf8');
 
@@ -54,10 +54,10 @@ const collectModuleRoutes = (rootPath, workspace, dependencies) => {
 };
 
 const collectI18n = (rootPath, workspace, dependencies, rootModuleFolder) => {
-  const modulesPath = join(rootPath, 'src/frontend/modules');
+  const modulesPath = join(rootPath, 'src/modules');
   const i18nRootModuleFolder = join(
     rootPath,
-    `src/frontend/${rootModuleFolder}`,
+    `src/${rootModuleFolder}`,
     `export/i18n/${workspace}`,
   );
   const modulesWithI18n = dependencies
@@ -94,7 +94,7 @@ const collectSwaggerApi = (rootPath) => {
   if (!rootPath) {
     return [];
   }
-  const modulesPath = join(rootPath, 'src/backend/nodejs/rest');
+  const modulesPath = join(rootPath, 'src/swagger/yml');
 
   return getDirectories(modulesPath)
     .map((moduleName) => {

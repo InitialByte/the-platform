@@ -57,6 +57,11 @@ module.exports = {
           '@babel/plugin-transform-function-name',
           '@babel/plugin-syntax-dynamic-import',
           '@babel/proposal-object-rest-spread',
+          [
+            "babel-plugin-react-generate-property", {
+              "customProperty": "data-qa",
+            },
+          ],
         ],
       },
       // TODO possible install and replace to swc-loader.

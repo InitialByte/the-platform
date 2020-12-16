@@ -10,6 +10,7 @@ Dockerfile
 configs/
 .husky
 *.html
+*.yaml
 *.json
 *.conf
 *.jpeg
@@ -18,6 +19,7 @@ configs/
 *.ico
 *.jpg
 *.png
+*.css
 *.gif
 *.pdf
 *.md

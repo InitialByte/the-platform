@@ -1,0 +1,5 @@
+{
+  "name": "User",
+  "description": "Microservice user rest-api",
+  "version": "1.0.0"
+}

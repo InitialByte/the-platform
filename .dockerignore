@@ -1,8 +1,8 @@
 configs/docker-compose.yml
-src/frontend/storybook
-src/frontend/apimock
-src/frontend/swagger
-src/frontend/smoke
+src/storybook
+src/apimock
+src/swagger
+src/smoke
 configs/register
 **/__mocks__/*
 **/__tests__/*
@@ -14,8 +14,6 @@ configs/.env
 node_modules
 **/*.js.snap
 CHANGELOG.md
-src/backend
-configs/tyk
 .yarnrc.yml
 .gitignore
 README.md

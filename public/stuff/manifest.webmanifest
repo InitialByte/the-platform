@@ -1,7 +1,7 @@
 {
   "short_name": "THE_PLATFORM",
   "name": "The Platform",
-  "description": "The Platform. Scalable fullstack framework for configuring complex medium and large SPA projects.",
+  "description": "The Platform. Scalable frontend framework for configuring complex medium and large SPA projects.",
   "icons": [
     {
       "src": "/i/192.png",

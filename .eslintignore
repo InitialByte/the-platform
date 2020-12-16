@@ -1,8 +1,9 @@
-src/frontend/storybook
-src/frontend/apimock
-src/frontend/swagger
-src/frontend/smoke
+src/storybook
+src/apimock
+src/swagger
+src/smoke
 node_modules
+__mocks__
 src/backend
 scripts
 .vscode

@@ -32,29 +32,27 @@
       "DOM"
     ],
     "paths": {
-      "@the_platform/react-web-desktop": ["src/frontend/react/web-desktop/src/index"],
-      "@the_platform/nodejs-core": ["src/backend/nodejs/rest/core/src/index"],
-      "@the_platform/module-auth": ["src/frontend/modules/auth/src/index"],
-      "@the_platform/react-uikit": ["src/frontend/react/uikit/src/index"],
-      "@the_platform/core": ["src/frontend/core/src/index"]
+      "@the_platform/react-web-desktop": ["src/react/web-desktop/src/index"],
+      "@the_platform/module-auth": ["src/modules/auth/src/index"],
+      "@the_platform/react-uikit": ["src/react/uikit/src/index"],
+      "@the_platform/core": ["src/core/src/index"]
     }
   },
   "files": [
-    "src/frontend/core/src/services/error-tracking/global.ts"
+    "src/core/src/services/error-tracking/global.ts"
   ],
   "include": [
-    "src/frontend/**/*.tsx",
-    "src/frontend/**/*.ts"
+    "src/**/*.tsx",
+    "src/**/*.ts"
   ],
   "exclude": [
-    "src/frontend/__mocks__",
-    "src/frontend/storybook",
-    "src/frontend/swagger",
-    "src/frontend/smoke",
+    "src/__mocks__",
+    "src/storybook",
+    "src/swagger",
+    "src/smoke",
     "**/__snapshots__/*",
     "**/__tests__/*",
     "node_modules",
-    "src/backend",
     ".yarn/**/*",
     "**/dist/*",
     "**/*.snap",

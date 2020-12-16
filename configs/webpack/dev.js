@@ -6,7 +6,7 @@ const {webpackConfig} = require('./config');
 const {killByPort} = require('./misc');
 const package = require('../../package.json');
 const {config} = package;
-const packageApiMock = require('../../src/frontend/apimock/package.json');
+const packageApiMock = require('../../src/apimock/package.json');
 const {port: apiMockServerPort} = packageApiMock;
 
 const rootPath = process.cwd();

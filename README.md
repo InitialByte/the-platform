@@ -7,7 +7,7 @@
     - [You can use the-platform when have](#you-can-use-the-platform-when-have)
   - [Advantages](#advantages)
   - [What is used](#what-is-used)
-  - [Core FrondEnd Features](#core-frondend-features)
+  - [Core Features](#core-features)
   - [Setup and run the project locally](#setup-and-run-the-project-locally)
     - [Check outdated dependencies](#check-outdated-dependencies)
     - [Automatically intall @types](#automatically-intall-types)
@@ -21,16 +21,15 @@
 
 ## External Readme
 
-- [BackEnd](src/backend/README.md)
-- [FrontEnd](src/frontend/README.md)
-- [ApiMock](src/frontend/apimock/README.md)
-- [Core functions](src/frontend/core/README.md)
-- [How to create a module](src/frontend/modules/README.md)
-- [UiKit Usage](src/frontend/react/uikit//README.md)
+- [FrontEnd](src/README.md)
+- [ApiMock](src/apimock/README.md)
+- [Core functions](src/core/README.md)
+- [How to create a module](src/modules/README.md)
+- [UiKit Usage](src/react/uikit//README.md)
 
 ## Synopsis
 
-This is scalable fullstack "framework" for configuring complex medium and large SPA projects. Any part of this project can be easy replaced. Here is using mono-repository with modular architecture, it similar to [micro-frontend](https://micro-frontends.org/). Yarn 2 Workspaces gives the ability to build project in a single repo (a.k.a. monorepo). This makes it faster to iterate locally when building components that depends on each other. Monorepo is NOT about mixing everything together inside a project (do not confuse with monolith). Monorepo+modules is about having source codes of multiple applications, services, and libraries that belong to one domain inside a single repository. Using monorepo decreases velocity and maintaining time.
+This is scalable fullstack "framework" for configuring complex medium and large SPA projects. Any part of this project can be easy replaced. Here is using mono-repository with modular architecture. Yarn 2 Workspaces gives the ability to build project in a single repo (a.k.a. monorepo). This makes it faster to iterate locally when building components that depends on each other. Monorepo is NOT about mixing everything together inside a project (do not confuse with monolith). Monorepo+modules is about having source codes of multiple applications, services, and libraries that belong to one domain inside a single repository. Using monorepo decreases velocity and maintaining time.
 
 Modular architecture allows multiple teams to work independently from each other, choose their own technology stacks and establish their own release cycles. Bringing micro-services to the frontend requires a layout service that composes a website out of fragments.
 
@@ -74,25 +73,9 @@ Modular architecture allows multiple teams to work independently from each other
 - Ability make A/B testing for front parts of application.
 - Single-symbols classnames in production - lead to decrease size of styles and more security.
 - Caching resources via ServiceWorkers.
+- Ability to do E2E test related to auto applied data-* attribute instead of className or id.
 
 ## What is used
-
-DevOps
-
-- **Nginx**         - main web-server for production web-application.
-- **Tyk**           - api gateway.
-- **FlyWay**        - database migration.
-- **Kafka**         - message broker.
-- **PostgreSQL**    - open source relational database.
-- **Redis**         - in-memory data structure store.
-- **Consul**        - service discovery.
-- **Docker**        - container for production build.
-- **DockerCompose** - running multi-container Docker applications.
-- **ElasticSearch** - RESTful search and analytics engine.
-- **Kibana**        - visualize Elasticsearch data and navigate the Elastic Stack.
-- **Logstash**      - server-side data processing pipeline that ingests data from a multitude of sources.
-
-FrontEnd
 
 - **Typescript**          - static type-checking along with the latest ECMAScript features.
 - **React**               - view layer.
@@ -106,21 +89,14 @@ FrontEnd
 - **Yarn2**               - organize npm dependencies and workspaces.
 - **StoryBook**           - developing UI components in isolation mode.
 - **MaterialUI**          - react UI framework.
-
-BackEnd
-
 - **NodeJS**              - JS platform for backend.
-- **Typescript**          - static type-checking along with the latest ECMAScript features.
 - **ExpressJS**           - nodejs server.
-- **accesscontrol**       - Role and Attribute based Access Control .
-- **jsonwebtoken**        - an implementation of JSON Web Tokens.
-- **nodemon**             - tool that helps develop node.js based applications.
-- **consul**              - a Consul client.
-- **pg**                  - non-blocking PostgreSQL client for Node.js.
-- **redis**               - a high performance Node.js Redis client..
-- **sequelize**           - multi dialect ORM for Node.JS.
+- **Nodemon**             - tool that helps develop node.js based applications.
+- **Nginx**               - main web-server for production web-application.
+- **Docker**              - container for production build.
+- **Jsonwebtoken**        - an implementation of JSON Web Tokens.
 
-## Core FrondEnd Features
+## Core Features
 
 - authentication: (JWT, CryptoPro [TODO]);
 - omni-channel [TODO];
@@ -138,7 +114,7 @@ BackEnd
 
 ## Setup and run the project locally
 
-* [install nodejs](https://nodejs.org/en/download/) at least 10.x, recommended 14.x
+* [install nodejs](https://nodejs.org/en/download/) recommended 14.x
 * Clone repository `git clone git@github.com:initialbyte/the-platform.git && cd ./the-platform`
 * [install yarn](https://yarnpkg.com/lang/en/docs/install/)
 
@@ -257,38 +233,26 @@ mkcert -key-file <YOUR_PATH>/configs/docker/nginx/certs/wildcard.localhost.key.p
 
 - `yarn upgrade` Update dependencies versions.
 
----
-
-- `yarn workspace @the_platform/ms-nodejs-auth start:dev`
-- `yarn workspace @the_platform/ms-nodejs-user start:dev`
-
 ## Folder Structure
 
 ```nothing
 /dist                          # production stuff
 /public                        # assets, html-templates, webmanifest etc.
 /configs                       # config files
-├──/core                       # eslint, prettier configs
 ├──/docker                     # nginx config and shell script for docker
-├──/register                   # register postgres & redis into service discovery
-├──/tyk                        # api-gateway config
 ├──/webpack                    # webpack configs
 /src                           # sources
-├──/backend                    # backend application
-│   └──/nodejs                 # backend microservices on nodejs
-│   │    └──/rest              # REST API
-├──/frontend                   # yarn 2 workspace
-│   └──/__mocks__              # jest mocks
-│   └──/@types                 # app's types for typescripts
-│   └──/apimock                # api mock server for local development
-│   └──/core                   # core modules and utils (jsonp, storages etc.)
-│   └──/modules                # external modules (auth, register etc.)
-│   └──/react                  # react app
-│   │    └──/uikit             # layouts, dumb components
-│   │    └──/web-desktop       # main point of the web application
-│   └──/smoke                  # smoke testing (puppeteer)
-│   └──/storybook              # storybook
-│   └──/swagger                # swagger UI
+├──/__mocks__              # jest mocks
+├──/@types                 # app's types for typescripts
+├──/apimock                # api mock server for local development
+├──/core                   # core modules and utils (jsonp, storages etc.)
+├──/modules                # external modules (auth, register etc.)
+├──/react                  # react app
+│   └──/uikit             # layouts, dumb components
+│   └──/web-desktop       # main point of the web application
+├──/smoke                  # smoke testing (puppeteer)
+├──/storybook              # storybook
+├──/swagger                # swagger UI
 ```
 
 ## Optimization
@@ -309,7 +273,4 @@ Keep it fast. How to check:
 - Add testing via [visual](https://applitools.com/) or [wix](https://github.com/wix-incubator/match-screenshot).
 - Add [Content editor](https://github.com/wix-incubator/rich-content).
 - Add mount point for modules without routing.
-- Add Protocol Buffers to communicate betweet micro services.
-- Add message bus to communicate between frontend modules.
-- Add SAGA pattern to microservices.
 - Add type check i18n dictionaries with TypeScript [SO](https://stackoverflow.com/questions/58277973/how-to-type-check-i18n-dictionaries-with-typescript).
