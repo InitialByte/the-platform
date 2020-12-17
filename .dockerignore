@@ -19,6 +19,7 @@ CHANGELOG.md
 README.md
 yarn.lock
 coverage
+cypress
 scripts
 .vscode
 .pnp.js

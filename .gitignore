@@ -11,6 +11,7 @@
 ## TESTING
 /coverage
 **/coverage
+cypress
 
 ## VSCODE
 !.vscode/extensions.json

@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://localhost:8008/",
+  "integrationFolder": ".",
+  "retries": {
+    "runMode": 10,
+    "openMode": 10
+  }
+}

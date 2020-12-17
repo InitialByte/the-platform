@@ -83,8 +83,8 @@ Modular architecture allows multiple teams to work independently from each other
 - **Formik, Yup**         - forms and validation.
 - **Ky**                  - http request.
 - **SwaggerUI**           - REST-API documentation.
-- **Puppeteer**           - smoke (potentially e2e) testing.
-- **Jest, Enzyme, Mocha** - unit testing.
+- **Cypress**             - smoke (potentially e2e) testing.
+- **Jest, Enzyme**        - unit testing.
 - **Webpack**             - bundle JavaScript files for usage in a browser.
 - **Yarn2**               - organize npm dependencies and workspaces.
 - **StoryBook**           - developing UI components in isolation mode.
@@ -94,7 +94,6 @@ Modular architecture allows multiple teams to work independently from each other
 - **Nodemon**             - tool that helps develop node.js based applications.
 - **Nginx**               - main web-server for production web-application.
 - **Docker**              - container for production build.
-- **Jsonwebtoken**        - an implementation of JSON Web Tokens.
 
 ## Core Features
 
@@ -216,7 +215,7 @@ mkcert -key-file <YOUR_PATH>/configs/docker/nginx/certs/wildcard.localhost.key.p
 ---
 
 - `yarn apimock` Run API mock server.
-- `yarn smoke` Run smoke testing via puppeteer.
+- `yarn smoke` Run smoke testing via cypress.
 - `yarn swagger` Run SwaggerAPI.
 - `yarn storybook` Run storybook.
 
@@ -242,17 +241,17 @@ mkcert -key-file <YOUR_PATH>/configs/docker/nginx/certs/wildcard.localhost.key.p
 ├──/docker                     # nginx config and shell script for docker
 ├──/webpack                    # webpack configs
 /src                           # sources
-├──/__mocks__              # jest mocks
-├──/@types                 # app's types for typescripts
-├──/apimock                # api mock server for local development
-├──/core                   # core modules and utils (jsonp, storages etc.)
-├──/modules                # external modules (auth, register etc.)
-├──/react                  # react app
-│   └──/uikit             # layouts, dumb components
-│   └──/web-desktop       # main point of the web application
-├──/smoke                  # smoke testing (puppeteer)
-├──/storybook              # storybook
-├──/swagger                # swagger UI
+├──/__mocks__                  # jest mocks
+├──/@types                     # app's types for typescripts
+├──/apimock                    # api mock server for local development
+├──/core                       # core modules and utils (jsonp, storages etc.)
+├──/modules                    # external modules (auth, register etc.)
+├──/react                      # react app
+│   └──/uikit                  # layouts, dumb components
+│   └──/web-desktop            # main point of the web application
+├──/smoke                      # smoke testing (cypress)
+├──/storybook                  # storybook
+├──/swagger                    # swagger UI
 ```
 
 ## Optimization

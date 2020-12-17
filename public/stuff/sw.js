@@ -2,8 +2,9 @@
 // Change to v2, etc. when you update any of the local resources, which will
 // in turn trigger the install event again.
 
-const PRECACHE = 'precache-v1';
-const RUNTIME = 'runtime-v0';
+const version = new URL(self.location).searchParams.get('v') || 1;
+const PRECACHE = 'precache-v' + Number(version);
+const RUNTIME = 'runtime-v' + Number(version);
 const maxAgeSeconds = 30 * 24 * 60 * 600; // ~7.2 hours
 
 // A list of local resources we always want to be cached.
@@ -14,7 +15,6 @@ const PRECACHE_URLS = [
   '/i18n/auth/ru_ru.json',
   'manifest.webmanifest',
   'favicon.ico',
-  'vendors.js',
   '/i/192.png',
   '/i/512.png',
   'index.html',
@@ -80,14 +80,9 @@ self.addEventListener('fetch', (event) => {
             !response ||
             response.status !== 200 ||
             response?.type !== 'basic' ||
-            ![
-              'image',
-              'script',
-              'style',
-              'manifest',
-              'document',
-              'font',
-            ].includes(event.request.destination)
+            !['image', 'script', 'style', 'manifest', 'font'].includes(
+              event.request.destination,
+            )
           ) {
             return response;
           }

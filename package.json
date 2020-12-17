@@ -2,7 +2,7 @@
   "name": "the_platform",
   "description": "The Platform. Scalable frontend framework for configuring complex medium and large SPA projects.",
   "author": "Eugene Zlobin <creastar@gmail.com>",
-  "version": "1.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "repository": {
     "url": "git+https://github.com/InitialByte/the-platform.git",
@@ -138,7 +138,7 @@
     "webpack": "^5.10.3",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^5.7.0"
+    "webpack-merge": "^5.7.2"
   },
   "resolutions": {
     "@types/react": "^17.0.0",
