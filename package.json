@@ -2,7 +2,7 @@
   "name": "the_platform",
   "description": "The Platform. Scalable frontend framework for configuring complex medium and large SPA projects.",
   "author": "Eugene Zlobin <creastar@gmail.com>",
-  "version": "2.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "repository": {
     "url": "git+https://github.com/InitialByte/the-platform.git",
