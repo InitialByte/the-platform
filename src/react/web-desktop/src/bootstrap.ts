@@ -59,7 +59,6 @@ export const bootstrapApp = async (): Promise<void> =>
       .then(
         (fp: string): ReturnType<typeof customRequestInit> =>
           customRequestInit({
-            throwHttpErrors: false,
             beforeRequest: [
               (req: Request): void => {
                 req.headers.set('X-FP', fp);

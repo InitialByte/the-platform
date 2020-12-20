@@ -11,6 +11,12 @@ interface IProps {
   version: '1' | '2';
 }
 
+declare global {
+  interface Window {
+    Ya: any;
+  }
+}
+
 export const YAM = ({
   path,
   accounts = [],
@@ -28,7 +34,7 @@ export const YAM = ({
         window[`yaCounterVersion${id}`] = version;
 
         try {
-          window[`yaCounter${id}`] = new Ya.Metrika({
+          window[`yaCounter${id}`] = new window.Ya.Metrika({
             ...defaultOptions,
             ...options,
           });

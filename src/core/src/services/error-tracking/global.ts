@@ -32,5 +32,6 @@ declare global {
     E_TYPE: typeof E_TYPE;
     GoogleAnalyticsObject: string;
     ga: any;
+    Ya: any;
   }
 }

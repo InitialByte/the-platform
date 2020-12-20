@@ -75,7 +75,7 @@ class CSSNamer {
     this.cap = this.chars.length;
   }
 
-  getName(key: number): string {
+  getName(key: string): string {
     if (!this.cache[key]) {
       this.cache[key] = this.fromNumber(this.counter += 1);
     }
@@ -133,17 +133,17 @@ export const generateClassName = (): GenerateId => {
   const cssNamer = new CSSNamer();
   let ruleCounter = 0;
   const tho = 31;
-  const hashCode = (s: string): number => {
-    let h: number;
+  const hashCode = (s: string): string => {
+    let h: number = 0;
     for (let i = 0; i < s.length; i += 1) {
       // eslint-disable-next-line no-bitwise
       h = (Math.imul(tho, h) + s.charCodeAt(i)) | 0;
     }
 
-    return h;
+    return h.toString();
   };
 
-  return (rule, styleSheet): GenerateId => {
+  return (rule, styleSheet): string => {
     const {classNamePrefix} = styleSheet?.options ?? {};
     const {key = ''} = rule;
     const suffix = `${key}-${ruleCounter += 1}`;
@@ -155,6 +155,7 @@ export const generateClassName = (): GenerateId => {
         names[hash] = cssNamer.getName(hash);
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return names[hash];
     }
 

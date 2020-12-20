@@ -7,9 +7,13 @@ import {AppRouter} from './routes';
 import {bootstrapApp} from './bootstrap';
 import {moduleRoutes, store} from './store';
 
+interface IConfig {
+  version: string;
+}
+
 /* eslint-disable */
 const packageImport = require('../../../../package.json');
-const {version = 1}: IConfig = packageImport;
+const {version = '1'}: IConfig = packageImport;
 /* eslint-disable */
 
 const logger = loggerInit();
@@ -20,9 +24,7 @@ const isProduction = window?.__INITIAL_STATE__?.env?.mode === 'production';
 if ('serviceWorker' in navigator && isProduction) {
   window.addEventListener('load', (): void => {
     navigator.serviceWorker
-      /* eslint-disable */
-      .register(`/sw.js?v=2${version.replaceAll('.', '')}`)
-      /* eslint-disable */
+      .register(`/sw.js?v=${version.toString().replaceAll('.', '')}`)
       .then(() => console.log('ServiceWorker registration successfully.'))
       .catch((error: string) => logger.error(E_CODE.E_103, error));
   });

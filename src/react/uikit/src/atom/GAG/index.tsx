@@ -1,6 +1,13 @@
 /* eslint-disable */
 import {useEffect} from 'react';
 
+declare global {
+  interface Window {
+    GoogleAnalyticsObject: string;
+    ga: any;
+  }
+}
+
 interface IProps {
   path: string;
   id: string;
