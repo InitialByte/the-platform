@@ -3,7 +3,7 @@
   "description": "Smoke testing",
   "version": "1.0.0",
   "dependencies": {
-    "cypress": "^6.1.0"
+    "cypress": "^6.2.0"
   },
   "scripts": {
     "start": "cypress run --config-file cy.json --spec 'test/*' --headless --browser chrome"
