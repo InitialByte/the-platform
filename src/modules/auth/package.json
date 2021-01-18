@@ -8,7 +8,7 @@
     "@reduxjs/toolkit": "^1.5.0",
     "@the_platform/core": "1.0.0",
     "@the_platform/react-uikit": "1.0.0",
-    "core-js": "^3.8.1",
+    "core-js": "^3.8.2",
     "history": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -20,6 +20,6 @@
     "@babel/runtime-corejs3": "^7.12.5",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "@types/react-redux": "^7.1.14"
+    "@types/react-redux": "^7.1.15"
   }
 }
